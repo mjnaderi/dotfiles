@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+# Set ZSH as default shell
+echo -e "\n\n======= Setting ZSH as default shell.\n"
+chsh -s `which zsh`
+
 git submodule init
 git submodule update
 
