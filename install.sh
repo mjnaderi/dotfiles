@@ -24,6 +24,7 @@ done
 cd ..
 
 # Install base16-shell
+echo -e "\n\n======= Installing Base16-Shell\n"
 rm -rf "${ZDOTDIR:-$HOME}/.base16-shell"
 ln -svf `pwd`"/base16-shell" "${ZDOTDIR:-$HOME}/.base16-shell"
 
