@@ -28,5 +28,12 @@ echo -e "\n\n======= Installing Base16-Shell\n"
 rm -rf "${ZDOTDIR:-$HOME}/.base16-shell"
 ln -svf `pwd`"/base16-shell" "${ZDOTDIR:-$HOME}/.base16-shell"
 
+# Install vimrc and Vundle
+echo -e "\n\n======= Installing vimrc and Vundle\n"
+mkdir -p "${ZDOTDIR:-$HOME}/.vim/bundle"
+ln -svf `pwd`"/vundle" "${ZDOTDIR:-$HOME}/.vim/bundle/Vundle.vim"
+ln -svf `pwd`"/vimrc" "${ZDOTDIR:-$HOME}/.vimrc"
 
-
+# Installing Tilda Settings
+echo -e "\n\n======= Installing Tilda settings\n"
+ln -svf `pwd`"/config_tilda" "${ZDOTDIR:-$HOME}/.config/tilda/config_0"
