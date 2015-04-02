@@ -1,13 +1,14 @@
 My Dotfiles
 ===========
 
-This is Mohammad Javad Naderi's dotfiles repository. You can learn more about dotfiles [here](https://dotfiles.github.io/).
+This is My dotfiles repository. You can learn more about dotfiles [here](https://dotfiles.github.io/).
 
 Requirements
 ------------
 
 It is better to install these packages before installing dotfiles.
 
+* Zsh shell
 * Tilda (https://github.com/lanoxx/tilda)
 * Vim
 * Git
@@ -21,3 +22,5 @@ Installation
 chmod +x install.sh
 ./install.sh
 ```
+
+After installing, do not move dotfiles repository. If you did that, run `install.sh` once again.
