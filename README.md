@@ -1,7 +1,7 @@
 My Dotfiles
 ===========
 
-This is My dotfiles repository. You can learn more about dotfiles [here](https://dotfiles.github.io/).
+This is my dotfiles repository. You can learn more about dotfiles [here](https://dotfiles.github.io/).
 
 Requirements
 ------------
