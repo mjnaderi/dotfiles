@@ -31,7 +31,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 
-" map "next" and "prev" tab keys to f7 and f8
+" map F7 and F8 keys to "prev tab" and "next tab"
 :nnoremap <F7> :tabprevious<CR>
 :nnoremap <F8> :tabnext<CR>
 :inoremap <F7> <Esc>:tabprevious<CR>i
@@ -52,7 +52,7 @@ set expandtab
 syntax on
 
 " line numbers
-set number
+"set number
 
 " highlight current line
 set cursorline
