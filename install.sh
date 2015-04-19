@@ -34,6 +34,8 @@ mkdir -p "${ZDOTDIR:-$HOME}/.vim/bundle"
 ln -svf `pwd`"/vundle" "${ZDOTDIR:-$HOME}/.vim/bundle/Vundle.vim"
 ln -svf `pwd`"/vimrc" "${ZDOTDIR:-$HOME}/.vimrc"
 
-# Installing Tilda Settings
-echo -e "\n\n======= Installing Tilda settings\n"
-ln -svf `pwd`"/config_tilda" "${ZDOTDIR:-$HOME}/.config/tilda/config_0"
+# Installing Tilda Config File
+echo -e "\n\n======= Installing Tilda Config File\n"
+cp -v `pwd`"/config_tilda" "${ZDOTDIR:-$HOME}/.config/tilda/config_0"
+cp -v `pwd`"/config_tilda" "${ZDOTDIR:-$HOME}/.config/tilda/config_1"
+cp -v `pwd`"/config_tilda" "${ZDOTDIR:-$HOME}/.config/tilda/config_2"
