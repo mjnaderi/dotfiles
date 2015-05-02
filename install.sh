@@ -33,6 +33,9 @@ echo -e "\n\n======= Installing vimrc and Vundle\n"
 mkdir -p "${ZDOTDIR:-$HOME}/.vim/bundle"
 ln -svf `pwd`"/vundle" "${ZDOTDIR:-$HOME}/.vim/bundle/Vundle.vim"
 ln -svf `pwd`"/vimrc" "${ZDOTDIR:-$HOME}/.vimrc"
+echo -e "\n\n------- Installing Vundle packages after 2 seconds\n"
+sleep 2
+source <(echo "vim +BundleInstall +qall -u vundlerc")
 
 # Installing Tilda Config File
 echo -e "\n\n======= Installing Tilda Config File\n"
