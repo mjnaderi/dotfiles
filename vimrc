@@ -1,5 +1,5 @@
 " Include Vundle Configs
-source vundlerc
+source ~/.vundlerc
 
 " map F7 and F8 keys to "prev tab" and "next tab"
 :nnoremap <F7> :tabprevious<CR>
