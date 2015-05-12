@@ -1,7 +1,7 @@
 tilda_config_version = "1.2.2"
 # image = ""
 # command = ""
-font = "Hasklig Medium 12"
+font = "Hasklig Medium 13"
 key = "F12"
 addtab_key = "<Control>t"
 fullscreen_key = "F11"
