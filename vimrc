@@ -27,6 +27,14 @@ syntax on
 " highlight current line
 set cursorline
 
+" suggest 80 chars per line
+" from http://stackoverflow.com/a/3765575
+if exists('+colorcolumn')
+    set colorcolumn=80
+else
+    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+
 " Highlight searches
 set hlsearch
 
