@@ -5,11 +5,24 @@ source ~/.vundlerc
 " source: https://github.com/Valloric/YouCompleteMe#i-get-weird-errors-when-i-press-ctrl-c-in-vim
 inoremap jk <Esc>
 
-" map F7 and F8 keys to "prev tab" and "next tab"
-:nnoremap <F7> :tabprevious<CR>
-:nnoremap <F8> :tabnext<CR>
-:inoremap <F7> <Esc>:tabprevious<CR>i
-:inoremap <F8> <Esc>:tabnext<CR>i
+"" Fn Keys
+" F5  -> toggle paste mode
+" F6  ->
+" F7  ->
+" F8  -> prev tab
+" F9  -> next tab
+" F10 -> switch color scheme
+
+" toggles vim's paste mode; when we want to paste something into vim from a
+" different application, turning on paste mode prevents the insertion of extra
+" whitespace
+set pastetoggle=<F5>
+
+" map <F8> and <F9> keys to 'prev tab' and 'next tab'
+:nnoremap <F8> :tabprevious<CR>
+:nnoremap <F9> :tabnext<CR>
+:inoremap <F8> <Esc>:tabprevious<CR>i
+:inoremap <F9> <Esc>:tabnext<CR>i
 
 " Switch syntax highlighting on, when the terminal has colors
 if &t_Co > 2 || has("gui_running")
@@ -39,14 +52,22 @@ set noshowmode     " don't show the mode ("-- INSERT --") at the bottom
 "    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 "endif
 
-" Misc. Settings
-set t_Co=256       " Enable 256 colors, for Color Scheme and Vim-Airline
 
-""""""""""""""""
-" Color Scheme "
-""""""""""""""""
+""""""""""""""""""""""""""""""""
+"        Misc. Settings        "
+""""""""""""""""""""""""""""""""
+
+set t_Co=256          " Enable 256 colors, for Color Scheme and Vim-Airline
+set history=1000      " remember more commands and search history
+set undolevels=1000   " use many levels of undo
+
+
+""""""""""""""""""""""""""
+" Color Scheme Settings  "
+""""""""""""""""""""""""""
+
 colorscheme hybrid
-" <F9> | Color scheme selector, from https://github.com/junegunn/dotfiles
+" <F10> | Color scheme selector, from https://github.com/junegunn/dotfiles
 function! s:rotate_colors()
   if !exists('s:colors_list')
     let s:colors_list = ['hybrid', 'hybrid-light']
@@ -60,8 +81,8 @@ function! s:rotate_colors()
   redraw
   echo name
 endfunction
-nnoremap <F9> :call <SID>rotate_colors()<cr>
-
+nnoremap <F10> :call <SID>rotate_colors()<cr>
+inoremap <F10> <Esc>:call <SID>rotate_colors()<cr>i
 
 """""""""""""""""""""""""""""""""""
 "       Vim-Airline Settings      "
