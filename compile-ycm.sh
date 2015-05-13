@@ -2,11 +2,6 @@
 # Installs YouCompleteMe for VIM
 # Based on https://github.com/Valloric/YouCompleteMe#full-installation-guide
 
-if ! [[ -d ~/.vim/bundle/YouCompleteMe ]]; then
-    echo "YouCompleteMe is not installed by Vundle. I can't compile YCM."
-    exit
-fi
-
 if [[ -s ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_client_support.so
     && -s ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so ]]; then
     echo "YouCompleteMe is already compiled."
@@ -26,7 +21,7 @@ else
     done
 fi
 
-# Make YCM
+# Compile YCM
 mkdir ycm_build
 cd ycm_build
 cmake -G "Unix Makefiles" -DUSE_SYSTEM_LIBCLANG=ON . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp

@@ -43,22 +43,25 @@ cd ..
 
 # Install base16-shell
 echo -e "\n======= Installing Base16-Shell"
-rm -rf "${ZDOTDIR:-$HOME}/.base16-shell"
-ln -svfn `pwd`"/base16-shell" "${ZDOTDIR:-$HOME}/.base16-shell"
+rm -rf ~/.base16-shell
+ln -svfn `pwd`"/base16-shell" ~/.base16-shell
 
 # Install vimrc and Vundle
 echo -e "\n======= Installing vimrc and Vundle"
-mkdir -p "${ZDOTDIR:-$HOME}/.vim/bundle"
-ln -svfn `pwd`"/vundle" "${ZDOTDIR:-$HOME}/.vim/bundle/Vundle.vim"
-ln -svfn `pwd`"/vimrc" "${ZDOTDIR:-$HOME}/.vimrc"
-ln -svfn `pwd`"/vundlerc" "${ZDOTDIR:-$HOME}/.vundlerc"
+mkdir -p ~/.vim/bundle
+ln -svfn `pwd`/vundle ~/.vim/bundle/Vundle.vim
+ln -svfn `pwd`/vimrc ~/.vimrc
+ln -svfn `pwd`/vundlerc ~/.vundlerc
 echo "------- Installing Vundle packages"
 source <(echo "vim +BundleInstall +qall -u vundlerc")
-echo "------- Compiling YouCompleteMe for Vim (If installed by Vundle)"
-./install-vim-ycm.sh
+if [[ -d ~/.vim/bundle/YouCompleteMe ]]; then
+    echo "------- YouCompleteMe for Vim is installed by Vundle. Compiling YouCompleteMe..."
+    ./compile-ycm.sh
+    ln -svfn `pwd`/default_ycm_extra_conf.py ~/.ycm_extra_conf
+fi
 
 # Installing Tilda Config File
 echo -e "\n======= Installing Tilda Config File"
-cp -v `pwd`"/config_tilda" "${ZDOTDIR:-$HOME}/.config/tilda/config_0"
-cp -v `pwd`"/config_tilda" "${ZDOTDIR:-$HOME}/.config/tilda/config_1"
-cp -v `pwd`"/config_tilda" "${ZDOTDIR:-$HOME}/.config/tilda/config_2"
+cp -v `pwd`"/config_tilda" ~/.config/tilda/config_0
+cp -v `pwd`"/config_tilda" ~/.config/tilda/config_1
+cp -v `pwd`"/config_tilda" ~/.config/tilda/config_2
