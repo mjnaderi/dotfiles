@@ -1,9 +1,5 @@
 #!/usr/bin/env zsh
 
-# Configurations
-export DOTFILES_INSTALL_YCM=1  # Install YouCompleteMe for Vim
-
-
 # Set ZSH as default shell
 echo -e "\n======= Setting ZSH as default shell."
 USER_SHELL=$(getent passwd `whoami` | cut -d: -f7)
@@ -58,10 +54,8 @@ ln -svfn `pwd`"/vimrc" "${ZDOTDIR:-$HOME}/.vimrc"
 ln -svfn `pwd`"/vundlerc" "${ZDOTDIR:-$HOME}/.vundlerc"
 echo "------- Installing Vundle packages"
 source <(echo "vim +BundleInstall +qall -u vundlerc")
-if [[ $DOTFILES_INSTALL_YCM == 1 ]]; then
-    echo "------- Compiling YouCompleteMe for Vim"
-    ./install-vim-ycm.sh
-fi 
+echo "------- Compiling YouCompleteMe for Vim (If installed by Vundle)"
+./install-vim-ycm.sh
 
 # Installing Tilda Config File
 echo -e "\n======= Installing Tilda Config File"

@@ -24,3 +24,6 @@ chmod +x install.sh
 ```
 
 After installing, do not move dotfiles repository. If you did that, run `install.sh` once again.
+
+If installing YouCompleteMe plugin for Vim takes a long time and you don't want to install it,
+comment out `Plugin 'Valloric/YouCompleteMe'` in `vundlerc`.

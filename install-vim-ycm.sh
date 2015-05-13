@@ -1,15 +1,6 @@
 #!/usr/bin/env zsh
 # Installs YouCompleteMe for VIM
-#
-# I'v put this apart from install.sh because YouCompleteMe needs
-# downloading a relatively large amount of data, and it takes a
-# long time to install. So, maybe you want to install it later.
-
-# I only write scipt for Arch Linux                                           
-if ! [[ `uname -r` == *ARCH ]]; then  # if we are not in Arch linux
-    echo "Arch linux not detected. I don't compile YCM."
-    exit
-fi
+# Based on https://github.com/Valloric/YouCompleteMe#full-installation-guide
 
 if ! [[ -d ~/.vim/bundle/YouCompleteMe ]]; then
     echo "YouCompleteMe is not installed by Vundle. I can't compile YCM."
@@ -22,14 +13,18 @@ if [[ -s ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_client_support.so
     exit
 fi
 
-PACKAGES=(git vim python python2 cmake clang)
-for PACKAGE in $PACKAGES; do
-    if pacman -Q "$PACKAGE" &>/dev/null; then  # if PACKAGE is installed
-        echo "Package $PACKAGE is installed"
-    else
-        sudo pacman -S $PACKAGE                                             
-    fi                                                                      
-done                                                                        
+if ! [[ `uname -r` == *ARCH ]]; then  # if we are not in Arch linux
+    echo -e "Arch linux not detected. You need packages git, vim, python-dev cmake libclang. Compilation might fail. If you have not them, install manually, and re-run.\n"
+else
+    PACKAGES=(vim python python2 cmake clang)
+    for PACKAGE in $PACKAGES; do
+        if pacman -Q "$PACKAGE" &>/dev/null; then  # if PACKAGE is installed
+            echo "Package $PACKAGE is installed"
+        else
+            sudo pacman -S $PACKAGE
+        fi
+    done
+fi
 
 # Make YCM
 mkdir ycm_build
