@@ -66,7 +66,7 @@ colorscheme hybrid
 " ----------------------------------------------------------------------------
 function! s:rotate_colors()
   if !exists('s:colors_list')
-    let s:colors_list = ['hybrid', 'hybid-light']
+    let s:colors_list = ['hybrid', 'hybrid-light']
   endif
   if !exists('s:colors_index')
     let s:colors_index = index(s:colors_list, g:colors_name)
