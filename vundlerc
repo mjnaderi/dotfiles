@@ -12,8 +12,10 @@ Plugin 'gmarik/Vundle.vim'
 
 " My Plugins
 Plugin 'bling/vim-airline'
-Plugin 'chriskempson/base16-vim'
 Plugin 'w0ng/vim-hybrid'
+if $DOTFILES_INSTALL_YCM == '1'
+    Plugin 'Valloric/YouCompleteMe'
+endif
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
