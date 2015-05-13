@@ -1,6 +1,12 @@
 " Include Vundle Configs
 source ~/.vundlerc
 
+" if you prefer the Omni-Completion tip window to close when a selection is
+" made, these lines close it on movement in insert mode or when leaving
+" insert mode (from http://stackoverflow.com/a/3107159)
+autocmd CursorMovedI * if pumvisible() == 0 && bufname("%") != "[Command Line]"|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0 && bufname("%") != "[Command Line]"|pclose|endif
+
 " map F7 and F8 keys to "prev tab" and "next tab"
 :nnoremap <F7> :tabprevious<CR>
 :nnoremap <F8> :tabnext<CR>
