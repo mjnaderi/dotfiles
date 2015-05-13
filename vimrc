@@ -1,6 +1,10 @@
 " Include Vundle Configs
 source ~/.vundlerc
 
+" Press jk to go to Normal mode
+" source: https://github.com/Valloric/YouCompleteMe#i-get-weird-errors-when-i-press-ctrl-c-in-vim
+inoremap jk <Esc>
+
 " YouCompleteMe Options
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf'
 let g:ycm_autoclose_preview_window_after_completion = 1
