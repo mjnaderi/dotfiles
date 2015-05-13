@@ -5,12 +5,6 @@ source ~/.vundlerc
 " source: https://github.com/Valloric/YouCompleteMe#i-get-weird-errors-when-i-press-ctrl-c-in-vim
 inoremap jk <Esc>
 
-" YouCompleteMe Options
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf'
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_error_symbol = '✗'
-let g:ycm_warning_symbol = '⚠'
-
 " map F7 and F8 keys to "prev tab" and "next tab"
 :nnoremap <F7> :tabprevious<CR>
 :nnoremap <F8> :tabnext<CR>
@@ -57,23 +51,12 @@ set incsearch
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
-" vim-airline settings
-" Enable 256 colors in vim (for airline)
+" Enable 256 colors, for Color Scheme and Vim-Airline
 set t_Co=256
-" appear airline all the time
-set laststatus=2
-" set powerline fonts for airline
-let g:airline_powerline_fonts = 1
-" vim-airline theme, select theme from https://github.com/bling/vim-airline/wiki/Screenshots
-let g:airline_theme = 'light'
 
 " Color Scheme
 colorscheme hybrid
-
-" ----------------------------------------------------------------------------
-" <F9> | Color scheme selector
-" from https://github.com/junegunn/dotfiles
-" ----------------------------------------------------------------------------
+" <F9> | Color scheme selector, from https://github.com/junegunn/dotfiles
 function! s:rotate_colors()
   if !exists('s:colors_list')
     let s:colors_list = ['hybrid', 'hybrid-light']
@@ -88,3 +71,30 @@ function! s:rotate_colors()
   echo name
 endfunction
 nnoremap <F9> :call <SID>rotate_colors()<cr>
+
+
+"""""""""""""""""""""""""""""""""""
+"       Vim-Airline Options       "
+"""""""""""""""""""""""""""""""""""
+" appear airline all the time
+set laststatus=2
+" set powerline fonts for airline
+let g:airline_powerline_fonts = 1
+" vim-airline theme, select theme from https://github.com/bling/vim-airline/wiki/Screenshots
+" consider using: tomorrow, luna, light, powerlineish
+let g:airline_theme = 'tomorrow'
+
+
+"""""""""""""""""""""""""""""""""""
+"      YouCompleteMe Options      "
+"""""""""""""""""""""""""""""""""""
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf'
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_min_num_identifier_candidate_chars = 4
+let g:ycm_error_symbol = '✗'
+let g:ycm_warning_symbol = '⚠'
+
+nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
+nnoremap <leader>pg :YcmCompleter GoTo<CR>
+nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
