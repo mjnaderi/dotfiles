@@ -56,7 +56,12 @@ echo "------- Installing Vundle packages"
 source <(echo "vim +BundleInstall +qall -u vundlerc")
 if [[ -d ~/.vim/bundle/YouCompleteMe ]]; then
     echo "------- YouCompleteMe for Vim is installed by Vundle. Compiling YouCompleteMe..."
-    ./compile-ycm.sh
+    if [[ -s ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_client_support.so
+        && -s ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so ]]; then
+        echo "YouCompleteMe is already compiled."
+    else
+        ~/.vim/bundle/YouCompleteMe/install.sh --clang-completer --system-libclang --gocode-completer
+    fi
     ln -svfn `pwd`/default_ycm_extra_conf.py ~/.ycm_extra_conf
 fi
 
