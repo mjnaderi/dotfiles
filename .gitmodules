@@ -7,3 +7,6 @@
 [submodule "vundle"]
 	path = vundle
 	url = git@github.com:gmarik/Vundle.vim.git
+[submodule "desk"]
+	path = desk
+	url = https://github.com/jamesob/desk

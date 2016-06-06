@@ -12,7 +12,7 @@ fi
 # Install some packages in Arch linux
 if [[ `uname -r` == *ARCH ]]; then  # if we are in Arch linux
     echo -e "\n======= Arch linux detected. Installing some packages..."
-    PACKAGES=(git tig tilda vim)
+    PACKAGES=(git tig tilda)
     for PACKAGE in $PACKAGES; do
         if pacman -Q "$PACKAGE" &>/dev/null; then  # if PACKAGE is installed
             echo "Package $PACKAGE is installed"
@@ -20,6 +20,10 @@ if [[ `uname -r` == *ARCH ]]; then  # if we are in Arch linux
             sudo pacman -S $PACKAGE
         fi
     done
+    if ! pacman -Q vim &>/dev/null && ! pacman -Q gvim &>/dev/null; then
+        echo "Vim or Gvim is not installed. Installing Gvim"
+        sudo pacman -S gvim
+    fi
 fi
 
 git submodule init
@@ -39,6 +43,14 @@ ln -svfn $PREZTO_DIR "${ZDOTDIR:-$HOME}/.zprezto"
 for rcfile in "$PREZTO_DIR"/runcoms/^README.md(.N); do
     ln -svfn "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
+cd ..
+
+# Install Desk (https://github.com/jamesob/desk)
+echo -e "\n======= Installing Desk"
+cd desk
+DESK_DIR=`pwd`
+rm -rf "${ZDOTDIR:-$HOME}/.zdesk"
+ln -svfn $DESK_DIR "${ZDOTDIR:-$HOME}/.zdesk"
 cd ..
 
 # Install base16-shell
