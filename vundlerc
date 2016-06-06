@@ -12,7 +12,9 @@ Plugin 'gmarik/Vundle.vim'
 
 " My Plugins
 Plugin 'bling/vim-airline'
-Plugin 'w0ng/vim-hybrid'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'kristijanhusak/vim-hybrid-material'
+Plugin 'google/vim-colorscheme-primary'
 " Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line

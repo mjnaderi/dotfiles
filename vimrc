@@ -40,17 +40,17 @@ set tabstop=4      " size of a hard tabstop (number of spaces a tab counts for)
 set shiftwidth=4   " size of an 'indent' (spaces for autoindents)
 set softtabstop=4  " a combination of spaces and tabs are used to simulate tab stops at a width other than the (hard)tabstop
 set expandtab      " always uses spaces instead of tab characters
-"set number        " show line numbers
+set number        " show line numbers
 set cursorline     " highlight current line
 set scrolloff=3    " Start scrolling three lines before the horizontal window border
 set noshowmode     " don't show the mode ("-- INSERT --") at the bottom
 " suggest 80 chars per line
 " from http://stackoverflow.com/a/3765575
-"if exists('+colorcolumn')
-"    set colorcolumn=80
-"else
-"    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-"endif
+if exists('+colorcolumn')
+    set colorcolumn=80
+else
+    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
 
 
 """"""""""""""""""""""""""""""""
@@ -65,21 +65,24 @@ set undolevels=1000   " use many levels of undo
 """"""""""""""""""""""""""
 " Color Scheme Settings  "
 """"""""""""""""""""""""""
-
-colorscheme hybrid
+set background=light
+colorscheme primary
 " <F10> | Color scheme selector, from https://github.com/junegunn/dotfiles
 function! s:rotate_colors()
   if !exists('s:colors_list')
-    let s:colors_list = ['hybrid', 'hybrid-light']
+    let s:colors_list = ['primary', 'hybrid_material', 'hybrid_material']
+    let s:bgs = ['light', 'dark', 'light']
   endif
   if !exists('s:colors_index')
     let s:colors_index = index(s:colors_list, g:colors_name)
   endif
   let s:colors_index = (s:colors_index + 1) % len(s:colors_list)
   let name = s:colors_list[s:colors_index]
+  let bg = s:bgs[s:colors_index]
   execute 'colorscheme' name
+  execute 'set background='.bg
   redraw
-  echo name
+  echo name.' '.bg
 endfunction
 nnoremap <F10> :call <SID>rotate_colors()<cr>
 inoremap <F10> <Esc>:call <SID>rotate_colors()<cr>i
