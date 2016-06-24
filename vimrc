@@ -65,13 +65,13 @@ set undolevels=1000   " use many levels of undo
 """"""""""""""""""""""""""
 " Color Scheme Settings  "
 """"""""""""""""""""""""""
-set background=light
-colorscheme primary
+set background=dark
+colorscheme hybrid_material
 " <F10> | Color scheme selector, from https://github.com/junegunn/dotfiles
 function! s:rotate_colors()
   if !exists('s:colors_list')
-    let s:colors_list = ['primary', 'hybrid_material', 'hybrid_material']
-    let s:bgs = ['light', 'dark', 'light']
+    let s:colors_list = ['hybrid_material', 'primary', 'hybrid_material']
+    let s:bgs = ['dark', 'light', 'light']
   endif
   if !exists('s:colors_index')
     let s:colors_index = index(s:colors_list, g:colors_name)
