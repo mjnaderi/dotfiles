@@ -78,7 +78,7 @@ if [[ -d ~/.vim/bundle/YouCompleteMe ]]; then
 fi
 
 # Installing Tilda Config File
-echo -e "\n======= Installing Tilda Config File"
-cp -v `pwd`"/config_tilda" ~/.config/tilda/config_0
-cp -v `pwd`"/config_tilda" ~/.config/tilda/config_1
-cp -v `pwd`"/config_tilda" ~/.config/tilda/config_2
+#echo -e "\n======= Installing Tilda Config File"
+#cp -v `pwd`"/config_tilda" ~/.config/tilda/config_0
+#cp -v `pwd`"/config_tilda" ~/.config/tilda/config_1
+#cp -v `pwd`"/config_tilda" ~/.config/tilda/config_2
