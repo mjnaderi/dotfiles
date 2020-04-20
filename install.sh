@@ -12,7 +12,7 @@ fi
 # Install some packages in Arch linux
 if [[ `uname -r` == *ARCH ]]; then  # if we are in Arch linux
     echo -e "\n======= Arch linux detected. Installing some packages..."
-    PACKAGES=(git tig tilda)
+    PACKAGES=(git tig tilda xclip htop)
     for PACKAGE in $PACKAGES; do
         if pacman -Q "$PACKAGE" &>/dev/null; then  # if PACKAGE is installed
             echo "Package $PACKAGE is installed"
@@ -30,7 +30,7 @@ git submodule init
 git submodule update
 
 # Install Prezto
-echo -e "\n======= Installing Prezto"
+echo -e "\n======= Install Prezto"
 cd prezto
 PREZTO_DIR=`pwd`
 echo "------- Cloning Prezto Submodules"
@@ -46,7 +46,7 @@ done
 cd ..
 
 # Install Desk (https://github.com/jamesob/desk)
-echo -e "\n======= Installing Desk"
+echo -e "\n======= Install Desk"
 cd desk
 DESK_DIR=`pwd`
 rm -rf "${ZDOTDIR:-$HOME}/.zdesk"
@@ -54,17 +54,17 @@ ln -svfn $DESK_DIR "${ZDOTDIR:-$HOME}/.zdesk"
 cd ..
 
 # Install base16-shell
-echo -e "\n======= Installing Base16-Shell"
+echo -e "\n======= Install Base16-Shell"
 rm -rf ~/.base16-shell
 ln -svfn `pwd`"/base16-shell" ~/.base16-shell
 
 # Install vimrc and Vundle
-echo -e "\n======= Installing vimrc and Vundle"
+echo -e "\n======= Install vimrc and Vundle"
 mkdir -p ~/.vim/bundle
 ln -svfn `pwd`/vundle ~/.vim/bundle/Vundle.vim
 ln -svfn `pwd`/vimrc ~/.vimrc
 ln -svfn `pwd`/vundlerc ~/.vundlerc
-echo "------- Installing Vundle packages"
+echo "------- Install Vundle packages"
 source <(echo "vim +BundleInstall +qall -u vundlerc")
 if [[ -d ~/.vim/bundle/YouCompleteMe ]]; then
     echo "------- YouCompleteMe for Vim is installed by Vundle. Compiling YouCompleteMe..."
@@ -84,7 +84,21 @@ fi
 #cp -v `pwd`"/config_tilda" ~/.config/tilda/config_2
 
 
-# Install pyenv
-echo -e "\n======= Installing pyenv and pyenv-virtualenv"
-git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+# Install pyenv, pyenv-virtualenv
+echo -e "\n======= Install/Update pyenv and pyenv-virtualenv"
+PYENV_INSTALL_PATH="$HOME/.pyenv"
+PYENV_VIRTUALENV_INSTALL_PATH="${PYENV_INSTALL_PATH}/plugins/pyenv-virtualenv"
+if [[ -d $PYENV_INSTALL_PATH ]]; then
+  echo "pyenv found. updating..."
+  git -C $PYENV_INSTALL_PATH pull -q
+else
+  echo "pyenv not found. installing..."
+  git clone https://github.com/pyenv/pyenv.git $PYENV_INSTALL_PATH
+fi
+if [[ -d $PYENV_VIRTUALENV_INSTALL_PATH ]]; then
+  echo "pyenv-virtualenv found. updating..."
+  git -C $PYENV_VIRTUALENV_INSTALL_PATH pull -q
+else
+  echo "pyenv-virtualenv not found. installing..."
+  git clone https://github.com/pyenv/pyenv-virtualenv.git $PYENV_VIRTUALENV_INSTALL_PATH
+fi
