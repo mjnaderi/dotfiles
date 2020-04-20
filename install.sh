@@ -82,3 +82,9 @@ fi
 #cp -v `pwd`"/config_tilda" ~/.config/tilda/config_0
 #cp -v `pwd`"/config_tilda" ~/.config/tilda/config_1
 #cp -v `pwd`"/config_tilda" ~/.config/tilda/config_2
+
+
+# Install pyenv
+echo -e "\n======= Installing pyenv and pyenv-virtualenv"
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
