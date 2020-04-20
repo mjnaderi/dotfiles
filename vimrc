@@ -1,17 +1,14 @@
-" Include Vundle Configs
-source ~/.vundlerc
-
 " Press jk to go to Normal mode
 " source: https://github.com/Valloric/YouCompleteMe#i-get-weird-errors-when-i-press-ctrl-c-in-vim
 inoremap jk <Esc>
 
 "" Fn Keys
 " F5  -> toggle paste mode
-" F6  ->
+" F6  -> switch color scheme
 " F7  ->
 " F8  -> prev tab
 " F9  -> next tab
-" F10 -> switch color scheme
+
 
 " toggles vim's paste mode; when we want to paste something into vim from a
 " different application, turning on paste mode prevents the insertion of extra
@@ -40,7 +37,7 @@ set tabstop=4      " size of a hard tabstop (number of spaces a tab counts for)
 set shiftwidth=4   " size of an 'indent' (spaces for autoindents)
 set softtabstop=4  " a combination of spaces and tabs are used to simulate tab stops at a width other than the (hard)tabstop
 set expandtab      " always uses spaces instead of tab characters
-set number        " show line numbers
+set number         " show line numbers
 set cursorline     " highlight current line
 set scrolloff=3    " Start scrolling three lines before the horizontal window border
 set noshowmode     " don't show the mode ("-- INSERT --") at the bottom
@@ -67,7 +64,7 @@ set undolevels=1000   " use many levels of undo
 """"""""""""""""""""""""""
 set background=dark
 colorscheme hybrid_material
-" <F10> | Color scheme selector, from https://github.com/junegunn/dotfiles
+" <F6> | Color scheme selector, from https://github.com/junegunn/dotfiles
 function! s:rotate_colors()
   if !exists('s:colors_list')
     let s:colors_list = ['hybrid_material', 'primary', 'hybrid_material']
@@ -84,8 +81,8 @@ function! s:rotate_colors()
   redraw
   echo name.' '.bg
 endfunction
-nnoremap <F10> :call <SID>rotate_colors()<cr>
-inoremap <F10> <Esc>:call <SID>rotate_colors()<cr>i
+nnoremap <F6> :call <SID>rotate_colors()<cr>
+inoremap <F6> <Esc>:call <SID>rotate_colors()<cr>i
 
 """""""""""""""""""""""""""""""""""
 "       Vim-Airline Settings      "
