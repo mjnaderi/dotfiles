@@ -32,27 +32,22 @@ Other Customizations
 
 Install Gnome Tweak Tool.
 
--   Install `xcursor-vanilla-dmz` package and in Gnome Tweak Tool, set Cursor to 'Vanilla-DMZ'.
--   In "Windows" section, Enable "Maximize" and "Minimize" buttons.
--   In "Fonts" section, set monospace font to "Source Code Pro"
+- Install `xcursor-vanilla-dmz` package and in Gnome Tweak Tool, set Cursor to 'Vanilla-DMZ'.
+- In "Windows" section, Enable "Maximize" and "Minimize" buttons.
+- In "Fonts" section, set monospace font to "Source Code Pro"
 
-Install these gnome extensions:
+Useful gnome extensions:
 
-- [Activities Configurator](https://extensions.gnome.org/extension/358/activities-configurator/)
-    - Enable 'Hide Icon', 'Hide Text' and 'Remove Activities Button'
+- [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/)
+- [Hide Activities Button](https://extensions.gnome.org/extension/4325/hide-activities-button/)
 - [Arch Linux Updates Indicator](https://extensions.gnome.org/extension/1010/archlinux-updates-indicator/)
-- [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
-    - Position: Left | Icon size: 24 | Intelligent Autohide: On | Dodge windows: Off
-    - Enable 'Panel mode: extend to the screen edge'
-    - Enable 'Show Applications icon' and 'Move the applications button at the beginning...'
-    - In Appearance: disable 'Use built-in theme' | Enable 'Shrink the dash', 'Show windows counter...' | Set opacity to 80%
 - [Disconnect Wifi](https://extensions.gnome.org/extension/904/disconnect-wifi/)
-- [Maximus NG](https://extensions.gnome.org/extension/1026/maximus-ng/)
 - [Persian Calendar](https://extensions.gnome.org/extension/240/persian-calendar/)
+- [Iranian Persian Calendar](https://extensions.gnome.org/extension/3618/shamsi-calendar/)
 - [Proxy Switcher](https://extensions.gnome.org/extension/771/proxy-switcher/)
-- [Remove Dropdown Arrows](https://extensions.gnome.org/extension/800/remove-dropdown-arrows/)
-- [Topicons Plus](https://extensions.gnome.org/extension/1031/topicons/)
-
+- [Screenshot Locations](https://extensions.gnome.org/extension/1179/screenshot-locations/)
+- [Sound Input & Output Device Chooser](https://extensions.gnome.org/extension/906/sound-output-device-chooser/)
+- [system-monitor-next](https://extensions.gnome.org/extension/3010/system-monitor-next/)
 
 ## Terminal
 
@@ -121,19 +116,13 @@ Set color scheme to 'Treehouse'. Set these keyboard shortcuts:
 
 Install these extensions:
 
-- Vimium
 - Wappalyzer
 - Alexa Traffic Rank
 - Styler
-- DevTools Author
-    - Enable chrome://flags/#enable-devtools-experiments
-    - Open DevTools; Settings > Experiments > Allow custom UI themes
-    - Set Devtools > Settings > Preferences > Appearance > Theme to "Dark"
-    - Set DevTools Author's theme to "Default", set font to "Source Code Pro", and font size to 12
 - React Developer Tools
 - Redux Devtools
 
 
 ## Note Taking
 
-Install mikidown.
+Install Typora, Joplin or MarkText.
