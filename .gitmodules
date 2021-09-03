@@ -1,6 +1,0 @@
-[submodule "prezto"]
-	path = prezto
-	url = git@github.com:mjnaderi/prezto.git
-[submodule "base16-shell"]
-	path = base16-shell
-	url = git@github.com:chriskempson/base16-shell.git
