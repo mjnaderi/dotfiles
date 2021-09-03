@@ -1,0 +1,21 @@
+- name: install packages required by pyenv (https://github.com/pyenv/pyenv/wiki#suggested-build-environment)
+  community.general.pacman:
+    name:
+      - base-devel
+      - openssl
+      - zlib
+      - xz
+    state: present
+  become: yes
+
+- name: install pyenv
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    dest: ~/.pyenv
+    version: master
+
+- name: install pyenv-virtualenv
+  git:
+    repo: https://github.com/pyenv/pyenv-virtualenv.git
+    dest: ~/.pyenv/plugins/pyenv-virtualenv
+    version: master

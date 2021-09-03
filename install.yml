@@ -1,0 +1,7 @@
+- hosts: localhost
+
+  vars:
+    my_timezone: Asia/Tehran
+
+  roles:
+    - dotfiles

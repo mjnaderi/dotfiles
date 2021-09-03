@@ -1,0 +1,17 @@
+# Activate Comment in Interactive mode
+setopt interactivecomments
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.base16-shell"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+if [[ -s "$BASE16_SHELL" ]]; then
+    # Applies one of these themes each day.
+    THEMES="mocha apathy tube railscasts atelier-dune atelier-lakeside atelier-estuary atelier-savanna"
+    CNT=`echo $THEMES | wc -w`
+    IND=$((`date +%j`%$CNT+1))
+    TODAY_THEME=`echo $THEMES | cut -d " " -f $IND`
+    BASE16_THEME_FILE="$BASE16_SHELL/scripts/base16-$TODAY_THEME.sh"
+    [[ -s $BASE16_THEME_FILE ]] && source $BASE16_THEME_FILE
+fi

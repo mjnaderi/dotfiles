@@ -1,0 +1,52 @@
+- name: install ZSH shell
+  become: yes
+  community.general.pacman:
+    name: zsh
+    state: latest
+
+- name: get ZSH binary path
+  shell: which zsh
+  register: which_zsh
+
+- name: set ZSH as default shell
+  become: yes
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    shell: "{{ which_zsh.stdout }}"
+
+- name: install prezto
+  file:
+    src: "{{ playbook_dir }}/submodules/prezto"
+    dest: ~/.zprezto
+    state: link
+
+- name: install prezto
+  file:
+    src: "{{ playbook_dir }}/submodules/prezto/runcoms/{{ item }}"
+    dest: ~/.{{ item }}
+    state: link
+  with_items:
+    - zlogin
+    - zlogout
+    - zpreztorc
+    - zprofile
+    - zshenv
+    - zshrc
+
+- name: install zshrc
+  file:
+    src: "{{ playbook_dir }}/files/zshrc"
+    dest: ~/.zshrc-dotenv
+    state: link
+
+- name: install zprofile
+  file:
+    src: "{{ playbook_dir }}/files/zprofile"
+    dest: ~/.zprofile-dotenv
+    state: link
+
+- name: install base16-shell
+  file:
+    src: "{{ playbook_dir }}/submodules/base16-shell"
+    dest: ~/.base16-shell
+    state: link

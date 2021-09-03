@@ -1,0 +1,15 @@
+- name: git submodule update --init --recursive
+  shell: git submodule update --init --recursive
+
+- name: set timezone to Asia/Tehran
+  become: yes
+  timezone:
+    name: "{{ my_timezone }}"
+  tags:
+    - timezone
+
+- { import_tasks: packages.yml,        tags: [packages]    }
+- { import_tasks: zsh.yml,             tags: [zsh] }
+- { import_tasks: vim.yml,             tags: [vim] }
+- { import_tasks: pyenv.yml,           tags: [pyenv] }
+- { import_tasks: security.yml,        tags: [security]    }

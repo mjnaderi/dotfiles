@@ -1,0 +1,11 @@
+- name: remove .ssh directory of `root` user
+  become: yes
+  file:
+    path: /root/.ssh
+    state: absent
+
+- name: remove password of `root` user
+  become: yes
+  user:
+    name: root
+    password: '!'

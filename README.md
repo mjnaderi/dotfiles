@@ -6,24 +6,22 @@ This is my dotfiles repository. You can learn more about dotfiles [here](https:/
 Requirements
 ------------
 
-It is better to install these packages before installing dotfiles.
+Install Ansible.
 
-* Zsh shell
-* Tilda (https://github.com/lanoxx/tilda)
-* Vim
-* Git
-* ...
+```shell
+pacman -S ansible
+ansible-galaxy collection install community.general
+```
 
 
 Installation
 ------------
 
-```sh
-chmod +x install.sh
-./install.sh
+```shell
+ansible-playbook -K install.yml
 ```
 
-After installing, do not move dotfiles repository. If you did that, run `install.sh` once again.
+After installing, do not move dotfiles repository. If you did that, install once again.
 
 
 Other Customizations
