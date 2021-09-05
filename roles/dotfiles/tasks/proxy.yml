@@ -9,12 +9,12 @@
 - name: configure proxychains
   become: yes
   lineinfile:
-    path: "/etc/proxychains.conf"
-    regexp: '{{ item.regexp }}'
-    line: '{{ item.replace }}'
+    path: /etc/proxychains.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.replace }}"
   with_items:
-    - { regexp: '^#?socks5 .*', replace: 'socks5         127.0.0.1 {{ proxy_socks_port }}' }
-    - { regexp: '^#?(socks4 .*)', replace: '#socks4         127.0.0.1 9050' }
+    - { regexp: "^#?socks5 .*", replace: "socks5         127.0.0.1 {{ lookup('env', 'PROXY_SOCKS_PORT') }}" }
+    - { regexp: "^#?(socks4 .*)", replace: "#socks4         127.0.0.1 9050" }
 
 - name: install proxy systemd services
   become: yes

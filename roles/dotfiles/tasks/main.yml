@@ -1,10 +1,10 @@
 - name: git submodule update --init --recursive
   shell: git submodule update --init --recursive
 
-- name: set timezone to Asia/Tehran
+- name: set timezone
   become: yes
   timezone:
-    name: "{{ my_timezone }}"
+    name: "{{ lookup('env', 'MY_TIMEZONE') }}"
   tags:
     - timezone
 

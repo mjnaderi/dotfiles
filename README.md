@@ -17,10 +17,10 @@ ansible-galaxy collection install community.general
 Installation
 ------------
 
-Configure variables in `install.yml` and run the playbook.
+Copy `.env.sample` to `.env` and configure environment variables. Then run the playbook:
 
 ```shell
-ansible-playbook -K install.yml
+./install.sh
 ```
 
 After installing, do not move dotfiles repository. If you did that, install once again.

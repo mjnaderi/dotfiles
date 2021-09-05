@@ -6,7 +6,7 @@ After=network.target
 User={{ lookup('env', 'USER') }}
 Environment=AUTOSSH_GATETIME=0
 Environment=AUTOSSH_POLL=30
-ExecStart=/usr/bin/autossh -M 0 -o "ServerAliveInterval 10" -o "ServerAliveCountMax 3" -N -L {{ proxy_https_port }}:localhost:{{ proxy_https_port }} -p {{ proxy_ssh_port }} -i {{ proxy_ssh_key }} {{ proxy_ssh_host }}
+ExecStart=/usr/bin/autossh -M 0 -o "ServerAliveInterval 10" -o "ServerAliveCountMax 3" -N -L {{ lookup('env', 'PROXY_HTTPS_PORT') }}:localhost:{{ lookup('env', 'PROXY_HTTPS_PORT') }} -p {{ lookup('env', 'PROXY_SSH_PORT') }} -i {{ lookup('env', 'PROXY_SSH_KEY') }} {{ lookup('env', 'PROXY_SSH_HOST') }}
 
 [Install]
 WantedBy=multi-user.target
