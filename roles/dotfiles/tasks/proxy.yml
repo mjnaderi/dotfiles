@@ -1,6 +1,6 @@
 - name: install autossh, proxychains
   become: yes
-  community.general.pacman:
+  ansible.builtin.package:
     name:
       - autossh
       - proxychains
@@ -8,7 +8,7 @@
 
 - name: configure proxychains
   become: yes
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/proxychains.conf
     regexp: "{{ item.regexp }}"
     line: "{{ item.replace }}"
@@ -18,7 +18,7 @@
 
 - name: install proxy systemd services
   become: yes
-  template:
+  ansible.builtin.template:
     src: "{{ item }}.service"
     dest: /etc/systemd/system/{{ item }}.service
   with_items:
@@ -27,12 +27,12 @@
 
 - name: force systemd to reread configs
   become: yes
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: yes
 
 - name: enable and (re)start proxy services
   become: yes
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ item }}"
     enabled: yes
     state: restarted

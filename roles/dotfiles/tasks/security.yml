@@ -1,11 +1,11 @@
 - name: remove .ssh directory of `root` user
   become: yes
-  file:
+  ansible.builtin.file:
     path: /root/.ssh
     state: absent
 
 - name: remove password of `root` user
   become: yes
-  user:
+  ansible.builtin.user:
     name: root
     password: '!'

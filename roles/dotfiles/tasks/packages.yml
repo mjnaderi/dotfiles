@@ -2,10 +2,17 @@
   become: yes
   community.general.pacman:
     update_cache: yes
+  when: ansible_os_family == "Archlinux"
+
+- name: update apt cache
+  become: yes
+  ansible.builtin.apt:
+    update_cache: yes
+  when: ansible_os_family == "Debian"
 
 - name: install useful packages
   become: yes
-  community.general.pacman:
+  ansible.builtin.package:
     name:
       - git
       - tig

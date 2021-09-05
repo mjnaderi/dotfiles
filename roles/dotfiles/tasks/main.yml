@@ -1,9 +1,9 @@
 - name: git submodule update --init --recursive
-  shell: git submodule update --init --recursive
+  ansible.builtin.shell: git submodule update --init --recursive
 
 - name: set timezone
   become: yes
-  timezone:
+  community.general.timezone:
     name: "{{ lookup('env', 'MY_TIMEZONE') }}"
   tags:
     - timezone

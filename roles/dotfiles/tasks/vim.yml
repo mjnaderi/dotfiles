@@ -1,26 +1,26 @@
 - name: install vimrc
-  file:
+  ansible.builtin.file:
     src: "{{ playbook_dir }}/files/vimrc"
     dest: ~/.vimrc
     state: link
 
 - name: create ~/.vim/pack/plugins/start directory
-  file:
+  ansible.builtin.file:
     path: ~/.vim/pack/plugins/start
     state: directory
     recurse: yes
 
 - name: install vim plugin - lightline
-  git:
+  ansible.builtin.git:
     repo: https://github.com/itchyny/lightline.vim
     dest: ~/.vim/pack/plugins/start/lightline
 
 - name: install vim plugin - vim-hybrid-material
-  git:
+  ansible.builtin.git:
     repo: https://github.com/kristijanhusak/vim-hybrid-material
     dest: ~/.vim/pack/plugins/start/colorscheme-hybrid-material
 
 - name: install vim plugin - vim-colorscheme-primary
-  git:
+  ansible.builtin.git:
     repo: https://github.com/google/vim-colorscheme-primary
     dest: ~/.vim/pack/plugins/start/colorscheme-primary
