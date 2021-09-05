@@ -14,3 +14,4 @@
 - { import_tasks: pyenv.yml,           tags: [pyenv] }
 - { import_tasks: security.yml,        tags: [security] }
 - { import_tasks: proxy.yml,           tags: [proxy] }
+- { import_tasks: proxy_v2ray.yml,     tags: [proxy_v2ray] }

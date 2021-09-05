@@ -10,4 +10,4 @@ source "$(dirname "$0")/.env"
 set +o allexport
 
 # Run Ansible
-exec ansible-playbook -K install.yml
+exec ansible-playbook -K install.yml $@

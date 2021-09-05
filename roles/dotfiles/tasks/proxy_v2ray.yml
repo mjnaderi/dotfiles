@@ -1,0 +1,31 @@
+- name: install v2ray
+  become: yes
+  ansible.builtin.package:
+    name: v2ray
+    state: latest
+
+- name: create /usr/share/v2ray
+  become: yes
+  ansible.builtin.file:
+    path: /usr/share/v2ray
+    state: directory
+
+- name: download latest iran.dat
+  become: yes
+  ansible.builtin.get_url:
+    url: https://github.com/SamadiPour/iran-hosted-domains/releases/latest/download/iran.dat
+    dest: /usr/share/v2ray/iran.dat
+    mode: 0644
+
+- name: configure v2ray
+  become: yes
+  ansible.builtin.template:
+    src: v2ray.config.json
+    dest: /etc/v2ray/config.json
+
+- name: enable and restart v2ray service
+  become: yes
+  ansible.builtin.systemd:
+    name: v2ray
+    enabled: yes
+    state: restarted

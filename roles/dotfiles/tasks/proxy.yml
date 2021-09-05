@@ -30,7 +30,7 @@
   ansible.builtin.systemd:
     daemon_reload: yes
 
-- name: enable and (re)start proxy services
+- name: enable and restart proxy services
   become: yes
   ansible.builtin.systemd:
     name: "{{ item }}"
