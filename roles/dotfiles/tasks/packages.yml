@@ -3,18 +3,13 @@
   community.general.pacman:
     update_cache: yes
 
-- name: install git, tig
+- name: install useful packages
   become: yes
   community.general.pacman:
     name:
       - git
       - tig
-    state: latest
-
-- name: install vim, htop, iotop, tree, dos2unix, ncdu, unzip, lnav, multitail
-  become: yes
-  community.general.pacman:
-    name:
+      - man-db
       - vim
       - htop
       - iotop
@@ -25,11 +20,5 @@
       - lnav
       - multitail
       - xclip
-    state: latest
-
-- name: install tilda
-  become: yes
-  community.general.pacman:
-    name:
       - tilda
     state: latest

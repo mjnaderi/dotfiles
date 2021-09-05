@@ -17,6 +17,8 @@ ansible-galaxy collection install community.general
 Installation
 ------------
 
+Configure variables in `install.yml` and run the playbook.
+
 ```shell
 ansible-playbook -K install.yml
 ```

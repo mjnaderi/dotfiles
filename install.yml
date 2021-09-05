@@ -2,6 +2,11 @@
 
   vars:
     my_timezone: Asia/Tehran
+    proxy_ssh_host: SSH-SERVER-HOST
+    proxy_ssh_port: SSH-SERVER-PORT
+    proxy_ssh_key: PATH-TO-SSH-KEY  # ssh key with no passphrase
+    proxy_socks_port: 9999
+    proxy_https_port: 8118
 
   roles:
     - dotfiles

@@ -1,0 +1,41 @@
+- name: install autossh, proxychains
+  become: yes
+  community.general.pacman:
+    name:
+      - autossh
+      - proxychains
+    state: latest
+
+- name: configure proxychains
+  become: yes
+  lineinfile:
+    path: "/etc/proxychains.conf"
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.replace }}'
+  with_items:
+    - { regexp: '^#?socks5 .*', replace: 'socks5         127.0.0.1 {{ proxy_socks_port }}' }
+    - { regexp: '^#?(socks4 .*)', replace: '#socks4         127.0.0.1 9050' }
+
+- name: install proxy systemd services
+  become: yes
+  template:
+    src: "{{ item }}.service"
+    dest: /etc/systemd/system/{{ item }}.service
+  with_items:
+    - proxy-socks
+    - proxy-https
+
+- name: force systemd to reread configs
+  become: yes
+  systemd:
+    daemon_reload: yes
+
+- name: enable and (re)start proxy services
+  become: yes
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+    state: restarted
+  with_items:
+    - proxy-socks
+    - proxy-https

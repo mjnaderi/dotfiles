@@ -1,0 +1,12 @@
+[Unit]
+Description=My SOCKS Proxy Service
+After=network.target
+
+[Service]
+User={{ lookup('env', 'USER') }}
+Environment=AUTOSSH_GATETIME=0
+Environment=AUTOSSH_POLL=30
+ExecStart=/usr/bin/autossh -M 0 -o "ServerAliveInterval 10" -o "ServerAliveCountMax 3" -N -D {{ proxy_socks_port }} -p {{ proxy_ssh_port }} -i {{ proxy_ssh_key }} {{ proxy_ssh_host }}
+
+[Install]
+WantedBy=multi-user.target
