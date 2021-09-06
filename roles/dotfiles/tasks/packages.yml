@@ -28,4 +28,7 @@
       - multitail
       - xclip
       - tilda
+      - nodejs
+      - npm
+      - gimp
     state: latest
