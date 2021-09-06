@@ -1,3 +1,6 @@
+# https://github.com/SamadiPour/iran-hosted-domains
+# https://www.v2ray.com/en/
+
 - name: install v2ray
   become: yes
   ansible.builtin.package:

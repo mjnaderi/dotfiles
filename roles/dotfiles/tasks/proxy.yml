@@ -1,3 +1,6 @@
+# https://www.everythingcli.org/ssh-tunnelling-for-fun-and-profit-autossh/
+# https://linux.die.net/man/1/autossh
+
 - name: install autossh, proxychains
   become: yes
   ansible.builtin.package:
