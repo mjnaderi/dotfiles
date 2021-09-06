@@ -15,3 +15,6 @@ if [[ -s "$BASE16_SHELL" ]]; then
     BASE16_THEME_FILE="$BASE16_SHELL/scripts/base16-$TODAY_THEME.sh"
     [[ -s $BASE16_THEME_FILE ]] && source $BASE16_THEME_FILE
 fi
+
+# required by poetry
+export PATH="/home/naderi/.local/bin:$PATH"
