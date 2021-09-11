@@ -62,8 +62,10 @@
       {
         "type": "field",
         "domain": [
+          "geoip:ir",
           "ext:iran.dat:ir",
-          "ext:iran.dat:other"
+          "ext:iran.dat:other",
+          "regexp:.+\\.ir$"
         ],
         "outboundTag": "direct"
       }
