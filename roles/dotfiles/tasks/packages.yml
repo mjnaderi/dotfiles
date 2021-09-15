@@ -31,4 +31,5 @@
       - nodejs
       - npm
       - gimp
+      - vlc  # vlc from flatpak has some problems
     state: latest
