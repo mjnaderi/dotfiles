@@ -20,6 +20,7 @@
       - vim
       - htop
       - iotop
+      - powertop
       - tree
       - dos2unix
       - ncdu
