@@ -34,3 +34,26 @@
       - gimp
       - vlc  # vlc from flatpak has some problems
     state: latest
+
+- name: backup current pacman mirrorlist
+  become: yes
+  ansible.builtin.copy:
+    src: /etc/pacman.d/mirrorlist
+    dest: /etc/pacman.d/mirrorlist.backup
+    force: no
+  when: ansible_os_family == "Archlinux"
+
+- name: install reflector (pacman mirrorlist auto-updater)
+  become: yes
+  community.general.pacman:
+    name: reflector
+    state: latest
+  when: ansible_os_family == "Archlinux"
+
+- name: enable and restart reflector service
+  become: yes
+  ansible.builtin.systemd:
+    name: reflector
+    enabled: yes
+    state: restarted
+  when: ansible_os_family == "Archlinux"

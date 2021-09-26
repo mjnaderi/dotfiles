@@ -29,6 +29,11 @@ After installing, do not move dotfiles repository. If you did that, install once
 Other Customizations
 --------------------
 
+## Screen Capture on Wayland
+
+To fix the black screen problem when sharing/recording screen in wayland,
+read [this](https://wiki.archlinux.org/title/PipeWire#WebRTC_screen_sharing).
+
 
 ## Gnome Shell
 
@@ -41,7 +46,9 @@ Install Gnome Tweak Tool.
 Useful gnome extensions:
 
 - [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/)
+- [Dash to Panel](https://extensions.gnome.org/extension/1160/dash-to-panel/)
 - [Hide Activities Button](https://extensions.gnome.org/extension/4325/hide-activities-button/)
+- [GTK Title Bar](https://extensions.gnome.org/extension/1732/gtk-title-bar/)
 - [Arch Linux Updates Indicator](https://extensions.gnome.org/extension/1010/archlinux-updates-indicator/)
 - [Disconnect Wifi](https://extensions.gnome.org/extension/904/disconnect-wifi/)
 - [Persian Calendar](https://extensions.gnome.org/extension/240/persian-calendar/)
