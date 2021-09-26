@@ -19,26 +19,31 @@
     - { regexp: "^#?socks5 .*", replace: "socks5         127.0.0.1 {{ lookup('env', 'PROXY_SOCKS_PORT') }}" }
     - { regexp: "^#?(socks4 .*)", replace: "#socks4         127.0.0.1 9050" }
 
+- name: create user systemd directory
+  ansible.builtin.file:
+    path: ~/.config/systemd/user
+    state: directory
+    recurse: yes
+
 - name: install proxy systemd services
-  become: yes
   ansible.builtin.template:
     src: "{{ item }}.service"
-    dest: /etc/systemd/system/{{ item }}.service
+    dest: ~/.config/systemd/user/{{ item }}.service
   with_items:
     - proxy-socks
     - proxy-https
 
 - name: force systemd to reread configs
-  become: yes
   ansible.builtin.systemd:
     daemon_reload: yes
+    scope: user
 
 - name: enable and restart proxy services
-  become: yes
   ansible.builtin.systemd:
     name: "{{ item }}"
     enabled: yes
     state: restarted
+    scope: user
   with_items:
     - proxy-socks
     - proxy-https
