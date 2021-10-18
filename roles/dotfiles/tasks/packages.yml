@@ -10,7 +10,7 @@
     update_cache: yes
   when: ansible_os_family == "Debian"
 
-- name: install useful packages
+- name: install cli packages
   become: yes
   ansible.builtin.package:
     name:
@@ -22,18 +22,41 @@
       - iotop
       - powertop
       - tree
-      - dos2unix
       - ncdu
       - unzip
       - lnav
       - multitail
+      - mlocate
+      - wget
       - xclip
-      - tilda
       - nodejs
       - npm
+      - ttf-jetbrains-mono
+      - neofetch
+    state: latest
+
+- name: install native apps
+  become: yes
+  ansible.builtin.package:
+    name:
+      # - tilda  (use ddterm gnome extension instead)
       - gimp
       - vlc  # vlc from flatpak has some problems
+      # - chromium (install google-chrome from AUR)
+      - firefox
     state: latest
+
+- name: install flatpak apps
+  community.general.flatpak:
+    name:
+      - com.mattermost.Desktop
+      - com.toggl.TogglDesktop
+      - com.transmissionbt.Transmission
+      - fr.handbrake.ghb
+      - net.cozic.joplin_desktop
+      - org.keepassxc.KeePassXC
+      - org.telegram.desktop
+    state: present
 
 - name: backup current pacman mirrorlist
   become: yes
