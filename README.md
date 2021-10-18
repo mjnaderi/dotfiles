@@ -183,6 +183,15 @@ My favorite monospace fonts:
 gsettings set org.gnome.shell.app-switcher current-workspace-only true
 ```
 
+### Gnome Image Viewer: scroll up/down instead of zoom in/out
+
+[Reference](https://gitlab.gnome.org/GNOME/eog/-/issues/84)
+
+```
+gsettings set org.gnome.eog.view scroll-wheel-zoom false
+```
+
+
 ### Gnome Tweak Tool
 
 - Install `xcursor-vanilla-dmz` package and in Gnome Tweak Tool, set Cursor to 'Vanilla-DMZ'.
