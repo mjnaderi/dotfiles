@@ -41,9 +41,12 @@
     name:
       # - tilda  (use ddterm gnome extension instead)
       - gimp
+      - inkscape
       - vlc  # vlc from flatpak has some problems
       # - chromium (install google-chrome from AUR)
       - firefox
+      - uget
+      - meld
     state: latest
 
 - name: install flatpak apps
@@ -56,6 +59,7 @@
       - net.cozic.joplin_desktop
       - org.keepassxc.KeePassXC
       - org.telegram.desktop
+      - io.dbeaver.DBeaverCommunity
     state: present
 
 - name: backup current pacman mirrorlist

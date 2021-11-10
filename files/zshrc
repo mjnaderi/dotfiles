@@ -16,5 +16,8 @@ if [[ -s "$BASE16_SHELL" ]]; then
     [[ -s $BASE16_THEME_FILE ]] && source $BASE16_THEME_FILE
 fi
 
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 # required by poetry
 export PATH="/home/naderi/.local/bin:$PATH"

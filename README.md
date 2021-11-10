@@ -1,10 +1,8 @@
-My Dotfiles
-===========
+# My Dotfiles
 
 This is my dotfiles repository. You can learn more about dotfiles [here](https://dotfiles.github.io/).
 
-Requirements
-------------
+## Requirements
 
 Install Ansible.
 
@@ -13,9 +11,7 @@ pacman -S ansible
 ansible-galaxy collection install community.general
 ```
 
-
-Installation
-------------
+## Installation
 
 Copy `.env.sample` to `.env` and configure environment variables. Then run the playbook:
 
@@ -25,13 +21,10 @@ Copy `.env.sample` to `.env` and configure environment variables. Then run the p
 
 After installing, do not move dotfiles repository. If you did that, install once again.
 
-
-Manual Configurations
----------------------
+## Manual Configurations
 
 Here I explain some manual configurations that are hard to automate,
 or I was too lazy to automate!
-
 
 ## Wayland
 
@@ -64,7 +57,6 @@ To persist, you can add them to related `.desktop` file.
 - [Jetbrains](https://youtrack.jetbrains.com/issue/JBR-3206)
 - [VSCode](https://github.com/microsoft/vscode/issues/109176)
 
-
 ## HiDPI + Full HD Monitor Combination in Gnome
 
 If you have multiple monitors (one HiDPI, and one with lower dpi):
@@ -72,9 +64,9 @@ If you have multiple monitors (one HiDPI, and one with lower dpi):
 1. Use Wayland
 2. Enable the experimental fractional scaling feature of Wayland:
 
-       $ gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
-3. Open `Settings -> Displays`, and set Scale to your desired value for each monitor.
+   $ gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 
+3. Open `Settings -> Displays`, and set Scale to your desired value for each monitor.
 
 ## HP Printer Setup
 
@@ -88,6 +80,7 @@ $ sudo hp-setup -i
 ## Map Xiao AI Button
 
 References:
+
 - https://wiki.archlinux.org/title/map_scancodes_to_keycodes
 - https://wiki.archlinux.org/title/Keyboard_input#Identifying_scancodes
 
@@ -110,7 +103,6 @@ Open list of linux keycodes and pick a keycode (e.g. `172`: HomePage):
 
     sudo setkeycodes 72 172
 
-
 ### Permanent mapping
 
 Find your keyboard information with `evemu-describe` command (`evemu` package).
@@ -130,39 +122,37 @@ sudo systemd-hwdb update
 
 After any change to `90-redmi.hwdb`, run `sudo touch /usr`.
 
-
 ## Fully Power Down Discrete GPU
 
 This can be done using [bbswitch](https://github.com/Bumblebee-Project/bbswitch).
 
-1. Install `bbswtich` package.
+1.  Install `bbswtich` package.
 
-2. Create `/etc/modules-load.d/bbswitch.conf`:
+2.  Create `/etc/modules-load.d/bbswitch.conf`:
 
-       bbswitch
-    
+    bbswitch
+
     This loads `bbswitch` kernel module at boot.
 
-3. Create `/etc/modprobe.d/bbswitch.conf`:
+3.  Create `/etc/modprobe.d/bbswitch.conf`:
 
-       blacklist nouveau
-       options bbswitch load_state=0
+        blacklist nouveau
+        options bbswitch load_state=0
 
-   This will:
+    This will:
 
-   - prevent `nouveau` module (nvidia driver) from loading
-   - configure bbswitch to turn the card off after loading
+    - prevent `nouveau` module (nvidia driver) from loading
+    - configure bbswitch to turn the card off after loading
 
-4. Update initial ramdisk:
+4.  Update initial ramdisk:
 
-       sudo mkinitcpio -P
+    sudo mkinitcpio -P
 
-5. Reboot.
+5.  Reboot.
 
 To check the status of GPU (ON/OFF):
 
     cat /proc/acpi/bbswitch
-
 
 ## Monospace Fonts
 
@@ -173,7 +163,6 @@ My favorite monospace fonts:
 - [Source Code Pro](http://adobe-fonts.github.io/source-code-pro/)
 - [Hasklig](https://github.com/i-tu/Hasklig)
 - [Cascadia Code](https://github.com/microsoft/cascadia-code)
-
 
 ## Gnome Shell
 
@@ -191,6 +180,13 @@ gsettings set org.gnome.shell.app-switcher current-workspace-only true
 gsettings set org.gnome.eog.view scroll-wheel-zoom false
 ```
 
+### Disable Extension Version Validation
+
+[Reference](https://github.com/home-sweet-gnome/dash-to-panel/issues/1512#issuecomment-964249002)
+
+```
+gsettings set org.gnome.shell "disable-extension-version-validation" true
+```
 
 ### Gnome Tweak Tool
 
@@ -213,7 +209,6 @@ gsettings set org.gnome.eog.view scroll-wheel-zoom false
 - [Screenshot Locations](https://extensions.gnome.org/extension/1179/screenshot-locations/)
 - [Sound Input & Output Device Chooser](https://extensions.gnome.org/extension/906/sound-output-device-chooser/)
 - [system-monitor-next](https://extensions.gnome.org/extension/3010/system-monitor-next/)
-
 
 ## Note-taking
 
