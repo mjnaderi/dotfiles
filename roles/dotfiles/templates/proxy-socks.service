@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Environment=AUTOSSH_GATETIME=0
 Environment=AUTOSSH_POLL=30
-ExecStart=/usr/bin/autossh -M 0 -o "ServerAliveInterval 10" -o "ServerAliveCountMax 3" -N -D {{ lookup('env', 'PROXY_SOCKS_PORT') }} -p {{ lookup('env', 'PROXY_SSH_PORT') }} -i {{ lookup('env', 'PROXY_SSH_KEY') }} {{ lookup('env', 'PROXY_SSH_HOST') }}
+ExecStart=/usr/bin/autossh -M 0 -o ServerAliveInterval=10 -o ServerAliveCountMax=3 -o ExitOnForwardFailure=yes -N -T -D {{ lookup('env', 'PROXY_SOCKS_PORT') }} -p {{ lookup('env', 'PROXY_SSH_PORT') }} -i {{ lookup('env', 'PROXY_SSH_KEY') }} {{ lookup('env', 'PROXY_SSH_HOST') }}
 
 [Install]
 WantedBy=default.target
