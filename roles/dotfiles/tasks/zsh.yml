@@ -33,17 +33,16 @@
     - zshenv
     - zshrc
 
-- name: install zshrc
+- name: link files
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/files/zshrc"
-    dest: ~/.zshrc-dotenv
+    src: "{{ playbook_dir }}/files/{{ item }}"
+    dest: ~/.{{ item }}
     state: link
-
-- name: install zprofile
-  ansible.builtin.file:
-    src: "{{ playbook_dir }}/files/zprofile"
-    dest: ~/.zprofile-dotenv
-    state: link
+  with_items:
+    - zshrc-dotenv
+    - zprofile-dotenv
+    - vimrc
+    - p10k.zsh
 
 - name: install base16-shell
   ansible.builtin.file:

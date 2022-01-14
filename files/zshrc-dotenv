@@ -1,0 +1,75 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
+# Activate Comment in Interactive mode
+setopt interactivecomments
+
+
+# set title
+prompt_set_title() {
+	setopt localoptions noshwordsplit
+	# Emacs terminal does not support settings the title.
+	(( ${+EMACS} )) && return
+	case $TTY in
+		# Don't set title over serial console.
+		/dev/ttyS[0-9]*) return;;
+	esac
+	# Show hostname if connected via SSH.
+	local hostname=
+	if [[ -n $prompt_pure_state[username] ]]; then
+		# Expand in-place in case ignore-escape is used.
+		hostname="${(%):-(%m) }"
+	fi
+	local -a opts
+	case $1 in
+		expand-prompt) opts=(-P);;
+		ignore-escape) opts=(-r);;
+	esac
+	# Set title atomically in one print statement so that it works when XTRACE is enabled.
+	print -n $opts $'\e]0;'${hostname}${2}$'\a'
+}
+prompt_preexec() {
+	# Shows the current directory and executed command in the title while a process is active.
+	prompt_set_title 'ignore-escape' "$PWD:t: $2"
+}
+prompt_precmd() {
+	# Shows the full path in the title.
+	prompt_set_title 'expand-prompt' '%~'
+}
+add-zsh-hook precmd prompt_precmd
+add-zsh-hook preexec prompt_preexec
+
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.base16-shell"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+if [[ -s "$BASE16_SHELL" ]]; then
+    # Applies one of these themes each day.
+    THEMES="mocha tube railscasts atelier-dune atelier-lakeside atelier-estuary atelier-savanna"
+    CNT=`echo $THEMES | wc -w`
+    IND=$((`date +%j`%$CNT+1))
+    TODAY_THEME=`echo $THEMES | cut -d " " -f $IND`
+    BASE16_THEME_FILE="$BASE16_SHELL/scripts/base16-$TODAY_THEME.sh"
+    [[ -s $BASE16_THEME_FILE ]] && source $BASE16_THEME_FILE
+fi
+
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# pyenv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+
+# required by poetry
+export PATH="/home/naderi/.local/bin:$PATH"
+
