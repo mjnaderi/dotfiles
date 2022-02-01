@@ -70,6 +70,4 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 
-# required by poetry
-export PATH="/home/naderi/.local/bin:$PATH"
 
