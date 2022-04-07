@@ -1,0 +1,12 @@
+- hosts: pluto
+  become: yes
+  become_user: root
+  roles:
+    - server-common
+  tasks:
+    - name: install privoxy (http proxy server)
+      ansible.builtin.apt:
+        name: privoxy
+        update_cache: yes
+        cache_valid_time: 86400
+

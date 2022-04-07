@@ -53,10 +53,9 @@
   community.general.flatpak:
     name:
       - com.mattermost.Desktop
-      - com.toggl.TogglDesktop
+      #- com.toggl.TogglDesktop
       - com.transmissionbt.Transmission
       - fr.handbrake.ghb
-      - net.cozic.joplin_desktop
       - org.keepassxc.KeePassXC
       - org.telegram.desktop
       - io.dbeaver.DBeaverCommunity

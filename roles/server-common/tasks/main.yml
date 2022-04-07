@@ -1,0 +1,20 @@
+
+- name: set timezone to Asia/Tehran
+  community.general.timezone:
+    name: Asia/Tehran
+  tags:
+    - common
+    - common/timezone
+
+- name: set hostname
+  ansible.builtin.hostname:
+    name: "{{ inventory_hostname }}"
+    use: systemd
+  ignore_errors: yes
+  tags:
+    - common
+    - common/hostname
+
+- { import_tasks: packages.yml, tags: [common, common/packages] }
+- { import_tasks: ssh.yml, tags: [common, common/ssh] }
+- { import_tasks: ps1.yml, tags: [common, common/ps1] }

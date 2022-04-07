@@ -1,0 +1,20 @@
+- name: configure ssh (Port, PermitRootLogin, PermitEmptyPasswords, PasswordAuthentication)
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?{{ item.key }} .+$"
+    line: "{{ item.key }} {{ item.value }}"
+  with_items:
+    - { key: "Port", value: "{{ ansible_port_bootstrap|default(ansible_port) }}" }
+    - { key: "PermitRootLogin", value: "no" }
+    - { key: "PermitEmptyPasswords", value: "no" }
+    - { key: "PasswordAuthentication", value: "no" }
+    - { key: "ClientAliveInterval", value: "10" }
+    - { key: "ClientAliveCountMax", value: "30" }
+  notify:
+    - restart ssh service
+
+- name: remove .ssh directory of `root` user
+  file:
+    path: /root/.ssh
+    state: absent
+

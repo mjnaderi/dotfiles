@@ -1,0 +1,17 @@
+- name: configure PS1 for root user
+  blockinfile:
+    path: ~/.bashrc
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - PS1"
+    block: |
+      PS1='${debian_chroot:+($debian_chroot)}{{ Colors.BRed }}\u{{ Colors.BCyan }}@\h{{ Colors.Reset }}:{{ Colors.BBlue }}\w{{ Colors.BPurple }}\$ {{ Colors.Reset }}'
+  become: yes
+  become_user: root
+
+- name: configure PS1 for other users
+  copy:
+    dest: /etc/profile.d/custom_prompt.sh
+    owner: root
+    group: root
+    content: |
+      #!/bin/bash
+      export PROMPT_COMMAND="PS1='${debian_chroot:+($debian_chroot)}{{ Colors.BGreen }}\u{{ Colors.BCyan }}@\h{{ Colors.Reset }}:{{ Colors.BBlue }}\w{{ Colors.BGreen }}\$ {{ Colors.Reset }}'"
