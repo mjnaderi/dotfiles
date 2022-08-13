@@ -1,0 +1,3 @@
+- { import_tasks: proxy.yml, tags: [proxy/proxy] }
+- { import_tasks: v2ray.yml, tags: [proxy/v2ray] }
+- { import_tasks: openvpn.yml, tags: [proxy/openvpn] }

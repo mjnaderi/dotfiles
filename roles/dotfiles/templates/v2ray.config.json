@@ -66,6 +66,10 @@
           "ext:iran.dat:other",
           "regexp:.+\\.ir$"
         ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
         "ip": [
           "geoip:ir"
         ],
