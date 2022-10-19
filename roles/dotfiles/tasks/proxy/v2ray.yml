@@ -19,16 +19,21 @@
     url: https://github.com/SamadiPour/iran-hosted-domains/releases/latest/download/iran.dat
     dest: /usr/share/v2ray/iran.dat
     mode: 0644
+  notify:
+    - restart v2ray service
 
 - name: configure v2ray
   become: yes
   ansible.builtin.template:
     src: v2ray.config.json
     dest: /etc/v2ray/config.json
+  notify:
+    - restart v2ray service
 
-- name: enable and restart v2ray service
+- name: enable v2ray service
   become: yes
   ansible.builtin.systemd:
     name: v2ray
     enabled: yes
-    state: restarted
+
+- meta: flush_handlers

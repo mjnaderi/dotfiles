@@ -1,0 +1,31 @@
+# Turn off my NVIDIA graphics card
+# Source: https://wiki.archlinux.org/title/Hybrid_graphics#Fully_power_down_discrete_GPU
+# Note: Don't use bbswitch. It caused issues and had no real benefits.
+
+- name: blacklist the nouveau drivers for NVIDIA
+  become: yes
+  ansible.builtin.copy:
+    src: blacklist-nouveau.conf
+    dest: /etc/modprobe.d/blacklist-nouveau.conf
+
+- name: remove NVIDIA device using udev rules
+  become: yes
+  ansible.builtin.copy:
+    src: 00-remove-nvidia.rules
+    dest: /etc/udev/rules.d/00-remove-nvidia.rules
+
+- name: install mesa
+  become: yes
+  ansible.builtin.package:
+    name: mesa
+    state: latest
+
+# https://wiki.archlinux.org/title/Hardware_video_acceleration
+# To ensure it is working, install `intel-gpu-tools` and run `intel_gpu_top`
+# as root to monitor the GPU activity during video playback for example.
+# The video bar being above 0% indicates GPU video decoder/encoder usage.
+- name: enable hardware video acceleration using Intel graphics
+  become: yes
+  ansible.builtin.package:
+    name: intel-media-driver
+    state: latest

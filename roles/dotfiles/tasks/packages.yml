@@ -14,6 +14,7 @@
   become: yes
   ansible.builtin.package:
     name:
+      - base-devel
       - git
       - tig
       - man-db
@@ -28,32 +29,61 @@
       - multitail
       - mlocate
       - wget
-      - xclip
       - nodejs
       - npm
-      - ttf-jetbrains-mono
       - neofetch
+      - liblphobos # required by onedrive-abraunegg
+      - ldc # required by onedrive-abraunegg
+      - openvpn
     state: latest
+
+- name: create the `aur_builder` user
+  become: yes
+  ansible.builtin.user:
+    name: aur_builder
+    create_home: yes
+    group: wheel
+  when: ansible_os_family == "Archlinux"
+
+- name: allow the `aur_builder` user to run `sudo pacman` without a password
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+    create: yes
+    validate: "visudo -cf %s"
+  when: ansible_os_family == "Archlinux"
+
+- name: install aur packages
+  kewlfft.aur.aur:
+    name:
+      - yay
+      - google-chrome # Chromium doesn't support Google sync, so I use Google Chrome.
+      - chrome-gnome-shell
+      - visual-studio-code-bin
+      - onedrive-abraunegg
+    state: present
+  become: yes
+  become_user: aur_builder
+  when: ansible_os_family == "Archlinux"
 
 - name: install native apps
   become: yes
   ansible.builtin.package:
     name:
-      # - tilda  (use ddterm gnome extension instead)
       - gimp
       - inkscape
-      - vlc  # vlc from flatpak has some problems
-      # - chromium (install google-chrome from AUR)
+      - vlc # vlc from flatpak has some problems
       - firefox
       - uget
       - meld
+      - dconf-editor
     state: latest
 
 - name: install flatpak apps
   community.general.flatpak:
     name:
       - com.mattermost.Desktop
-      #- com.toggl.TogglDesktop
       - com.transmissionbt.Transmission
       - fr.handbrake.ghb
       - org.keepassxc.KeePassXC
@@ -75,11 +105,16 @@
     name: reflector
     state: latest
   when: ansible_os_family == "Archlinux"
+  notify:
+    - enable and restart reflector service
 
-- name: enable and restart reflector service
+- name: configure pacman
   become: yes
-  ansible.builtin.systemd:
-    name: reflector
-    enabled: yes
-    state: restarted
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items: "{{ pacman_config }}"
   when: ansible_os_family == "Archlinux"
+
+- meta: flush_handlers

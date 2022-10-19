@@ -4,11 +4,17 @@ This is my dotfiles repository. You can learn more about dotfiles [here](https:/
 
 ## Requirements
 
-Install Ansible.
-
 ```shell
-pacman -S ansible
-ansible-galaxy collection install community.general
+# install latest version of pip in `~/.local`
+$ python -m ensurepip --upgrade
+$ python -m pip install --upgrade pip
+
+# install packaging module (required by ansible-galaxy)
+$ python -m pip install --upgrade packaging
+
+# install ansible and required collections
+$ sudo pacman -S ansible
+$ ansible-galaxy collection install git+https://github.com/kewlfft/ansible-aur.git
 ```
 
 ## Installation
@@ -16,8 +22,17 @@ ansible-galaxy collection install community.general
 Copy `.env.sample` to `.env` and configure environment variables. Then run the playbook:
 
 ```shell
-./install.sh
+$ ./install.sh
 ```
+
+You can pass ansible-playbook arguments to `install.sh`:
+
+```shell
+$ ./install.sh --tags gnome
+$ ./install.sh --skip-tags fonts,proxy
+```
+
+You can find the list of tags in `roles/dotfiles/tasks/main.yml`.
 
 After installing, do not move dotfiles repository. If you did that, install once again.
 
@@ -97,11 +112,11 @@ To find the scancode, press the key and look for logs like this in `dmesg` outpu
 
 Open list of linux keycodes and pick a keycode (e.g. `172`: HomePage):
 
-    cat /usr/include/linux/input-event-codes.h | grep KEY_
+    $ cat /usr/include/linux/input-event-codes.h | grep KEY_
 
 ### One-time mapping
 
-    sudo setkeycodes 72 172
+    $ sudo setkeycodes 72 172
 
 ### Permanent mapping
 
@@ -116,43 +131,16 @@ evdev:atkbd:dmi:bvn*:bvr*:bd*:svnTIMI:pnRedmiBookPro15:*
 
 Update `hwdb.bin`:
 
-```
-sudo systemd-hwdb update
-```
+    $ sudo systemd-hwdb update
 
 After any change to `90-redmi.hwdb`, run `sudo touch /usr`.
 
-## Fully Power Down Discrete GPU
+## Fix "Dummy Output" Audio Issue
 
-This can be done using [bbswitch](https://github.com/Bumblebee-Project/bbswitch).
+If audio is not working, try installing `sof-firmware` package,
+as recommended by [Arch Wiki](https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture#ALSA_firmware).
 
-1.  Install `bbswtich` package.
-
-2.  Create `/etc/modules-load.d/bbswitch.conf`:
-
-    bbswitch
-
-    This loads `bbswitch` kernel module at boot.
-
-3.  Create `/etc/modprobe.d/bbswitch.conf`:
-
-        blacklist nouveau
-        options bbswitch load_state=0
-
-    This will:
-
-    - prevent `nouveau` module (nvidia driver) from loading
-    - configure bbswitch to turn the card off after loading
-
-4.  Update initial ramdisk:
-
-    sudo mkinitcpio -P
-
-5.  Reboot.
-
-To check the status of GPU (ON/OFF):
-
-    cat /proc/acpi/bbswitch
+    $ sudo pacman -S sof-firmware
 
 ## Monospace Fonts
 
@@ -164,52 +152,12 @@ My favorite monospace fonts:
 - [Hasklig](https://github.com/i-tu/Hasklig)
 - [Cascadia Code](https://github.com/microsoft/cascadia-code)
 
-## Gnome Shell
+Use a [nerd font](https://www.nerdfonts.com/) for better compatibility with shell prompts
+like Powerlevel10k or Starship. This dotfiles repo installs some nerd fonts.
 
-### Switch Tabs only on Current Workspace
+## References
 
-```
-gsettings set org.gnome.shell.app-switcher current-workspace-only true
-```
-
-### Gnome Image Viewer: scroll up/down instead of zoom in/out
-
-[Reference](https://gitlab.gnome.org/GNOME/eog/-/issues/84)
-
-```
-gsettings set org.gnome.eog.view scroll-wheel-zoom false
-```
-
-### Disable Extension Version Validation
-
-[Reference](https://github.com/home-sweet-gnome/dash-to-panel/issues/1512#issuecomment-964249002)
-
-```
-gsettings set org.gnome.shell "disable-extension-version-validation" true
-```
-
-### Gnome Tweak Tool
-
-- Install `xcursor-vanilla-dmz` package and in Gnome Tweak Tool, set Cursor to 'Vanilla-DMZ'.
-- In "Windows" section, Enable "Maximize" and "Minimize" buttons.
-- In "Fonts" section, set monospace font to "Source Code Pro"
-
-### Extensions
-
-- [ddterm](https://extensions.gnome.org/extension/3780/ddterm/)
-- [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/)
-- [Dash to Panel](https://extensions.gnome.org/extension/1160/dash-to-panel/)
-- [Hide Activities Button](https://extensions.gnome.org/extension/4325/hide-activities-button/)
-- [GTK Title Bar](https://extensions.gnome.org/extension/1732/gtk-title-bar/)
-- [Arch Linux Updates Indicator](https://extensions.gnome.org/extension/1010/archlinux-updates-indicator/)
-- [Disconnect Wifi](https://extensions.gnome.org/extension/904/disconnect-wifi/)
-- [Persian Calendar](https://extensions.gnome.org/extension/240/persian-calendar/)
-- [Iranian Persian Calendar](https://extensions.gnome.org/extension/3618/shamsi-calendar/)
-- [Proxy Switcher](https://extensions.gnome.org/extension/771/proxy-switcher/)
-- [Screenshot Locations](https://extensions.gnome.org/extension/1179/screenshot-locations/)
-- [Sound Input & Output Device Chooser](https://extensions.gnome.org/extension/906/sound-output-device-chooser/)
-- [system-monitor-next](https://extensions.gnome.org/extension/3010/system-monitor-next/)
-
-## Note-taking
-
-Install Typora, Joplin or MarkText.
+- https://www.nerdfonts.com/
+- https://starship.rs/
+- https://www.roboleary.net/2021/06/09/give-your-terminal-a-makeover.html
+- https://github.com/romkatv/powerlevel10k

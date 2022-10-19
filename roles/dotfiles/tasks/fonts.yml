@@ -1,0 +1,42 @@
+- name: check for latest release of nerd fonts
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest
+    return_content: yes
+    status_code: 200
+    body_format: json
+  register: nerd_fonts_latest_release
+  failed_when: "'tag_name' not in nerd_fonts_latest_release.json"
+
+- block:
+    - name: create temp directory
+      ansible.builtin.file:
+        path: /tmp/nerd_fonts_tmp/{{ item }}
+        state: directory
+        mode: 0755
+      with_items: "{{ nerd_fonts }}"
+    - name: download nerd fonts {{ nerd_fonts_latest_release.json.tag_name }} to temp directory
+      ansible.builtin.unarchive:
+        src: https://github.com/ryanoasis/nerd-fonts/releases/download/{{ nerd_fonts_latest_release.json.tag_name }}/{{ item }}.zip
+        dest: /tmp/nerd_fonts_tmp/{{ item }}
+        remote_src: yes
+        mode: 0755
+      with_items: "{{ nerd_fonts }}"
+    - name: write version to temp directory
+      ansible.builtin.file:
+        path: /tmp/nerd_fonts_tmp/{{ nerd_fonts_latest_release.json.tag_name }}
+        state: touch
+        mode: 0644
+    - name: install downloaded fonts
+      ansible.builtin.shell: rm -rf ~/.fonts/NerdFonts && mv /tmp/nerd_fonts_tmp ~/.fonts/NerdFonts
+    - name: update font-cache
+      command: fc-cache -fv
+
+  when: ('~/.fonts/NerdFonts/' | expanduser, nerd_fonts_latest_release.json.tag_name) | path_join is not exists
+
+- name: install ttf-twemoji (emoji font)
+  kewlfft.aur.aur:
+    name: ttf-twemoji
+    state: present
+  become: yes
+  become_user: aur_builder
+  when: ansible_os_family == "Archlinux"

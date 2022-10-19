@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+[user]
+    email = {{ lookup('env', 'MY_EMAIL_ADDRESS') }}
+    name = Mohammad Javad Naderi

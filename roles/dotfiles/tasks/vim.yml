@@ -12,15 +12,15 @@
 
 - name: install vim plugin - lightline
   ansible.builtin.git:
-    repo: https://github.com/itchyny/lightline.vim
+    repo: git@github.com:itchyny/lightline.vim.git
     dest: ~/.vim/pack/plugins/start/lightline
 
 - name: install vim plugin - vim-hybrid-material
   ansible.builtin.git:
-    repo: https://github.com/kristijanhusak/vim-hybrid-material
+    repo: git@github.com:kristijanhusak/vim-hybrid-material.git
     dest: ~/.vim/pack/plugins/start/colorscheme-hybrid-material
 
 - name: install vim plugin - vim-colorscheme-primary
   ansible.builtin.git:
-    repo: https://github.com/google/vim-colorscheme-primary
+    repo: git@github.com:google/vim-colorscheme-primary.git
     dest: ~/.vim/pack/plugins/start/colorscheme-primary

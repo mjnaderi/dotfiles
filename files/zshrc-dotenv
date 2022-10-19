@@ -1,10 +1,7 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
+# Use lsd instead of ls
+alias ls='lsd'
+# Use bat instead of cat
+alias cat='bat --plain --paging never'
 
 # Activate Comment in Interactive mode
 setopt interactivecomments
@@ -44,30 +41,17 @@ prompt_precmd() {
 add-zsh-hook precmd prompt_precmd
 add-zsh-hook preexec prompt_preexec
 
-
-# Base16 Shell
-BASE16_SHELL="$HOME/.base16-shell"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
-if [[ -s "$BASE16_SHELL" ]]; then
-    # Applies one of these themes each day.
-    THEMES="mocha tube railscasts atelier-dune atelier-lakeside atelier-estuary atelier-savanna"
-    CNT=`echo $THEMES | wc -w`
-    IND=$((`date +%j`%$CNT+1))
-    TODAY_THEME=`echo $THEMES | cut -d " " -f $IND`
-    BASE16_THEME_FILE="$BASE16_SHELL/scripts/base16-$TODAY_THEME.sh"
-    [[ -s $BASE16_THEME_FILE ]] && source $BASE16_THEME_FILE
-fi
-
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
 # pyenv
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# n
+export N_PREFIX="$HOME/.n"
+export PATH="$N_PREFIX/bin:$PATH"
 
+# display a funny unicode art when shell is opened
+~/.local/bin/fetching-scripts/games/space-invaders-l
 
+# activate starship prompt
+eval "$(starship init zsh)"

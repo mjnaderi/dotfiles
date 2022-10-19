@@ -1,0 +1,129 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$kubernetes\
+$directory\
+[](fg:blue bg:yellow)\
+$git_branch\
+$git_commit\
+$git_state\
+[](fg:yellow) \
+$git_status\
+$docker_context\
+$package\
+$fill \
+$buf\
+$c\
+$cmake\
+$cobol\
+$container\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$haskell\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$jobs\
+$battery\
+$time\
+$status\
+$line_break\
+$character"""
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+[fill]
+symbol = "─"
+style = "fg:#444444"
+
+[directory]
+style = "bg:blue fg:bright-white"
+read_only_style = "bg:blue"
+read_only = "🔒 "
+format = "[ $path ]($style)[$read_only]($read_only_style)"
+truncation_length = 4
+truncation_symbol = "…"
+
+[git_branch]
+style = "bg:yellow fg:black"
+format = "[ $symbol$branch (:$remote_branch)]($style)"
+
+[git_commit]
+style = "bg:yellow fg:black"
+format = "[\\($hash$tag\\) ]($style)"
+
+[git_state]
+style = "bg:yellow fg:black"
+# format = '\([$state( $progress_current/$progress_total) ]($style)\)'
+format = '[\($state( $progress_current/$progress_total)\) ]($style)'
+
+[git_status]
+conflicted = "⚔️  "
+ahead = "⬆️ ${count} "
+behind = "⬇️ ${count} "
+diverged = "↕️ ${ahead_count},${behind_count} "
+untracked = "❔${count} "
+stashed = "🗃️  "
+modified = "✏️ ${count} "
+staged = "🟩${count} "
+renamed = "⏩ ${count} "
+deleted = "🗑️ ${count} "
+style = "bright-white"
+format = "([$all_status$ahead_behind]($style)) "
+
+[package]
+disabled = true
+format = "[$symbol$version]($style) "
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[nodejs]
+format = "[$symbol($version )]($style)"
+
+[status]
+disabled = false
+
+[cmd_duration]
+format = "[$duration]($style) "

@@ -1,0 +1,73 @@
+- name: clone/update iTerm2-Color-Schemes git repo
+  ansible.builtin.git:
+    repo: git@github.com:mbadolato/iTerm2-Color-Schemes.git
+    dest: "{{ iterm2_color_schemes_clone_path }}"
+    version: master
+
+- name: install ddterm
+  ansible.builtin.command:
+    cmd: |
+      busctl --user call
+      org.gnome.Shell
+      /org/gnome/Shell
+      org.gnome.Shell.Extensions InstallRemoteExtension
+      s "ddterm@amezin.github.com"
+    creates: ~/.local/share/gnome-shell/extensions/ddterm@amezin.github.com
+
+- name: read color scheme
+  ansible.builtin.set_fact:
+    color_scheme: "{{ (lookup('file', '{{ iterm2_color_schemes_clone_path }}/vscode/{{ iterm2_color_scheme_name }}.json') | from_json)['workbench.colorCustomizations'] }}"
+
+- name: set ddterm color scheme - boolean values
+  gsettings:
+    schemadir: ~/.local/share/gnome-shell/extensions/ddterm@amezin.github.com/schemas/
+    schema: com.github.amezin.ddterm
+    key: "{{ item.key }}"
+    value: "{{ item.value | string }}"
+  with_items:
+    - key: use-theme-colors
+      value: "false"
+    - key: cursor-colors-set
+      value: "true"
+    - key: highlight-colors-set
+      value: "false"
+    - key: transparent-background
+      value: "false"
+    - key: bold-color-same-as-fg
+      value: "true"
+    - key: bold-is-bright
+      value: "false"
+    - key: background-color
+      value: "{{ color_scheme['terminal.background'] }}"
+    - key: foreground-color
+      value: "{{ color_scheme['terminal.foreground'] }}"
+    - key: cursor-background-color
+      value: "{{ color_scheme['terminalCursor.foreground'] }}"
+    - key: cursor-foreground-color
+      value: "{{ color_scheme['terminal.background'] }}"
+    - key: palette
+      value:
+        - "{{ color_scheme['terminal.ansiBlack'] }}"
+        - "{{ color_scheme['terminal.ansiRed'] }}"
+        - "{{ color_scheme['terminal.ansiGreen'] }}"
+        - "{{ color_scheme['terminal.ansiYellow'] }}"
+        - "{{ color_scheme['terminal.ansiBlue'] }}"
+        - "{{ color_scheme['terminal.ansiMagenta'] }}"
+        - "{{ color_scheme['terminal.ansiCyan'] }}"
+        - "{{ color_scheme['terminal.ansiWhite'] }}"
+        - "{{ color_scheme['terminal.ansiBrightBlack'] }}"
+        - "{{ color_scheme['terminal.ansiBrightRed'] }}"
+        - "{{ color_scheme['terminal.ansiBrightGreen'] }}"
+        - "{{ color_scheme['terminal.ansiBrightYellow'] }}"
+        - "{{ color_scheme['terminal.ansiBrightBlue'] }}"
+        - "{{ color_scheme['terminal.ansiBrightMagenta'] }}"
+        - "{{ color_scheme['terminal.ansiBrightCyan'] }}"
+        - "{{ color_scheme['terminal.ansiBrightWhite'] }}"
+
+- name: configure ddterm
+  gsettings:
+    schemadir: ~/.local/share/gnome-shell/extensions/ddterm@amezin.github.com/schemas/
+    schema: com.github.amezin.ddterm
+    key: "{{ item.key }}"
+    value: "{{ item.value | string }}"
+  with_items: "{{ ddterm_config }}"

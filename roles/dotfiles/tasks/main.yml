@@ -8,10 +8,13 @@
   tags:
     - timezone
 
-- { import_tasks: packages.yml,        tags: [packages] }
-- { import_tasks: zsh.yml,             tags: [zsh] }
-- { import_tasks: vim.yml,             tags: [vim] }
-- { import_tasks: pyenv.yml,           tags: [pyenv] }
-- { import_tasks: security.yml,        tags: [security] }
-- { import_tasks: proxy.yml,           tags: [proxy] }
-- { import_tasks: proxy_v2ray.yml,     tags: [proxy_v2ray] }
+- { import_tasks: packages.yml, tags: [packages] }
+- { import_tasks: fonts.yml, tags: [fonts] }
+- { import_tasks: gnome.yml, tags: [gnome] }
+- { import_tasks: terminal/main.yml, tags: [terminal] }
+- { import_tasks: vim.yml, tags: [vim] }
+- { import_tasks: pyenv.yml, tags: [pyenv] }
+- { import_tasks: proxy/main.yml, tags: [proxy] }
+- { import_tasks: ssh.yml, tags: [ssh] }
+- { import_tasks: git.yml, tags: [git] }
+- { import_tasks: graphics.yml, tags: [graphics] }

@@ -1,0 +1,9 @@
+- name: configure ssh client
+  become: yes
+  blockinfile:
+    path: /etc/ssh/ssh_config
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - Host *"
+    block: |
+      Host *
+        ServerAliveInterval 10
+        ServerAliveCountMax 30

@@ -1,0 +1,22 @@
+- name: enable and restart reflector service
+  become: yes
+  ansible.builtin.systemd:
+    name: reflector
+    enabled: yes
+    state: restarted
+  when: ansible_os_family == "Archlinux"
+
+- name: restart proxy services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: restarted
+    scope: user
+  with_items:
+    - proxy-socks
+    - proxy-https
+
+- name: restart v2ray service
+  become: yes
+  ansible.builtin.systemd:
+    name: v2ray
+    state: restarted

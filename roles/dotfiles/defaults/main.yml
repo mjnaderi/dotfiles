@@ -1,0 +1,55 @@
+repos_dir: "{{ playbook_dir }}/repos"
+
+nerd_fonts:
+  - JetBrainsMono
+  - SourceCodePro
+
+pacman_config:
+  - regexp: ^#\s*Color$
+    line: Color
+  - regexp: ^#\s*ParallelDownloads
+    line: ParallelDownloads = 5
+
+# list of available color schemes: https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/vscode
+iterm2_color_schemes_clone_path: "{{ playbook_dir }}/repos/iterm2-color-schemes"
+iterm2_color_scheme_name: 3024 Night
+
+ddterm_config:
+  - key: shortcut-move-tab-next
+    value: ["<Primary><Shift>j"]
+  - key: shortcut-move-tab-prev
+    value: ["<Primary><Shift>k"]
+  - key: shortcut-next-tab
+    value: ["<Primary>j"]
+  - key: shortcut-prev-tab
+    value: ["<Primary>k"]
+  - key: shortcut-page-close
+    value: ["<Primary>w"]
+  - key: shortcut-win-new-tab
+    value: ["<Primary>t"]
+  - key: shortcut-win-new-tab-after-current
+    value: ["<Primary><Shift>t"]
+  - key: theme-variant
+    value: dark
+  - key: new-tab-button
+    value: "false"
+  - key: notebook-border
+    value: "false"
+  - key: tab-close-buttons
+    value: "false"
+  - key: tab-expand
+    value: "false"
+  - key: tab-label-ellipsize-mode
+    value: end
+  - key: tab-label-width
+    value: 0.1
+  - key: tab-position
+    value: left
+  - key: tab-switcher-popup
+    value: "false"
+  - key: tab-title-template
+    value: "{{ '{{' }}window-title{{ '}}' }}"
+  - key: window-size
+    value: 1
+  - key: panel-icon-type
+    value: none

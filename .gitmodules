@@ -1,3 +1,3 @@
 [submodule "submodules/prezto"]
 	path = submodules/prezto
-	url = https://github.com/mjnaderi/prezto.git
+	url = git@github.com:mjnaderi/prezto.git
