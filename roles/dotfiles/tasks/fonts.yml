@@ -7,7 +7,8 @@
   register: nerd_fonts_latest_release
   failed_when: "'tag_name' not in nerd_fonts_latest_release.json"
 
-- block:
+- when: ('~/.fonts/NerdFonts/' | expanduser, nerd_fonts_latest_release.json.tag_name) | path_join is not exists
+  block:
     - name: create temp directory
       ansible.builtin.file:
         path: /tmp/nerd_fonts_tmp/{{ item }}
@@ -30,8 +31,6 @@
       ansible.builtin.shell: rm -rf ~/.fonts/NerdFonts && mv /tmp/nerd_fonts_tmp ~/.fonts/NerdFonts
     - name: update font-cache
       command: fc-cache -fv
-
-  when: ('~/.fonts/NerdFonts/' | expanduser, nerd_fonts_latest_release.json.tag_name) | path_join is not exists
 
 - name: install ttf-twemoji (emoji font)
   kewlfft.aur.aur:
