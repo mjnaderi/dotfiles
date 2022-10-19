@@ -2,7 +2,8 @@
 
 This is my dotfiles repository. You can learn more about dotfiles [here](https://dotfiles.github.io/).
 
-I use Ansible for better flexibility. The main Ansible tasks are located in `roles/dotfiles/tasks`.
+I use Ansible for better flexibility. The main Ansible tasks are located in
+[`roles/dotfiles/tasks`](https://github.com/mjnaderi/dotfiles/tree/main/roles/dotfiles/tasks).
 
 ## Requirements
 
