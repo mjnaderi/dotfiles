@@ -106,7 +106,14 @@
     state: latest
   when: ansible_os_family == "Archlinux"
   notify:
-    - enable and restart reflector service
+    - start reflector service
+
+- name: enable reflector timer
+  become: yes
+  ansible.builtin.systemd:
+    name: reflector.timer
+    enabled: yes
+  when: ansible_os_family == "Archlinux"
 
 - name: configure pacman
   become: yes

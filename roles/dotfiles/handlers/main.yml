@@ -1,9 +1,8 @@
-- name: enable and restart reflector service
+- name: start reflector service
   become: yes
   ansible.builtin.systemd:
     name: reflector
-    enabled: yes
-    state: restarted
+    state: started
   when: ansible_os_family == "Archlinux"
 
 - name: restart proxy services
