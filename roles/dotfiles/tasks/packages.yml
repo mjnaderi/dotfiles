@@ -124,4 +124,13 @@
   with_items: "{{ pacman_config }}"
   when: ansible_os_family == "Archlinux"
 
+# reference: https://www.linuxfordevices.com/tutorials/linux/connect-android-to-arch-via-usb
+- name: install packages to connect Android over MTP
+  become: yes
+  ansible.builtin.package:
+    name:
+      - mtpfs
+      - gvfs-mtp
+    state: latest
+
 - meta: flush_handlers
