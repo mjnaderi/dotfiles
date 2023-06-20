@@ -1,0 +1,59 @@
+- name: install misc packages
+  become: yes
+  community.general.pacman:
+    update_cache: yes
+    name:
+      - neofetch
+      - git
+      - lazygit
+      - man-db
+      - vim
+      - htop
+      - iotop
+      - powertop
+      - tree
+      - ncdu
+      - unzip
+      - lnav
+      - mlocate
+      - wget
+      - nodejs
+      - npm
+    state: latest
+
+# https://github.com/AppImage/AppImageKit/wiki/FUSE
+- name: install fuse2 (AppImage dependency)
+  become: yes
+  ansible.builtin.package:
+    name: fuse2
+    state: latest
+
+- name: install desktop apps from pacman
+  become: yes
+  ansible.builtin.package:
+    name:
+      # - gimp
+      # - inkscape
+      - vlc # vlc from flatpak has some problems
+      - firefox
+      # - uget
+      - meld
+      - dconf-editor
+    state: latest
+
+- name: configure pacman
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop: "{{ pacman_config }}"
+
+# reference: https://www.linuxfordevices.com/tutorials/linux/connect-android-to-arch-via-usb
+- name: install packages to connect Android over MTP
+  become: yes
+  ansible.builtin.package:
+    name:
+      # - mtpfs
+      - gvfs-mtp
+    state: latest

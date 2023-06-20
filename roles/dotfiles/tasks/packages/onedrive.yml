@@ -1,0 +1,23 @@
+- name: install onedrive-abraunegg dependencies
+  become: yes
+  ansible.builtin.package:
+    name:
+      - liblphobos
+      - ldc
+    update_cache: yes
+    state: latest
+
+- name: install onedrive-abraunegg from AUR
+  become: yes
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: onedrive-abraunegg
+    state: present
+
+- name: enable and start onedrive service
+  ansible.builtin.systemd:
+    name: onedrive
+    enabled: yes
+    state: started
+    scope: user
+

@@ -8,7 +8,7 @@
   tags:
     - timezone
 
-- { import_tasks: packages.yml, tags: [packages] }
+- { import_tasks: packages/main.yml, tags: [packages] }
 - { import_tasks: fonts.yml, tags: [fonts] }
 - { import_tasks: gnome.yml, tags: [gnome] }
 - { import_tasks: terminal/main.yml, tags: [terminal] }

@@ -1,0 +1,27 @@
+- name: backup current pacman mirrorlist
+  become: yes
+  ansible.builtin.copy:
+    src: /etc/pacman.d/mirrorlist
+    dest: /etc/pacman.d/mirrorlist.backup
+    force: no
+
+- name: install reflector (pacman mirrorlist auto-updater)
+  become: yes
+  community.general.pacman:
+    name: reflector
+    state: latest
+  notify:
+    - start reflector service
+
+- name: start reflector service (do NOT enable it)
+  become: yes
+  ansible.builtin.systemd:
+    name: reflector
+    enabled: no
+    state: started
+
+- name: enable reflector timer
+  become: yes
+  ansible.builtin.systemd:
+    name: reflector.timer
+    enabled: yes
