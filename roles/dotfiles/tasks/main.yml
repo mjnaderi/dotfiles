@@ -18,3 +18,5 @@
 - { import_tasks: ssh.yml, tags: [ssh] }
 - { import_tasks: git.yml, tags: [git] }
 - { import_tasks: graphics.yml, tags: [graphics] }
+- { import_tasks: bluetooth.yml, tags: [bluetooth] }
+- { import_tasks: audio.yml, tags: [audio] }

@@ -1,0 +1,7 @@
+# https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture#ALSA_firmware
+- name: install sof-firmware to fix "Dummy Output" audio issue
+  become: yes
+  ansible.builtin.package:
+    name: sof-firmware
+    state: latest
+
