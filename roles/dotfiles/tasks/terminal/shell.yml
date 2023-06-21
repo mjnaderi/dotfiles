@@ -34,15 +34,10 @@
     - zshenv
     - zshrc
 
-- name: clone/update fetching git repo
-  ansible.builtin.git:
-    repo: git@github.com:robole/fetching.git
-    dest: "{{ repos_dir }}/fetching"
-
-- name: install fetching
+- name: install space-invaders script
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/repos/fetching/fetching-scripts"
-    dest: ~/.local/bin/fetching-scripts
+    src: "{{ playbook_dir }}/files/space-invaders.sh"
+    dest: ~/.local/bin/space-invaders
     state: link
 
 - name: install starship

@@ -50,8 +50,8 @@ eval "$(pyenv virtualenv-init -)"
 export N_PREFIX="$HOME/.n"
 export PATH="$N_PREFIX/bin:$PATH"
 
-# display a funny unicode art when shell is opened
-~/.local/bin/fetching-scripts/games/space-invaders-l
+# display a unicode art when shell is opened
+~/.local/bin/space-invaders
 
 # activate starship prompt
 eval "$(starship init zsh)"
