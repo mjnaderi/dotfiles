@@ -20,3 +20,4 @@
 - { import_tasks: graphics.yml, tags: [graphics] }
 - { import_tasks: bluetooth.yml, tags: [bluetooth] }
 - { import_tasks: audio.yml, tags: [audio] }
+- { import_tasks: suspend.yml, tags: [suspend] }

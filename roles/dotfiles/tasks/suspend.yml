@@ -1,0 +1,39 @@
+# Change sleep state from Suspend-to-Idle to Suspend-to-RAM
+# (change mem_sleep from "s2idle" to "deep")
+#
+# Reason:
+# My laptop has a big problem when s2idle is enabled and bluetooth is turned on.
+# After waking up from sleep, the root filesystem is mounted in read-only mode
+# and nothing works properly.
+# - Gnome icons disappear.
+# - Running any command in ZSH results in "Input/output error".
+# - I can't open any app.
+# - I can't even power off or restart the system gracefully.
+# After investigation, I found out that the problem disappears when I turn off
+# the bluetooth. But this is not a good solution because I want to use the bluetooth.
+# I read the "Power Management" article on Arch wiki, and tried to change the suspend
+# method. It worked!
+#
+# $ cat /sys/power/mem_sleep
+# [s2idle] deep
+#
+# This output means "s2idle" and "deep" are supported and s2idle is enabled.
+#
+# $ sudo echo "deep" > /sys/power/mem_sleep
+# $ cat /sys/power/mem_sleep
+# s2idle [deep]
+#
+# The problem is gone by changing sleep state to "deep" (Suspend-to-RAM).
+#
+# https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Changing_suspend_method
+# https://docs.kernel.org/admin-guide/pm/sleep-states.html
+
+- name: change sleep state from Suspend-to-Idle to Suspend-to-RAM
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    regexp: ^GRUB_CMDLINE_LINUX_DEFAULT="((?:(?!mem_sleep_default=deep).)*?)"$
+    line: GRUB_CMDLINE_LINUX_DEFAULT="\1 mem_sleep_default=deep"
+    backup: true
+    backrefs: true
+  notify: generate grub config
