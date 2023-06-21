@@ -58,9 +58,8 @@
     dest: ~/.{{ item }}
     state: link
   with_items:
-    - zshrc-dotenv
-    - zprofile-dotenv
-    - vimrc
+    - zshrc-dotfiles
+    - zprofile-dotfiles
 
 - name: install lsd
   become: yes
