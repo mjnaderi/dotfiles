@@ -1,9 +1,5 @@
 repos_dir: "{{ playbook_dir }}/repos"
 
-nerd_fonts:
-  - JetBrainsMono
-  - SourceCodePro
-
 pacman_config:
   - regexp: ^#\s*Color$
     line: Color

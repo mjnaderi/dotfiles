@@ -18,6 +18,7 @@ $ python -m pip install --upgrade packaging
 # install ansible and required collections
 $ sudo pacman -S ansible
 $ ansible-galaxy collection install git+https://github.com/kewlfft/ansible-aur.git
+$ ansible-galaxy collection install git+https://github.com/QueraTeam/ansible-github.git
 ```
 
 ## Installation
