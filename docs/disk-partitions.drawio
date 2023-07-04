@@ -244,7 +244,7 @@
         <mxCell id="As9Zzw6g2zfpyAjeWfE_-10" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;rotation=90;fontFamily=sans-serif;shadow=0;strokeColor=#828282;" vertex="1" parent="KdqZW1nxa3IcIuYSCLVA-135">
           <mxGeometry x="134" y="675" width="20" height="270" as="geometry" />
         </mxCell>
-        <mxCell id="As9Zzw6g2zfpyAjeWfE_-11" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;These partitions are automatically created when you install windows. (Optional)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#828282;fillColor=#E8E8E8;fontColor=#333333;fontFamily=sans-serif;" vertex="1" parent="KdqZW1nxa3IcIuYSCLVA-135">
+        <mxCell id="As9Zzw6g2zfpyAjeWfE_-11" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;These partitions are automatically created when you install Windows. (Optional)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#828282;fillColor=#E8E8E8;fontColor=#333333;fontFamily=sans-serif;" vertex="1" parent="KdqZW1nxa3IcIuYSCLVA-135">
           <mxGeometry x="16" y="880" width="256" height="40" as="geometry" />
         </mxCell>
       </root>
