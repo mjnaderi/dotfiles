@@ -41,18 +41,6 @@ prompt_precmd() {
 add-zsh-hook precmd prompt_precmd
 add-zsh-hook preexec prompt_preexec
 
-# # pyenv
-# if [ -d "$HOME/.pyenv" ]; then
-#     export PYENV_ROOT="$HOME/.pyenv"
-#     command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-#     eval "$(pyenv init -)"
-#
-#     if [ -d "$PYENV_ROOT/plugins/pyenv-virtualenv" ]; then
-#         export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-#         eval "$(pyenv virtualenv-init -)"
-#     fi
-# fi
-
 # n
 export N_PREFIX="$HOME/.n"
 export PATH="$N_PREFIX/bin:$PATH"

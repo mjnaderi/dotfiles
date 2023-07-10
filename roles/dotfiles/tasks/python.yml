@@ -14,24 +14,3 @@
   community.general.pipx:
     name: poetry
     state: latest
-
-#- name: install packages required by pyenv (https://github.com/pyenv/pyenv/wiki#suggested-build-environment)
-#  ansible.builtin.package:
-#    name:
-#      - base-devel
-#      - openssl
-#      - zlib
-#      - xz
-#      - tk
-#    state: present
-#  become: yes
-#
-#- name: install pyenv
-#  ansible.builtin.git:
-#    repo: https://github.com/pyenv/pyenv.git
-#    dest: ~/.pyenv
-#
-#- name: install pyenv-virtualenv
-#  ansible.builtin.git:
-#    repo: https://github.com/pyenv/pyenv-virtualenv.git
-#    dest: ~/.pyenv/plugins/pyenv-virtualenv
