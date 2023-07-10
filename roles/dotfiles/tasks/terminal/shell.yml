@@ -34,10 +34,16 @@
     - zshenv
     - zshrc
 
-- name: install space-invaders script
+- name: install space-invaders
   ansible.builtin.file:
     src: "{{ playbook_dir }}/files/space-invaders.sh"
     dest: ~/.local/bin/space-invaders
+    state: link
+
+- name: install zsh_welcome
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/zsh_welcome.sh"
+    dest: ~/.zsh_welcome
     state: link
 
 - name: install starship

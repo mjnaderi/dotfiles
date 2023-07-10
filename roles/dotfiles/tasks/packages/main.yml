@@ -1,6 +1,9 @@
 - import_tasks: pacman.yml
   tags: [packages/pacman]
 
+- import_tasks: pacman_downloadupdates.yml
+  tags: [ packages/pacman_downloadupdates ]
+
 - import_tasks: aur.yml
   tags: [packages/aur]
 

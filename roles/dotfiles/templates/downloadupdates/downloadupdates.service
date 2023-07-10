@@ -1,0 +1,10 @@
+[Unit]
+Description=Download Pacman Updates
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/checkupdates -d
+ExecStart=/usr/bin/touch /var/log/downloadupdates_done
+
+[Install]
+WantedBy=default.target
