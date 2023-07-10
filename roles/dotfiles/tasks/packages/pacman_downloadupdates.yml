@@ -1,14 +1,10 @@
-- name: install pacman-contrib (for checkupdates script and "Arch Linux Updates Indicator" extension)
+# downloadupdates timer run "checkupdates -d" periodically, so updating packages becomes instant.
+
+- name: install pacman-contrib (for checkupdates script)
   become: yes
   community.general.pacman:
     name: pacman-contrib
     state: latest
-
-- name: create user systemd directory
-  ansible.builtin.file:
-    path: ~/.config/systemd/user
-    state: directory
-    recurse: yes
 
 - name: install downloadupdates systemd service and timer
   become: yes
@@ -19,7 +15,7 @@
     - downloadupdates.service
     - downloadupdates.timer
 
-- name: enable and start downloadupdates timer (to run "checkupdates -d" periodically, so updating packages becomes instant)
+- name: enable and start downloadupdates timer
   become: yes
   ansible.builtin.systemd:
     name: downloadupdates.timer
