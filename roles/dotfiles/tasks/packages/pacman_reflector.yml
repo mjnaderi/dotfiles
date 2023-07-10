@@ -10,8 +10,6 @@
   community.general.pacman:
     name: reflector
     state: latest
-  notify:
-    - start reflector service
 
 - name: start reflector service (do NOT enable it)
   become: yes
@@ -20,8 +18,9 @@
     enabled: no
     state: started
 
-- name: enable reflector timer
+- name: enable and start reflector timer
   become: yes
   ansible.builtin.systemd:
     name: reflector.timer
     enabled: yes
+    state: started
