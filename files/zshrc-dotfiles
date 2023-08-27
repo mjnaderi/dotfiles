@@ -50,3 +50,6 @@ source ~/.zsh_welcome
 
 # activate starship prompt
 eval "$(starship init zsh)"
+
+# atuin
+eval "$(atuin init zsh)"

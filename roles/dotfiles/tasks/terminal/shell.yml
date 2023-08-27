@@ -89,3 +89,9 @@
   ansible.builtin.package:
     name: bat
     state: latest
+
+- name: install atuin
+  become: yes
+  ansible.builtin.package:
+    name: atuin
+    state: latest
