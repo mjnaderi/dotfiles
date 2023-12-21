@@ -1,0 +1,5 @@
+# Source: https://wiki.archlinux.org/title/Zram#Using_a_udev_rule
+
+# Create zram device with zstd compression and 8GB size.
+# Assuming zstd has a compression ratio of 2.9, it's like having 13.24GB of RAM plus 8GB of swap (21.24GB total).
+ACTION=="add", KERNEL=="zram0", ATTR{comp_algorithm}="zstd", ATTR{disksize}="8G", RUN="/usr/bin/mkswap -U clear /dev/%k", TAG+="systemd"

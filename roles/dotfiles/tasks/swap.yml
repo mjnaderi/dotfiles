@@ -1,0 +1,31 @@
+- name: disable zswap
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    regexp: ^GRUB_CMDLINE_LINUX_DEFAULT="((?:(?!zswap.enabled=0).)*?)"$
+    line: GRUB_CMDLINE_LINUX_DEFAULT="\1 zswap.enabled=0"
+    backup: true
+    backrefs: true
+  notify: generate grub config
+
+- name: load zram module at boot
+  become: yes
+  ansible.builtin.copy:
+    dest: /etc/modules-load.d/zram.conf
+    content: |
+      zram
+
+- name: create zram device using udev rules
+  become: yes
+  ansible.builtin.copy:
+    src: 99-zram.rules
+    dest: /etc/udev/rules.d/99-zram.rules
+
+- name: add zram device as swap to fstab
+  become: yes
+  ansible.posix.mount:
+    name: none
+    src: /dev/zram0
+    fstype: swap
+    opts: defaults,pri=100
+    state: present
