@@ -1,3 +1,5 @@
+# Reference: https://wiki.archlinux.org/title/Zram
+
 - name: disable zswap
   become: yes
   ansible.builtin.lineinfile:
