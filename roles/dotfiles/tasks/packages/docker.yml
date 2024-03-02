@@ -1,0 +1,37 @@
+- name: install docker
+  become: yes
+  community.general.pacman:
+    update_cache: yes
+    name:
+      - docker
+      - docker-compose
+      - docker-buildx
+    state: latest
+
+- name: configure http proxy for docker - create /etc/systemd/system/docker.service.d
+  become: yes
+  ansible.builtin.file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+
+- name: configure http proxy for docker - create /etc/systemd/system/docker.service.d/http-proxy.conf
+  become: yes
+  ansible.builtin.template:
+    src: docker/http-proxy.conf
+    dest: /etc/systemd/system/docker.service.d/http-proxy.conf
+  notify:
+    - restart docker service
+
+- name: enable and start docker service
+  become: yes
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    name: docker
+    enabled: yes
+    state: started
+
+- name: install dive (for exploring docker image layers)
+  become: yes
+  community.general.pacman:
+    name: dive
+    state: latest

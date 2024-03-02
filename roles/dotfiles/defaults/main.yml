@@ -49,3 +49,5 @@ ddterm_config:
     value: 1
   - key: panel-icon-type
     value: none
+
+docker_no_proxy: []
