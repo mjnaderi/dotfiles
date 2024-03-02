@@ -1,0 +1,22 @@
+# https://www.everythingcli.org/ssh-tunnelling-for-fun-and-profit-autossh/
+# https://linux.die.net/man/1/autossh
+
+- name: install autossh, proxychains
+  become: yes
+  ansible.builtin.package:
+    name:
+      - autossh
+      - proxychains
+    state: latest
+
+- name: configure proxychains
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/proxychains.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.replace }}"
+  with_items:
+    - regexp: "^#?socks5 .*"
+      replace: "socks5         127.0.0.1 {{ lookup('env', 'LOCAL_SOCKS_PROXY_PORT') }}"
+    - regexp: "^#?(socks4 .*)"
+      replace: "#socks4         127.0.0.1 9050"

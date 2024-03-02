@@ -14,7 +14,7 @@
 - { import_tasks: terminal/main.yml, tags: [terminal] }
 - { import_tasks: vim.yml, tags: [vim] }
 - { import_tasks: python.yml, tags: [python] }
-- { import_tasks: proxy/main.yml, tags: [proxy] }
+- { import_tasks: proxy.yml, tags: [proxy] }
 - { import_tasks: ssh.yml, tags: [ssh] }
 - { import_tasks: git.yml, tags: [git] }
 - { import_tasks: graphics.yml, tags: [graphics] }
