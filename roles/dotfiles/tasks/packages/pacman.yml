@@ -17,8 +17,16 @@
       - lnav
       - mlocate
       - wget
+      - wl-clipboard
       - nodejs
       - npm
+      - bind # for "dig" command
+      - whois # for "whois" command
+      - pkgfile # for searching files from packages in the official Arch repositories
+      - ntfs-3g # create NTFS filesystem (mkfs.ntfs)
+      - dosfstools # create FAT filesystem (mkfs.fat)
+      - sshuttle # VPN over SSH
+      #- samba # for sharing file to windows or access files shared from windows
     state: latest
 
 # https://github.com/AppImage/AppImageKit/wiki/FUSE
