@@ -1,8 +1,14 @@
 # https://wiki.archlinux.org/title/wayland#Detect_Xwayland_applications_visually
 - name: install xeyes (to detect Xwayland applications)
   become: yes
-  ansible.builtin.package:
+  community.general.pacman:
     name: xorg-xeyes
+    state: latest
+
+- name: install gnome-tweaks
+  become: yes
+  community.general.pacman:
+    name: gnome-tweaks
     state: latest
 
 - name: install gnome extensions
@@ -51,12 +57,11 @@
     value: Graphite-Light-nord
 
 - name: install qogir icon theme
+  become: yes
+  become_user: aur_builder
   kewlfft.aur.aur:
     name: qogir-icon-theme
     state: present
-  become: yes
-  become_user: aur_builder
-  when: ansible_os_family == "Archlinux"
 
 - name: set cursor theme to "Qogir"
   gsettings:
@@ -75,7 +80,7 @@
     schema: "{{ item.schema }}"
     key: "{{ item.key }}"
     value: "{{ item.value | string }}"
-  with_items:
+  loop:
     - schema: org.gnome.shell.app-switcher
       key: current-workspace-only
       value: "true"
@@ -100,13 +105,72 @@
       key: button-layout
       value: "appmenu:minimize,maximize,close"
 
+- name: configure file manager
+  gsettings:
+    schema: "{{ item.schema }}"
+    key: "{{ item.key }}"
+    value: "{{ item.value | string }}"
+  loop:
+    - schema: org.gnome.nautilus.icon-view
+      key: default-zoom-level
+      value: "small-plus"
+    - schema: org.gnome.nautilus.list-view
+      key: default-zoom-level
+      value: "small"
+    - schema: org.gnome.nautilus.preferences
+      key: default-folder-viewer
+      value: "list-view"
+    - schema: org.gtk.gtk4.Settings.FileChooser
+      key: sort-directories-first
+      value: "true"
+
+- name: gnome power settings
+  gsettings:
+    schema: "{{ item.schema }}"
+    key: "{{ item.key }}"
+    value: "{{ item.value | string }}"
+  loop:
+    # when inactive (on battery power): suspend
+    - schema: org.gnome.settings-daemon.plugins.power
+      key: sleep-inactive-battery-type
+      value: "suspend"
+    # when inactive (plugged in): nothing
+    - schema: org.gnome.settings-daemon.plugins.power
+      key: sleep-inactive-ac-type
+      value: "nothing"
+
 # https://wiki.archlinux.org/title/PipeWire#WebRTC_screen_sharing
 - name: install required packages for webrtc screen sharing
   become: yes
-  ansible.builtin.package:
+  community.general.pacman:
     name:
       - pipewire
       - wireplumber
       - xdg-desktop-portal
       - xdg-desktop-portal-gnome
     state: latest
+
+- name: install gnome-text-editor
+  become: yes
+  community.general.pacman:
+    name: gnome-text-editor
+    state: latest
+
+- name: configure gnome-text-editor
+  gsettings:
+    schema: "{{ item.schema }}"
+    key: "{{ item.key }}"
+    value: "{{ item.value | string }}"
+  loop:
+    - schema: org.gnome.TextEditor
+      key: indent-style
+      value: "space"
+    - schema: org.gnome.TextEditor
+      key: tab-width
+      value: 4
+    - schema: org.gnome.TextEditor
+      key: style-variant
+      value: "dark"
+    - schema: org.gnome.TextEditor
+      key: show-line-numbers
+      value: "true"
