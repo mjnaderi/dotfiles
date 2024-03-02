@@ -24,7 +24,7 @@
     schema: com.github.amezin.ddterm
     key: "{{ item.key }}"
     value: "{{ item.value | string }}"
-  with_items:
+  loop:
     - key: use-theme-colors
       value: "false"
     - key: cursor-colors-set
@@ -70,4 +70,4 @@
     schema: com.github.amezin.ddterm
     key: "{{ item.key }}"
     value: "{{ item.value | string }}"
-  with_items: "{{ ddterm_config }}"
+  loop: "{{ ddterm_config }}"

@@ -15,7 +15,7 @@
     path: /etc/proxychains.conf
     regexp: "{{ item.regexp }}"
     line: "{{ item.replace }}"
-  with_items:
+  loop:
     - regexp: "^#?socks5 .*"
       replace: "socks5         127.0.0.1 {{ lookup('env', 'LOCAL_SOCKS_PROXY_PORT') }}"
     - regexp: "^#?(socks4 .*)"

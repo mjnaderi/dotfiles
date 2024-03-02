@@ -26,7 +26,7 @@
     src: "{{ playbook_dir }}/submodules/prezto/runcoms/{{ item }}"
     dest: ~/.{{ item }}
     state: link
-  with_items:
+  loop:
     - zlogin
     - zlogout
     - zpreztorc
@@ -63,7 +63,7 @@
     src: "{{ playbook_dir }}/files/{{ item }}"
     dest: ~/.{{ item }}
     state: link
-  with_items:
+  loop:
     - zshrc-dotfiles
     - zprofile-dotfiles
 

@@ -3,7 +3,7 @@
     path: /etc/ssh/sshd_config
     regexp: "^#?{{ item.key }} .+$"
     line: "{{ item.key }} {{ item.value }}"
-  with_items:
+  loop:
     - { key: "Port", value: "{{ ansible_port_bootstrap|default(ansible_port) }}" }
     - { key: "PermitRootLogin", value: "no" }
     - { key: "PermitEmptyPasswords", value: "no" }
