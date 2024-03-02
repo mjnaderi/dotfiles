@@ -182,3 +182,34 @@
     - schema: org.gnome.TextEditor
       key: show-line-numbers
       value: "true"
+
+# https://wiki.archlinux.org/title/GNOME/Keyring#Setup_gcr
+# The SSH functionality is disabled by default in gnome-keyring-daemon builds since version 1:46.
+# It has been moved into /usr/lib/user/gcr-ssh-agent, which is part of the gcr-4 package.
+- name: Setup gcr
+  block:
+    # install gcr-4 package
+    - name: install gnome gcr (https://gitlab.gnome.org/GNOME/gcr)
+      become: yes
+      community.general.pacman:
+        name: gcr-4
+        state: latest
+
+    # Enable the `gcr-ssh-agent.socket` systemd user unit.
+    - name: enable gcr-ssh-agent.socket
+      ansible.builtin.systemd:
+        scope: user
+        name: gcr-ssh-agent.socket
+        enabled: yes
+
+    - name: create ~/.config/environment.d directory
+      ansible.builtin.file:
+        path: ~/.config/environment.d
+        state: directory
+        recurse: true
+
+    # https://wiki.archlinux.org/title/Environment_variables#Per_Wayland_session
+    - name: configure SSH_AUTH_SOCK environment variable
+      ansible.builtin.copy:
+        content: SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
+        dest: ~/.config/environment.d/ssh-agent.conf
