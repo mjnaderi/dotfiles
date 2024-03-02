@@ -11,6 +11,14 @@
     name: gnome-tweaks
     state: latest
 
+- name: install ddterm dependencies
+  become: yes
+  community.general.pacman:
+    name:
+      # https://github.com/ddterm/gnome-shell-extension-ddterm/blob/0c337ee220dfe270ae6674ea0d41194a1d9d878c/ddterm/app/dependencies.json#L24
+      - vte3
+    state: latest
+
 - name: install gnome extensions
   ansible.builtin.command:
     cmd: |
