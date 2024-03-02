@@ -1,4 +1,4 @@
 # {{ ansible_managed }}
 [user]
     email = {{ lookup('env', 'MY_EMAIL_ADDRESS') }}
-    name = Mohammad Javad Naderi
+    name = {{ lookup('env', 'MY_FIRST_NAME') }} {{ lookup('env', 'MY_LAST_NAME') }}
