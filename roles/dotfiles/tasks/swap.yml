@@ -19,7 +19,7 @@
 
 - name: create zram device using udev rules
   become: yes
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: 99-zram.rules
     dest: /etc/udev/rules.d/99-zram.rules
 
