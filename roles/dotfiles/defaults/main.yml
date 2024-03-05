@@ -1,5 +1,7 @@
 repos_dir: "{{ playbook_dir }}/repos"
 
+swap_size: 16G
+
 pacman_config:
   - regexp: ^#\s*Color$
     line: Color
