@@ -38,13 +38,13 @@
 
 - name: install desktop apps from pacman
   become: yes
-  ansible.builtin.package:
+  community.general.pacman:
     name:
       # - gimp
       # - inkscape
       - vlc # vlc from flatpak has some problems
       - firefox
-      # - uget
+      - uget
       - meld
       - dconf-editor
     state: latest
