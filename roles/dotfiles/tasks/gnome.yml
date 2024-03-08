@@ -148,18 +148,6 @@
       key: sleep-inactive-ac-type
       value: "nothing"
 
-# https://wiki.archlinux.org/title/PipeWire#WebRTC_screen_sharing
-# Test Page: https://mozilla.github.io/webrtc-landing/gum_test.html
-- name: install required packages for webrtc screen sharing
-  become: yes
-  community.general.pacman:
-    name:
-      - pipewire
-      - wireplumber
-      - xdg-desktop-portal
-      - xdg-desktop-portal-gnome
-    state: latest
-
 - name: install gnome-text-editor
   become: yes
   community.general.pacman:
