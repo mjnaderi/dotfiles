@@ -149,6 +149,7 @@
       value: "nothing"
 
 # https://wiki.archlinux.org/title/PipeWire#WebRTC_screen_sharing
+# Test Page: https://mozilla.github.io/webrtc-landing/gum_test.html
 - name: install required packages for webrtc screen sharing
   become: yes
   community.general.pacman:

@@ -39,11 +39,6 @@ or I was too lazy to automate!
 
 ## Wayland
 
-### Screen Capture on Wayland
-
-To fix the black screen problem when sharing/recording screen in wayland,
-read [this](https://wiki.archlinux.org/title/PipeWire#WebRTC_screen_sharing).
-
 ### Enable Native Wayland Support for Chromium/Chrome
 
 Add these lines to `~/.config/chromium-flags.conf` (or `chrome-flags.conf` for Chrome):
