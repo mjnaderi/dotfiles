@@ -57,11 +57,10 @@
     line: "{{ item.line }}"
   loop: "{{ pacman_config }}"
 
-# reference: https://www.linuxfordevices.com/tutorials/linux/connect-android-to-arch-via-usb
-- name: install packages to connect Android over MTP
+- name: install gvfs packages
   become: yes
-  ansible.builtin.package:
+  community.general.pacman:
     name:
-      # - mtpfs
-      - gvfs-mtp
+      - gvfs-mtp  # Access Android over MTP (https://www.linuxfordevices.com/tutorials/linux/connect-android-to-arch-via-usb)
+      - gvfs-smb  # Access Windows shared folders (https://wiki.archlinux.org/title/Samba#File_manager_configuration)
     state: latest
