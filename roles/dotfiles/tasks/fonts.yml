@@ -5,8 +5,8 @@
       - adobe-source-code-pro-fonts
       - cantarell-fonts
       - noto-fonts # provider for ttf-font (https://wiki.archlinux.org/title/Fonts#Families)
-      - ttf-jetbrains-mono-nerd
-      - ttf-sourcecodepro-nerd
+      - ttf-jetbrains-mono-nerd  # https://www.nerdfonts.com/
+      - ttf-sourcecodepro-nerd  # https://www.nerdfonts.com/
     state: latest
 
 - name: install ttf-twemoji (emoji font)

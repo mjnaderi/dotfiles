@@ -39,30 +39,6 @@ or I was too lazy to automate!
 
 ## Wayland
 
-### Enable Native Wayland Support for Chromium/Chrome
-
-Add these lines to `~/.config/chromium-flags.conf` (or `chrome-flags.conf` for Chrome):
-
-    --enable-features=UseOzonePlatform
-    --ozone-platform=wayland
-
-[Reference](https://wiki.archlinux.org/title/chromium#Native_Wayland_support)
-
-### Enable Native Wayland Support for Electron Apps
-
-Add these flags to the command running the app:
-
-    --enable-features=UseOzonePlatform --ozone-platform=wayland
-
-To persist, you can add them to related `.desktop` file.
-
-[Reference](https://www.reddit.com/r/linux/comments/lw7cvk/electron_12_has_just_been_released_with_wayland/)
-
-### Status of Wayland Support in Other Apps
-
-- [Jetbrains](https://youtrack.jetbrains.com/issue/JBR-3206)
-- [VSCode](https://github.com/microsoft/vscode/issues/109176)
-
 ## HiDPI + Full HD Monitor Combination in Gnome
 
 If you have multiple monitors (one HiDPI, and one with lower dpi):
@@ -70,7 +46,7 @@ If you have multiple monitors (one HiDPI, and one with lower dpi):
 1. Use Wayland
 2. Enable the experimental fractional scaling feature of Wayland:
 
-   $ gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
+       $ gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 
 3. Open `Settings -> Displays`, and set Scale to your desired value for each monitor.
 
@@ -126,13 +102,6 @@ Update `hwdb.bin`:
 
 After any change to `90-redmi.hwdb`, run `sudo touch /usr`.
 
-## Fix "Dummy Output" Audio Issue
-
-If audio is not working, try installing `sof-firmware` package,
-as recommended by [Arch Wiki](https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture#ALSA_firmware).
-
-    $ sudo pacman -S sof-firmware
-
 ## Monospace Fonts
 
 My favorite monospace fonts:
@@ -145,10 +114,3 @@ My favorite monospace fonts:
 
 Use a [nerd font](https://www.nerdfonts.com/) for better compatibility with shell prompts
 like Powerlevel10k or Starship. This dotfiles repo installs some nerd fonts.
-
-## References
-
-- https://www.nerdfonts.com/
-- https://starship.rs/
-- https://www.roboleary.net/2021/06/09/give-your-terminal-a-makeover.html
-- https://github.com/romkatv/powerlevel10k
