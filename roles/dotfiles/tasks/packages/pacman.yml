@@ -43,7 +43,7 @@
       # - gimp
       # - inkscape
       - vlc # vlc from flatpak has some problems
-      - firefox
+      # - firefox
       - uget
       - meld
       - dconf-editor

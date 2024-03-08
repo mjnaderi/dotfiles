@@ -3,7 +3,7 @@
     name:
       - com.mattermost.Desktop  # Open Source Communication Platform
       # - org.freedownloadmanager.Manager  # Cross-platform Download Manager
-      # - com.transmissionbt.Transmission
+      - com.transmissionbt.Transmission
       # - fr.handbrake.ghb
       # - org.keepassxc.KeePassXC
       - com.mattjakeman.ExtensionManager  # Browse, install, and manage GNOME Shell Extensions
@@ -16,6 +16,7 @@
       - com.github.marktext.marktext
       - org.gimp.GIMP
       - org.inkscape.Inkscape
+      # - io.bassi.Amberol  # Music Player
       # - com.redis.RedisInsight
       # - org.nickvision.tagger
       # - net.hovancik.Stretchly
