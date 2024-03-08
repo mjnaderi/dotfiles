@@ -1,3 +1,10 @@
+# https://wiki.archlinux.org/title/wayland#Detect_Xwayland_applications_visually
+- name: install xeyes (to detect Xwayland applications)
+  become: yes
+  community.general.pacman:
+    name: xorg-xeyes
+    state: latest
+
 # https://wiki.archlinux.org/title/PipeWire#WebRTC_screen_sharing
 # Test Page: https://mozilla.github.io/webrtc-landing/gum_test.html
 - name: install required packages for webrtc screen sharing
