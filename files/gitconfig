@@ -9,3 +9,5 @@
     stat = true
 [merge]
     ff = false
+[core]
+	autocrlf = input
