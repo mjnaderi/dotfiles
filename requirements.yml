@@ -1,0 +1,3 @@
+collections:
+  - name: git+https://github.com/kewlfft/ansible-aur.git
+  - name: git+https://github.com/QueraTeam/ansible-github.git

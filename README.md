@@ -8,17 +8,9 @@ I use Ansible for better flexibility. The main Ansible tasks are located in
 ## Requirements
 
 ```shell
-# install latest version of pip in `~/.local`
-$ python -m ensurepip --upgrade
-$ python -m pip install --upgrade pip
-
-# install packaging module (required by ansible-galaxy)
-$ python -m pip install --upgrade packaging
-
-# install ansible and required collections
+# Install ansible and requirements
 $ sudo pacman -S ansible
-$ ansible-galaxy collection install git+https://github.com/kewlfft/ansible-aur.git
-$ ansible-galaxy collection install git+https://github.com/QueraTeam/ansible-github.git
+$ ansible-galaxy install -r requirements.yml
 ```
 
 ## Installation
