@@ -1,0 +1,21 @@
+# Defaults: https://github.com/atuinsh/atuin/blob/main/atuin-client/config.toml
+
+# Filter Mode
+filter_mode = "global"
+filter_mode_shell_up_key_binding = "session"
+workspaces = true
+
+## the maximum number of lines the interface should take up
+## set it to 0 to always go full screen
+inline_height = 20
+
+## use ctrl instead of alt as the shortcut modifier key for numerical UI shortcuts
+## alt-0 .. alt-9
+ctrl_n_shortcuts = true
+
+## Configure whether or not to show tabs for search and inspect
+show_tabs = false
+
+## Defaults to true. If enabled, upon hitting enter Atuin will immediately execute the command. Press tab to return to the shell and edit.
+# This applies for new installs. Old installs will keep the old behaviour unless configured otherwise.
+enter_accept = true

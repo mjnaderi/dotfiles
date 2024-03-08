@@ -95,3 +95,10 @@
   ansible.builtin.package:
     name: atuin
     state: latest
+
+- name: install atuin config
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/atuin-config.toml"
+    dest: ~/.config/atuin/config.toml
+    state: link
+    force: true
