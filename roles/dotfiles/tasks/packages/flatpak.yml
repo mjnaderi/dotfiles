@@ -1,7 +1,7 @@
 - name: install flatpak apps
   community.general.flatpak:
     name:
-      - com.mattermost.Desktop  # Open Source Communication Platform
+      # - com.mattermost.Desktop  # Open Source Communication Platform
       # - org.freedownloadmanager.Manager  # Cross-platform Download Manager
       - com.transmissionbt.Transmission
       # - fr.handbrake.ghb
