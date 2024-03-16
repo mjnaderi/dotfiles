@@ -1,7 +1,7 @@
 # Use lsd instead of ls
 alias ls='lsd'
 # Use bat instead of cat
-alias cat='bat --plain --paging never'
+alias cat='bat --style=plain --paging=never'
 
 # Activate Comment in Interactive mode
 setopt interactivecomments
