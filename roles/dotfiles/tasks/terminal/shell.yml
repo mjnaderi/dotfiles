@@ -102,3 +102,9 @@
     dest: ~/.config/atuin/config.toml
     state: link
     force: true
+
+- name: install zellij
+  become: yes
+  ansible.builtin.package:
+    name: zellij
+    state: latest
