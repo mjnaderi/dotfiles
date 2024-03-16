@@ -45,8 +45,6 @@ ddterm_config:
     value: left
   - key: tab-switcher-popup
     value: "false"
-  - key: tab-title-template
-    value: "{{ '{{' }}window-title{{ '}}' }}"
   - key: window-size
     value: 1
   - key: panel-icon-type
