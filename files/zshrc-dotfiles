@@ -41,10 +41,6 @@ prompt_precmd() {
 add-zsh-hook precmd prompt_precmd
 add-zsh-hook preexec prompt_preexec
 
-# n
-export N_PREFIX="$HOME/.n"
-export PATH="$N_PREFIX/bin:$PATH"
-
 # display a welcome message when shell is opened
 source ~/.zsh_welcome
 
@@ -53,3 +49,8 @@ eval "$(starship init zsh)"
 
 # atuin
 eval "$(atuin init zsh)"
+
+# Source .zshrc-dotfiles
+if [[ -s "${ZDOTDIR:-$HOME}/.zshrc-tmp" ]]; then
+    source "${ZDOTDIR:-$HOME}/.zshrc-tmp"
+fi
