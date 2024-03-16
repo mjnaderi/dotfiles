@@ -12,6 +12,8 @@ pacman_config:
 iterm2_color_schemes_clone_path: "{{ playbook_dir }}/repos/iterm2-color-schemes"
 iterm2_color_scheme_name: 3024 Night
 
+# To view ddterm config, use this command:
+# dconf-editor com.github.amezin.ddterm:~/.local/share/gnome-shell/extensions/ddterm@amezin.github.com/schemas/
 ddterm_config:
   - key: shortcut-move-tab-next
     value: ["<Primary><Shift>j"]
@@ -49,5 +51,7 @@ ddterm_config:
     value: 1
   - key: panel-icon-type
     value: none
+  - key: hide-when-focus-lost
+    value: "true"
 
 docker_no_proxy: []
