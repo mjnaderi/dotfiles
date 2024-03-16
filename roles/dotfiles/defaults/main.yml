@@ -1,6 +1,6 @@
 repos_dir: "{{ playbook_dir }}/repos"
 
-swap_size: 16G
+swap_size_mb: "{{ [ansible_memory_mb.real.total, 16 * 1024]|map('int')|min }}"
 
 pacman_config:
   - regexp: ^#\s*Color$
