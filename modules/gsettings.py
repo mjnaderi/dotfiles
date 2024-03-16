@@ -34,7 +34,7 @@ def is_equal(val1: str, val2: str):
 def parse_value(value: str):
     if value.startswith("'") or value.startswith('"'):
         return literal_eval(value)
-    return value
+    return value.lstrip("@as ")
 
 
 def set_value(schemadir, schema, key, value):

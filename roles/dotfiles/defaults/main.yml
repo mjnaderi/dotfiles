@@ -24,7 +24,7 @@ ddterm_config:
   - key: shortcut-page-close
     value: ["<Primary>w"]
   - key: shortcut-win-new-tab
-    value: ["<Primary>t"]
+    value: []  # Disabled (Because I need Ctrl+t in Zellij)
   - key: shortcut-win-new-tab-after-current
     value: ["<Primary><Shift>t"]
   - key: theme-variant
