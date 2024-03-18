@@ -21,22 +21,22 @@
       /org/gnome/Shell
       org.gnome.Shell.Extensions InstallRemoteExtension
       s "{{ item }}"
-    creates: "{{ ('~/.local/share/gnome-shell/extensions' | expanduser, item) | path_join }}"
+    creates: "{{ ('~/.local/share/gnome-shell/extensions', item) | path_join }}"
   loop: "{{ gnome_extensions }}"
 
-- name: clone/update Graphite-gtk-theme git repo
-  ansible.builtin.git:
-    repo: git@github.com:vinceliuice/Graphite-gtk-theme.git
-    dest: "{{ repos_dir }}/graphite-gtk-theme"
-
-- name: install Graphite gtk theme
-  ansible.builtin.command: "{{ repos_dir }}/graphite-gtk-theme/install.sh --tweaks nord rimless normal"
-
-- name: enable Graphite gtk theme
-  gsettings:
-    schema: org.gnome.desktop.interface
-    key: gtk-theme
-    value: Graphite-Light-nord
+#- name: clone/update Graphite-gtk-theme git repo
+#  ansible.builtin.git:
+#    repo: https://github.com/vinceliuice/Graphite-gtk-theme.git
+#    dest: "~/.cache/ansible-gnome/graphite-gtk-theme"
+#
+#- name: install Graphite gtk theme
+#  ansible.builtin.command: "~/.cache/ansible-gnome/graphite-gtk-theme/install.sh --tweaks nord rimless normal"
+#
+#- name: enable Graphite gtk theme
+#  gsettings:
+#    schema: org.gnome.desktop.interface
+#    key: gtk-theme
+#    value: Graphite-Light-nord
 
 - name: install qogir icon theme
   become: yes
@@ -51,12 +51,6 @@
     key: cursor-theme
     value: Qogir-dark
 
-- name: set monospace font to "JetBrainsMono Nerd Font"
-  gsettings:
-    schema: org.gnome.desktop.interface
-    key: monospace-font-name
-    value: JetBrainsMono Nerd Font 10
-
 - name: apply gnome settings
   gsettings:
     schema: "{{ item.schema }}"
@@ -64,19 +58,31 @@
     value: "{{ item.value | string }}"
   loop: "{{ gnome_settings }}"
 
+- name: install eog (Eye of Gnome) image viewer
+  become: yes
+  community.general.pacman:
+    name: eog
+    state: latest
+
+- name: apply eog settings
+  gsettings:
+    schema: "{{ item.schema }}"
+    key: "{{ item.key }}"
+    value: "{{ item.value | string }}"
+  loop: "{{ gnome_eog_settings }}"
+
+- name: install nautilus file manager
+  become: yes
+  community.general.pacman:
+    name: nautilus
+    state: latest
+
 - name: apply file manager (nautilus) settings
   gsettings:
     schema: "{{ item.schema }}"
     key: "{{ item.key }}"
     value: "{{ item.value | string }}"
   loop: "{{ gnome_nautilus_settings }}"
-
-- name: apply gnome power settings
-  gsettings:
-    schema: "{{ item.schema }}"
-    key: "{{ item.key }}"
-    value: "{{ item.value | string }}"
-  loop: "{{ gnome_power_settings }}"
 
 - name: install gnome-text-editor
   become: yes
