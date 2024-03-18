@@ -31,6 +31,7 @@ gnome_settings:
   - schema: org.gnome.settings-daemon.plugins.power
     key: sleep-inactive-ac-type
     value: "nothing"
+gnome_settings_extra: []
 
 gnome_eog_settings:
   # scroll up/down instead of zoom in/out in gnome image viewer (eog)

@@ -56,7 +56,7 @@
     schema: "{{ item.schema }}"
     key: "{{ item.key }}"
     value: "{{ item.value | string }}"
-  loop: "{{ gnome_settings }}"
+  loop: "{{ gnome_settings + gnome_settings_extra }}"
 
 - name: install eog (Eye of Gnome) image viewer
   become: yes
