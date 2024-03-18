@@ -1,0 +1,123 @@
+- name: install gnome-tweaks
+  become: yes
+  community.general.pacman:
+    name: gnome-tweaks
+    state: latest
+
+- name: install ddterm dependencies
+  become: yes
+  community.general.pacman:
+    name:
+      # https://github.com/ddterm/gnome-shell-extension-ddterm/blob/0c337ee220dfe270ae6674ea0d41194a1d9d878c/ddterm/app/dependencies.json#L24
+      - vte3
+    state: latest
+  when: "'ddterm@amezin.github.com' in gnome_extensions"
+
+- name: install gnome extensions
+  ansible.builtin.command:
+    cmd: |
+      busctl --user call
+      org.gnome.Shell
+      /org/gnome/Shell
+      org.gnome.Shell.Extensions InstallRemoteExtension
+      s "{{ item }}"
+    creates: "{{ ('~/.local/share/gnome-shell/extensions' | expanduser, item) | path_join }}"
+  loop: "{{ gnome_extensions }}"
+
+- name: clone/update Graphite-gtk-theme git repo
+  ansible.builtin.git:
+    repo: git@github.com:vinceliuice/Graphite-gtk-theme.git
+    dest: "{{ repos_dir }}/graphite-gtk-theme"
+
+- name: install Graphite gtk theme
+  ansible.builtin.command: "{{ repos_dir }}/graphite-gtk-theme/install.sh --tweaks nord rimless normal"
+
+- name: enable Graphite gtk theme
+  gsettings:
+    schema: org.gnome.desktop.interface
+    key: gtk-theme
+    value: Graphite-Light-nord
+
+- name: install qogir icon theme
+  become: yes
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: qogir-icon-theme
+    state: present
+
+- name: set cursor theme to "Qogir"
+  gsettings:
+    schema: org.gnome.desktop.interface
+    key: cursor-theme
+    value: Qogir-dark
+
+- name: set monospace font to "JetBrainsMono Nerd Font"
+  gsettings:
+    schema: org.gnome.desktop.interface
+    key: monospace-font-name
+    value: JetBrainsMono Nerd Font 10
+
+- name: apply gnome settings
+  gsettings:
+    schema: "{{ item.schema }}"
+    key: "{{ item.key }}"
+    value: "{{ item.value | string }}"
+  loop: "{{ gnome_settings }}"
+
+- name: apply file manager (nautilus) settings
+  gsettings:
+    schema: "{{ item.schema }}"
+    key: "{{ item.key }}"
+    value: "{{ item.value | string }}"
+  loop: "{{ gnome_nautilus_settings }}"
+
+- name: apply gnome power settings
+  gsettings:
+    schema: "{{ item.schema }}"
+    key: "{{ item.key }}"
+    value: "{{ item.value | string }}"
+  loop: "{{ gnome_power_settings }}"
+
+- name: install gnome-text-editor
+  become: yes
+  community.general.pacman:
+    name: gnome-text-editor
+    state: latest
+
+- name: apply gnome text editor settings
+  gsettings:
+    schema: "{{ item.schema }}"
+    key: "{{ item.key }}"
+    value: "{{ item.value | string }}"
+  loop: "{{ gnome_text_editor_settings }}"
+
+# https://wiki.archlinux.org/title/GNOME/Keyring#Setup_gcr
+# The SSH functionality is disabled by default in gnome-keyring-daemon builds since version 1:46.
+# It has been moved into /usr/lib/user/gcr-ssh-agent, which is part of the gcr-4 package.
+- name: Setup gcr
+  block:
+    # install gcr-4 package
+    - name: install gnome gcr (https://gitlab.gnome.org/GNOME/gcr)
+      become: yes
+      community.general.pacman:
+        name: gcr-4
+        state: latest
+
+    # Enable the `gcr-ssh-agent.socket` systemd user unit.
+    - name: enable gcr-ssh-agent.socket
+      ansible.builtin.systemd:
+        scope: user
+        name: gcr-ssh-agent.socket
+        enabled: yes
+
+    - name: create ~/.config/environment.d directory
+      ansible.builtin.file:
+        path: ~/.config/environment.d
+        state: directory
+        recurse: true
+
+    # https://wiki.archlinux.org/title/Environment_variables#Per_Wayland_session
+    - name: configure SSH_AUTH_SOCK environment variable
+      ansible.builtin.copy:
+        content: SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
+        dest: ~/.config/environment.d/ssh-agent.conf

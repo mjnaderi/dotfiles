@@ -1,0 +1,70 @@
+repos_dir: "{{ playbook_dir }}/repos"
+
+gnome_extensions:
+  - ProxySwitcher@flannaghan.com # https://extensions.gnome.org/extension/771/proxy-switcher/
+  - appindicatorsupport@rgcjonas.gmail.com # https://extensions.gnome.org/extension/615/appindicator-support/
+  - rocketbar@chepkun.github.com # https://extensions.gnome.org/extension/5180/rocketbar/
+  - system-monitor-next@paradoxxx.zero.gmail.com # https://extensions.gnome.org/extension/3010/system-monitor-next/
+
+gnome_settings:
+  - schema: org.gnome.shell.app-switcher
+    key: current-workspace-only
+    value: "true"
+  - schema: org.gnome.desktop.peripherals.touchpad
+    key: tap-to-click
+    value: "true"
+  - schema: org.gnome.desktop.peripherals.touchpad
+    key: two-finger-scrolling-enabled
+    value: "true"
+  - schema: org.gnome.desktop.sound
+    key: event-sounds
+    value: "false"
+  - schema: org.gnome.desktop.input-sources
+    key: sources
+    value: "[('xkb', 'us'), ('xkb', 'ir')]"
+  # scroll up/down instead of zoom in/out in gnome image viewer (eog)
+  # https://gitlab.gnome.org/GNOME/eog/-/issues/84
+  - schema: org.gnome.eog.view
+    key: scroll-wheel-zoom
+    value: "false"
+  - schema: org.gnome.desktop.wm.preferences
+    key: button-layout
+    value: "appmenu:minimize,maximize,close"
+
+gnome_nautilus_settings:
+  - schema: org.gnome.nautilus.icon-view
+    key: default-zoom-level
+    value: "small-plus"
+  - schema: org.gnome.nautilus.list-view
+    key: default-zoom-level
+    value: "small"
+  - schema: org.gnome.nautilus.preferences
+    key: default-folder-viewer
+    value: "list-view"
+  - schema: org.gtk.gtk4.Settings.FileChooser
+    key: sort-directories-first
+    value: "true"
+
+gnome_power_settings:
+  # when inactive (on battery power): suspend
+  - schema: org.gnome.settings-daemon.plugins.power
+    key: sleep-inactive-battery-type
+    value: "suspend"
+  # when inactive (plugged in): nothing
+  - schema: org.gnome.settings-daemon.plugins.power
+    key: sleep-inactive-ac-type
+    value: "nothing"
+
+gnome_text_editor_settings:
+  - schema: org.gnome.TextEditor
+    key: indent-style
+    value: "space"
+  - schema: org.gnome.TextEditor
+    key: tab-width
+    value: 4
+  - schema: org.gnome.TextEditor
+    key: style-variant
+    value: "dark"
+  - schema: org.gnome.TextEditor
+    key: show-line-numbers
+    value: "true"
