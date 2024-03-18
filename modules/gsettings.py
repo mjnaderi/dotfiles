@@ -34,6 +34,8 @@ def is_equal(val1: str, val2: str):
 def parse_value(value: str):
     if value.startswith("'") or value.startswith('"'):
         return literal_eval(value)
+    if value.startswith("uint32 "):
+        return int(value.lstrip("uint32 "))
     return value.lstrip("@as ")
 
 
