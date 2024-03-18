@@ -9,5 +9,13 @@ set -o allexport
 source "$(dirname "$0")/.env"
 set +o allexport
 
+# if the first argument ends with ".yml", use it as the playbook
+if [[ $1 == *.yml ]]; then
+  PLAYBOOK=$1
+  shift
+else
+  PLAYBOOK="install.yml"
+fi
+
 # Run Ansible
-exec ansible-playbook -K install.yml $@
+exec ansible-playbook -K "$PLAYBOOK" "$@"
