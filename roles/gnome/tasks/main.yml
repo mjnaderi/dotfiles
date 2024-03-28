@@ -1,1 +1,2 @@
-- { import_tasks: gnome.yml, tags: [gnome] }
+- import_tasks: gnome.yml
+  tags: [gnome]

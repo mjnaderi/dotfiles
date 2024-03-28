@@ -20,3 +20,5 @@ gnome_extensions:
   # - arcmenu@arcmenu.com # https://extensions.gnome.org/extension/3628/arcmenu/
   # - guillotine@fopdoodle.net # https://extensions.gnome.org/extension/3981/guillotine/
   # - no-overview@fthx # https://extensions.gnome.org/extension/4099/no-overview/
+
+docker_http_proxy: "{{ lookup('env', 'LOCAL_HTTP_PROXY_PORT') }}"

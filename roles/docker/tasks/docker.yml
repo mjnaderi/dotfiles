@@ -20,14 +20,14 @@
   ansible.builtin.file:
     path: /etc/systemd/system/docker.service.d
     state: directory
-  when: lookup('env', 'LOCAL_HTTP_PROXY_PORT')
+  when: docker_http_proxy
 
 - name: configure http proxy for docker - create /etc/systemd/system/docker.service.d/http-proxy.conf
   become: yes
   ansible.builtin.template:
     src: http-proxy.conf
     dest: /etc/systemd/system/docker.service.d/http-proxy.conf
-  when: lookup('env', 'LOCAL_HTTP_PROXY_PORT')
+  when: docker_http_proxy
   notify:
     - restart docker service
 

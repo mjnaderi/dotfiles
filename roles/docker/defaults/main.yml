@@ -1,1 +1,2 @@
 docker_no_proxy: []
+docker_http_proxy: ""
