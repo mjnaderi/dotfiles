@@ -1,0 +1,14 @@
+- name: install pacman packages
+  become: yes
+  community.general.pacman:
+    update_cache: yes
+    name: "{{ packages_pacman + packages_pacman_extra }}"
+    state: latest
+
+- name: configure pacman
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop: "{{ pacman_config }}"

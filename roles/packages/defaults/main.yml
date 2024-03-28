@@ -1,0 +1,36 @@
+pacman_config:
+  - regexp: ^#\s*Color$
+    line: Color
+  - regexp: ^#\s*ParallelDownloads
+    line: ParallelDownloads = 5
+
+packages_pacman:
+  ##################################################### CLI #####################################################
+  - neofetch
+  - git
+  - lazygit
+  - man-db
+  - vim
+  - htop
+  - btop
+  - iotop
+  - powertop
+  - zellij
+  - tree
+  - ncdu
+  - unzip
+  - lnav
+  - mlocate
+  - wget
+  - wl-clipboard
+  - bind # for "dig" command
+  - whois # for "whois" command
+  - pkgfile # for searching files from packages in the official Arch repositories
+  - ntfs-3g # create NTFS filesystem (mkfs.ntfs)
+  - dosfstools # create FAT filesystem (mkfs.fat)
+  #################################################### GUI ####################################################
+  - vlc # vlc from flatpak has some problems
+packages_pacman_extra: []
+
+packages_aur: []
+packages_flatpak: []

@@ -1,0 +1,17 @@
+- import_tasks: pacman.yml
+  tags: [packages, packages/pacman]
+
+- import_tasks: pacman_reflector.yml
+  tags: [packages,  packages/pacman_reflector ]
+
+- import_tasks: pacman_downloadupdates.yml
+  tags: [packages,  packages/pacman_downloadupdates ]
+
+- import_tasks: aur.yml
+  tags: [packages, packages/aur]
+
+- import_tasks: flatpak.yml
+  tags: [packages, packages/flatpak]
+
+#- import_tasks: onedrive.yml
+#  tags: [packages, packages/onedrive]

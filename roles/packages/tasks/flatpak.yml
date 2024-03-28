@@ -1,0 +1,4 @@
+- name: install flatpak apps
+  community.general.flatpak:
+    name: "{{ packages_flatpak }}"
+    state: present

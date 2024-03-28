@@ -1,11 +1,5 @@
 repos_dir: "{{ playbook_dir }}/repos"
 
-pacman_config:
-  - regexp: ^#\s*Color$
-    line: Color
-  - regexp: ^#\s*ParallelDownloads
-    line: ParallelDownloads = 5
-
 # list of available color schemes: https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/vscode
 iterm2_color_schemes_clone_path: "{{ playbook_dir }}/repos/iterm2-color-schemes"
 iterm2_color_scheme_name: 3024 Night
