@@ -9,12 +9,12 @@
       - ttf-sourcecodepro-nerd  # https://www.nerdfonts.com/
     state: latest
 
-- name: install ttf-twemoji (emoji font)
-  become: yes
-  become_user: aur_builder
-  kewlfft.aur.aur:
-    name: ttf-twemoji
-    state: latest
+#- name: install ttf-twemoji (emoji font)
+#  become: yes
+#  become_user: aur_builder
+#  kewlfft.aur.aur:
+#    name: ttf-twemoji
+#    state: latest
 
 - name: create user fonts directory
   ansible.builtin.file:
@@ -30,19 +30,19 @@
       - src_regex: fonts/ttf
         dst: ~/.local/share/fonts/Vazirmatn
 
-- name: create "Vazir Code" fonts directory
+- name: create VazirCode fonts directory
   ansible.builtin.file:
-    path: ~/.local/share/fonts/Vazir Code
+    path: ~/.local/share/fonts/VazirCode
     state: directory
 
-- name: install "Vazir Code" font
+- name: install VazirCode font
   quera.github.install_from_github:
     repo: rastikerdar/vazir-code-font
     asset_regex: vazir-code-font-.*\.zip
     version_file: ~/.local/share/fonts/vazircode.version
     move_rules:
       - src_regex: Vazir-Code\..*
-        dst: ~/.local/share/fonts/Vazir Code
+        dst: ~/.local/share/fonts/VazirCode
 
 - name: create fontconfig/conf.d directory
   ansible.builtin.file:
@@ -50,13 +50,10 @@
     state: directory
 
 - name: install fontconfig.xml
-  ansible.builtin.file:
-    src: "{{ playbook_dir }}/files/fontconfig.xml"
+  ansible.builtin.template:
+    src: fontconfig.xml
     dest: ~/.config/fontconfig/conf.d/00-persian.conf
-    state: link
-
-- name: run fc-cache
-  ansible.builtin.command: fc-cache
+  notify: update fontconfig cache
 
 - name: set gnome monospace font
   gsettings:

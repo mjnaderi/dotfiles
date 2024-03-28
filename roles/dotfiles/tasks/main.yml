@@ -9,7 +9,6 @@
     - timezone
 
 - { import_tasks: packages/main.yml, tags: [packages] }
-- { import_tasks: fonts.yml, tags: [fonts] }
 - { import_tasks: terminal/main.yml, tags: [terminal] }
 - { import_tasks: vim.yml, tags: [vim] }
 - { import_tasks: python.yml, tags: [python] }
