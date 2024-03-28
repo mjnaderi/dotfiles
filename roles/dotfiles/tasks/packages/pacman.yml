@@ -9,8 +9,10 @@
       - man-db
       - vim
       - htop
+      - btop
       - iotop
       - powertop
+      - zellij
       - tree
       - ncdu
       - unzip
