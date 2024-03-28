@@ -4,14 +4,15 @@
     name: gnome-tweaks
     state: latest
 
-- name: install ddterm dependencies
+- name: install extension dependencies
   become: yes
   community.general.pacman:
-    name:
-      # https://github.com/ddterm/gnome-shell-extension-ddterm/blob/0c337ee220dfe270ae6674ea0d41194a1d9d878c/ddterm/app/dependencies.json#L24
-      - vte3
+    name: "{{ item.dependencies }}"
     state: latest
-  when: "'ddterm@amezin.github.com' in gnome_extensions"
+  when: "'dependencies' in item"
+  loop: "{{ gnome_extensions }}"
+  loop_control:
+    label: "{{ item.id }} {{ item.dependencies|default([]) }}"
 
 - name: install gnome extensions
   ansible.builtin.command:
@@ -20,9 +21,21 @@
       org.gnome.Shell
       /org/gnome/Shell
       org.gnome.Shell.Extensions InstallRemoteExtension
-      s "{{ item }}"
-    creates: "{{ ('~/.local/share/gnome-shell/extensions', item) | path_join }}"
+      s "{{ item.id }}"
+    creates: "{{ ('~/.local/share/gnome-shell/extensions', item.id) | path_join }}"
   loop: "{{ gnome_extensions }}"
+  loop_control:
+    label: "{{ item.id }}"
+
+- name: configure gnome extensions
+  gsettings:
+    schemadir: ~/.local/share/gnome-shell/extensions/{{ item.0.id }}/schemas/
+    schema: "{{ item.1.schema }}"
+    key: "{{ item.1.key }}"
+    value: "{{ item.1.value }}"
+  loop: "{{ gnome_extensions|subelements('settings', skip_missing=True) }}"
+  loop_control:
+    label: "{{ item.0.id }} {{ item.1.schema }} {{ item.1.key }}"
 
 #- name: clone/update Graphite-gtk-theme git repo
 #  ansible.builtin.git:
@@ -44,7 +57,6 @@
   kewlfft.aur.aur:
     name: qogir-icon-theme
     state: present
-
 - name: set cursor theme to "Qogir"
   gsettings:
     schema: org.gnome.desktop.interface
@@ -63,7 +75,6 @@
   community.general.pacman:
     name: eog
     state: latest
-
 - name: apply eog settings
   gsettings:
     schema: "{{ item.schema }}"
@@ -76,7 +87,6 @@
   community.general.pacman:
     name: nautilus
     state: latest
-
 - name: apply file manager (nautilus) settings
   gsettings:
     schema: "{{ item.schema }}"
@@ -89,7 +99,6 @@
   community.general.pacman:
     name: gnome-text-editor
     state: latest
-
 - name: apply gnome text editor settings
   gsettings:
     schema: "{{ item.schema }}"

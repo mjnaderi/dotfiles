@@ -1,8 +1,4 @@
-gnome_extensions:
-  - ProxySwitcher@flannaghan.com # https://extensions.gnome.org/extension/771/proxy-switcher/
-  - appindicatorsupport@rgcjonas.gmail.com # https://extensions.gnome.org/extension/615/appindicator-support/
-  - rocketbar@chepkun.github.com # https://extensions.gnome.org/extension/5180/rocketbar/
-  - system-monitor-next@paradoxxx.zero.gmail.com # https://extensions.gnome.org/extension/3010/system-monitor-next/
+gnome_extensions: []
 
 gnome_settings:
   - schema: org.gnome.shell.app-switcher

@@ -1,24 +1,33 @@
 gnome_extensions:
-  # - Hide_Activities@shay.shayel.org # https://extensions.gnome.org/extension/744/hide-activities-button/
-  # - sound-output-device-chooser@kgshank.net # https://extensions.gnome.org/extension/906/sound-output-device-chooser/
-  - ProxySwitcher@flannaghan.com # https://extensions.gnome.org/extension/771/proxy-switcher/
-  - appindicatorsupport@rgcjonas.gmail.com # https://extensions.gnome.org/extension/615/appindicator-support/
-  # - hide-keyboard-layout@sitnik.ru # https://extensions.gnome.org/extension/2848/hide-keyboard-layout/
-  - rocketbar@chepkun.github.com # https://extensions.gnome.org/extension/5180/rocketbar/
-  - system-monitor-next@paradoxxx.zero.gmail.com # https://extensions.gnome.org/extension/3010/system-monitor-next/
-  - ddterm@amezin.github.com # https://extensions.gnome.org/extension/3780/ddterm/
-  # - gsconnect@andyholmes.github.io # https://extensions.gnome.org/extension/1319/gsconnect/
-  # - gtktitlebar@velitasali.github.io # https://extensions.gnome.org/extension/1732/gtk-title-bar/
-  # - executor@raujonas.github.io # https://extensions.gnome.org/extension/2932/executor/
-  # - forge@jmmaranan.com # https://extensions.gnome.org/extension/4481/forge/
-  # - arch-update@RaphaelRochet # https://extensions.gnome.org/extension/1010/archlinux-updates-indicator/
-  # - dash-to-panel@jderose9.github.com  # use rocketbar instead
-  # - disconnect-wifi@kgshank.net # https://extensions.gnome.org/extension/904/disconnect-wifi/
-  # - PersianCalendar@oxygenws.com # https://extensions.gnome.org/extension/240/persian-calendar/
-  - shamsi-calendar@gnome.scr.ir # https://extensions.gnome.org/extension/3618/shamsi-calendar/
-  # - Vitals@CoreCoding.com # https://extensions.gnome.org/extension/1460/vitals/
-  # - arcmenu@arcmenu.com # https://extensions.gnome.org/extension/3628/arcmenu/
-  # - guillotine@fopdoodle.net # https://extensions.gnome.org/extension/3981/guillotine/
-  # - no-overview@fthx # https://extensions.gnome.org/extension/4099/no-overview/
+  # - id: Hide_Activities@shay.shayel.org # https://extensions.gnome.org/extension/744/hide-activities-button/
+  # - id: sound-output-device-chooser@kgshank.net # https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+  - id: ProxySwitcher@flannaghan.com # https://extensions.gnome.org/extension/771/proxy-switcher/
+  - id: appindicatorsupport@rgcjonas.gmail.com # https://extensions.gnome.org/extension/615/appindicator-support/
+  # - id: hide-keyboard-layout@sitnik.ru # https://extensions.gnome.org/extension/2848/hide-keyboard-layout/
+  - id: rocketbar@chepkun.github.com # https://extensions.gnome.org/extension/5180/rocketbar/
+  - id: system-monitor-next@paradoxxx.zero.gmail.com # https://extensions.gnome.org/extension/3010/system-monitor-next/
+  - id: ddterm@amezin.github.com # https://extensions.gnome.org/extension/3780/ddterm/
+    dependencies:
+      - vte3 # https://github.com/ddterm/gnome-shell-extension-ddterm/blob/0c337ee220dfe270ae6674ea0d41194a1d9d878c/ddterm/app/dependencies.json#L24
+  # - id: gsconnect@andyholmes.github.io # https://extensions.gnome.org/extension/1319/gsconnect/
+  # - id: gtktitlebar@velitasali.github.io # https://extensions.gnome.org/extension/1732/gtk-title-bar/
+  # - id: executor@raujonas.github.io # https://extensions.gnome.org/extension/2932/executor/
+  # - id: forge@jmmaranan.com # https://extensions.gnome.org/extension/4481/forge/
+  - id: arch-update@RaphaelRochet # https://extensions.gnome.org/extension/1010/archlinux-updates-indicator/
+    dependencies:
+      - pacman-contrib # arch-update extension requires "checkupdates" script from "pacman-contrib" package
+      - gnome-console # kgx command
+    settings:
+      - schema: org.gnome.shell.extensions.arch-update
+        key: update-cmd
+        value: 'kgx -- /bin/sh -c "sudo pacman -Syu ; echo Done - Press enter to exit; read _" '
+  # - id: dash-to-panel@jderose9.github.com  # use rocketbar instead
+  # - id: disconnect-wifi@kgshank.net # https://extensions.gnome.org/extension/904/disconnect-wifi/
+  # - id: PersianCalendar@oxygenws.com # https://extensions.gnome.org/extension/240/persian-calendar/
+  - id: shamsi-calendar@gnome.scr.ir # https://extensions.gnome.org/extension/3618/shamsi-calendar/
+  # - id: Vitals@CoreCoding.com # https://extensions.gnome.org/extension/1460/vitals/
+  # - id: arcmenu@arcmenu.com # https://extensions.gnome.org/extension/3628/arcmenu/
+  # - id: guillotine@fopdoodle.net # https://extensions.gnome.org/extension/3981/guillotine/
+  # - id: no-overview@fthx # https://extensions.gnome.org/extension/4099/no-overview/
 
 docker_http_proxy: "{{ lookup('env', 'LOCAL_HTTP_PROXY_PORT') }}"
