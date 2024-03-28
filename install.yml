@@ -2,3 +2,4 @@
   roles:
     - dotfiles
     - gnome
+    - docker

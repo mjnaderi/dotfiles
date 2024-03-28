@@ -15,6 +15,3 @@
 
 - import_tasks: onedrive.yml
   tags: [packages/onedrive]
-
-- import_tasks: docker.yml
-  tags: [packages/docker]

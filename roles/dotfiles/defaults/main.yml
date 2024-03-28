@@ -53,5 +53,3 @@ ddterm_config:
     value: none
   - key: hide-when-focus-lost
     value: "true"
-
-docker_no_proxy: []

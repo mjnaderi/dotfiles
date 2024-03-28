@@ -8,17 +8,26 @@
       - docker-buildx
     state: latest
 
+- name: add user "{{ ansible_user_id }}" to "docker" group
+  become: yes
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    groups: docker
+    append: yes
+
 - name: configure http proxy for docker - create /etc/systemd/system/docker.service.d
   become: yes
   ansible.builtin.file:
     path: /etc/systemd/system/docker.service.d
     state: directory
+  when: lookup('env', 'LOCAL_HTTP_PROXY_PORT')
 
 - name: configure http proxy for docker - create /etc/systemd/system/docker.service.d/http-proxy.conf
   become: yes
   ansible.builtin.template:
-    src: docker/http-proxy.conf
+    src: http-proxy.conf
     dest: /etc/systemd/system/docker.service.d/http-proxy.conf
+  when: lookup('env', 'LOCAL_HTTP_PROXY_PORT')
   notify:
     - restart docker service
 
