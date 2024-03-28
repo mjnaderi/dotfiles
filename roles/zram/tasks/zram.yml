@@ -1,0 +1,34 @@
+# Reference: https://wiki.archlinux.org/title/Zram
+
+# To verify, run "cat /sys/module/zswap/parameters/enabled". The output should be "N".
+- name: disable zswap (requires reboot)
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    regexp: ^GRUB_CMDLINE_LINUX_DEFAULT="((?:(?!zswap.enabled=0).)*?)"$
+    line: GRUB_CMDLINE_LINUX_DEFAULT="\1 zswap.enabled=0"
+    backup: true
+    backrefs: true
+  notify: generate grub config
+
+- name: install zram-generator
+  become: yes
+  community.general.pacman:
+    name: zram-generator
+    state: present
+
+- name: configure zram-generator
+  become: yes
+  ansible.builtin.template:
+    src: zram-generator.conf
+    dest: /etc/systemd/zram-generator.conf
+  notify:
+    - restart zram service
+
+- name: enable and start zram service
+  become: yes
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    name: systemd-zram-setup@zram0.service
+    enabled: yes
+    state: started

@@ -1,4 +1,0 @@
-# Source: https://wiki.archlinux.org/title/Zram#Using_a_udev_rule
-
-# Create zram device with zstd compression.
-ACTION=="add", KERNEL=="zram0", ATTR{comp_algorithm}="zstd", ATTR{disksize}="{{ swap_size_mb }}M", RUN="/usr/bin/mkswap -U clear /dev/%k", TAG+="systemd"

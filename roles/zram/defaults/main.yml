@@ -1,0 +1,3 @@
+# Default swap size is equal to the total RAM size or 16GB, whichever is smaller.
+zram_size: "min(ram, 16 * 1024)"
+zram_compression_algorithm: zstd

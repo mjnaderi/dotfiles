@@ -20,5 +20,4 @@
 - { import_tasks: bluetooth.yml, tags: [bluetooth] }
 - { import_tasks: audio.yml, tags: [audio] }
 - { import_tasks: suspend.yml, tags: [suspend] }
-- { import_tasks: swap.yml, tags: [swap] }
 - { import_tasks: wayland.yml, tags: [wayland] }

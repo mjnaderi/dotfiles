@@ -3,3 +3,4 @@
     - dotfiles
     - gnome
     - docker
+    - zram
