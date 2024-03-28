@@ -11,4 +11,3 @@
     name: bluetooth
     enabled: yes
     state: started
-

@@ -1,0 +1,2 @@
+- import_tasks: bluetooth.yml
+  tags: [bluetooth]
