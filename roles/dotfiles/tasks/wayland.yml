@@ -17,18 +17,20 @@
       - xdg-desktop-portal-gnome
     state: latest
 
-# https://wiki.archlinux.org/title/chromium#Native_Wayland_support
-# https://www.reddit.com/r/archlinux/comments/13gtogn/comment/jstqvlt/
-- name: enable native wayland support for chrome, chromium, and edge
-  ansible.builtin.copy:
-    content: |
-      --ozone-platform-hint=auto
-      --disable-features=WaylandFractionalScaleV1
-    dest: ~/.config/{{ item }}
-  loop:
-    - chrome-flags.conf
-    - chromium-flags.conf
-    - microsoft-edge-stable-flags.conf  # https://aur.archlinux.org/cgit/aur.git/tree/microsoft-edge-stable.sh?h=microsoft-edge-stable-bin
+# Edge on wayland seems to be buggy. So stick to XWayland for now.
+#
+## https://wiki.archlinux.org/title/chromium#Native_Wayland_support
+## https://www.reddit.com/r/archlinux/comments/13gtogn/comment/jstqvlt/
+#- name: enable native wayland support for chrome, chromium, and edge
+#  ansible.builtin.copy:
+#    content: |
+#      --ozone-platform-hint=auto
+#      --disable-features=WaylandFractionalScaleV1
+#    dest: ~/.config/{{ item }}
+#  loop:
+#    - chrome-flags.conf
+#    - chromium-flags.conf
+#    - microsoft-edge-stable-flags.conf  # https://aur.archlinux.org/cgit/aur.git/tree/microsoft-edge-stable.sh?h=microsoft-edge-stable-bin
 
 
 # To enable native wayland support for Electron apps, add `--ozone-platform-hint=auto` to the command running the app.
