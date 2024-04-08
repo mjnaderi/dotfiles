@@ -113,3 +113,15 @@
   ansible.builtin.package:
     name: zellij
     state: latest
+
+- name: create zellij config directory
+  ansible.builtin.file:
+    dest: ~/.config/zellij
+    state: directory
+
+- name: install zellij config file
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/zellij-config.kdl"
+    dest: ~/.config/zellij/config.kdl
+    state: link
+    force: true
