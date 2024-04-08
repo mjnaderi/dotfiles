@@ -44,4 +44,4 @@ ddterm_config:
   - key: panel-icon-type
     value: none
   - key: hide-when-focus-lost
-    value: "true"
+    value: "false"
