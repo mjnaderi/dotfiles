@@ -23,6 +23,7 @@ packages_pacman:
   - mlocate
   - wget
   - wl-clipboard
+  - rsync
   - bind # for "dig" command
   - whois # for "whois" command
   - pkgfile # for searching files from packages in the official Arch repositories
