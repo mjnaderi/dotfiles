@@ -11,3 +11,5 @@
     ff = false
 [core]
 	autocrlf = input
+[init]
+    defaultBranch = main
