@@ -17,6 +17,23 @@
       - xdg-desktop-portal-gnome
     state: latest
 
+- name: create wireplumber configuration directory
+  ansible.builtin.file:
+    path: ~/.config/wireplumber/wireplumber.conf.d
+    state: directory
+
+# https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/2669#note_2362342
+- name: fix webcam power consumption issue
+  ansible.builtin.copy:
+    dest: ~/.config/wireplumber/wireplumber.conf.d/10-disable-camera.conf
+    content: |
+      wireplumber.profiles = {
+        main = {
+          monitor.libcamera = disabled
+        }
+      }
+  notify: restart wireplumber service
+
 # Edge on wayland seems to be buggy. So stick to XWayland for now.
 #
 ## https://wiki.archlinux.org/title/chromium#Native_Wayland_support

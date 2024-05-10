@@ -1,3 +1,9 @@
 - name: generate grub config
   become: yes
   ansible.builtin.command: grub-mkconfig -o /boot/grub/grub.cfg
+
+- name: restart wireplumber service
+  ansible.builtin.systemd_service:
+    name: wireplumber
+    scope: user
+    state: restarted
