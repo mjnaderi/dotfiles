@@ -8,6 +8,24 @@
   tags:
     - timezone
 
+# https://vrgl.ir/kJLKL
+# https://www.cyberciti.biz/cloud-computing/increase-your-linux-server-internet-speed-with-tcp-bbr-congestion-control/
+# https://groups.google.com/g/bbr-dev/c/4jL4ropdOV8?pli=1
+# https://github.com/systemd/systemd/issues/9725
+- name: set TCP congestion control algorithm to "bbr"
+  become: yes
+  ansible.posix.sysctl:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    sysctl_file: /etc/sysctl.d/20-bbr.conf
+  loop:
+    - name: net.ipv4.tcp_congestion_control
+      value: bbr
+    - name: net.core.default_qdisc
+      value: fq_codel
+  tags:
+    - bbr
+
 - { import_tasks: terminal/main.yml, tags: [terminal] }
 - { import_tasks: vim.yml, tags: [vim] }
 - { import_tasks: python.yml, tags: [python] }
