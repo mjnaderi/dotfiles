@@ -15,19 +15,18 @@
     groups: docker
     append: yes
 
-- name: configure http proxy for docker - create /etc/systemd/system/docker.service.d
+- name: configure registry mirror for docker - create /etc/docker
   become: yes
   ansible.builtin.file:
-    path: /etc/systemd/system/docker.service.d
+    path: /etc/docker
     state: directory
-  when: docker_http_proxy
+    mode: "0755"
 
-- name: configure http proxy for docker - create /etc/systemd/system/docker.service.d/http-proxy.conf
+- name: configure registry mirror for docker - create /etc/docker/daemon.json
   become: yes
   ansible.builtin.template:
-    src: http-proxy.conf
-    dest: /etc/systemd/system/docker.service.d/http-proxy.conf
-  when: docker_http_proxy
+    src: docker-daemon.json
+    dest: /etc/docker/daemon.json
   notify:
     - restart docker service
 

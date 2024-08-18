@@ -1,2 +1,1 @@
-docker_no_proxy: []
-docker_http_proxy: ""
+docker_registry_mirror: https://registry.docker.ir

@@ -30,8 +30,6 @@ gnome_extensions:
   # - id: guillotine@fopdoodle.net # https://extensions.gnome.org/extension/3981/guillotine/
   # - id: no-overview@fthx # https://extensions.gnome.org/extension/4099/no-overview/
 
-docker_http_proxy: "{{ lookup('env', 'LOCAL_HTTP_PROXY_PORT') }}"
-
 packages_pacman_extra:
   - nodejs
   - npm
@@ -60,7 +58,8 @@ packages_aur:
   - galaxybudsclient-bin  # Unofficial Galaxy Buds Manager for Windows and Linux
   - try  # Inspect a command's effects before modifying your live system (https://github.com/binpash/try)
   # - google-chrome # Chromium doesn't support Google sync, so I use Google Chrome.
-  # - visual-studio-code-bin
+  - visual-studio-code-bin
+  - vale-bin  # A markup-aware linter for prose
 
 packages_flatpak:
   # - com.mattermost.Desktop  # Open Source Communication Platform
