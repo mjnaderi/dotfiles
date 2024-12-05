@@ -1,9 +1,10 @@
+---
 - name: generate grub config
-  become: yes
+  become: true
   ansible.builtin.command: grub-mkconfig -o /boot/grub/grub.cfg
 
 - name: restart zram service
-  become: yes
+  become: true
   ansible.builtin.systemd:
     name: systemd-zram-setup@zram0.service
     state: restarted

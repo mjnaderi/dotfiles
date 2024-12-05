@@ -1,2 +1,3 @@
-- import_tasks: bluetooth.yml
+---
+- ansible.builtin.import_tasks: bluetooth.yml
   tags: [bluetooth]

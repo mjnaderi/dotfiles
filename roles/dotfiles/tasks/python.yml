@@ -1,5 +1,6 @@
+---
 - name: install pip and pipx
-  become: yes
+  become: true
   community.general.pacman:
     name:
       - python-pip

@@ -1,2 +1,3 @@
-- import_tasks: fonts.yml
+---
+- ansible.builtin.import_tasks: fonts.yml
   tags: [fonts]

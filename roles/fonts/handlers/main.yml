@@ -1,2 +1,3 @@
+---
 - name: update fontconfig cache
   ansible.builtin.command: fc-cache

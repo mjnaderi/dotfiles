@@ -1,10 +1,10 @@
+---
 # https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture#ALSA_firmware
 - name: install sof-firmware to fix "Dummy Output" audio issue
-  become: yes
+  become: true
   community.general.pacman:
     name: sof-firmware
     state: latest
-
 
 # https://unix.stackexchange.com/questions/114602/pulseaudio-sink-always-suspended
 # https://wiki.archlinux.org/title/PulseAudio/Troubleshooting#Failed_to_create_sink_input:_sink_is_suspended

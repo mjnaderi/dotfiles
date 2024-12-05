@@ -1,16 +1,17 @@
+---
 - name: install ZSH shell
-  become: yes
+  become: true
   ansible.builtin.package:
     name: zsh
     state: latest
 
 - name: get ZSH binary path
-  ansible.builtin.shell: which zsh
+  ansible.builtin.command: which zsh
   changed_when: false
   register: which_zsh
 
 - name: set ZSH as default shell
-  become: yes
+  become: true
   ansible.builtin.user:
     name: "{{ lookup('env', 'USER') }}"
     shell: "{{ which_zsh.stdout }}"
@@ -47,7 +48,7 @@
     state: link
 
 - name: install starship
-  become: yes
+  become: true
   ansible.builtin.package:
     name: starship
     state: latest
@@ -68,7 +69,7 @@
     - zprofile-dotfiles
 
 - name: install lsd
-  become: yes
+  become: true
   ansible.builtin.package:
     name: lsd
     state: latest
@@ -85,13 +86,13 @@
     state: link
 
 - name: install bat
-  become: yes
+  become: true
   ansible.builtin.package:
     name: bat
     state: latest
 
 - name: install atuin
-  become: yes
+  become: true
   ansible.builtin.package:
     name: atuin
     state: latest
@@ -109,7 +110,7 @@
     force: true
 
 - name: install zellij
-  become: yes
+  become: true
   ansible.builtin.package:
     name: zellij
     state: latest

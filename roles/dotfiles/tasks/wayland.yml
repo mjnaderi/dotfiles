@@ -1,6 +1,7 @@
+---
 # https://wiki.archlinux.org/title/wayland#Detect_Xwayland_applications_visually
 - name: install xeyes (to detect Xwayland applications)
-  become: yes
+  become: true
   community.general.pacman:
     name: xorg-xeyes
     state: latest
@@ -8,7 +9,7 @@
 # https://wiki.archlinux.org/title/PipeWire#WebRTC_screen_sharing
 # Test Page: https://mozilla.github.io/webrtc-landing/gum_test.html
 - name: install required packages for webrtc screen sharing
-  become: yes
+  become: true
   community.general.pacman:
     name:
       - pipewire
@@ -34,21 +35,16 @@
       }
   notify: restart wireplumber service
 
-# Edge on wayland seems to be buggy. So stick to XWayland for now.
-#
-## https://wiki.archlinux.org/title/chromium#Native_Wayland_support
-## https://www.reddit.com/r/archlinux/comments/13gtogn/comment/jstqvlt/
-#- name: enable native wayland support for chrome, chromium, and edge
-#  ansible.builtin.copy:
-#    content: |
-#      --ozone-platform-hint=auto
-#      --disable-features=WaylandFractionalScaleV1
-#    dest: ~/.config/{{ item }}
-#  loop:
-#    - chrome-flags.conf
-#    - chromium-flags.conf
-#    - microsoft-edge-stable-flags.conf  # https://aur.archlinux.org/cgit/aur.git/tree/microsoft-edge-stable.sh?h=microsoft-edge-stable-bin
-
+# https://wiki.archlinux.org/title/chromium#Native_Wayland_support
+# https://www.reddit.com/r/archlinux/comments/13gtogn/comment/jstqvlt/
+- name: enable native wayland support for chrome, chromium, and edge
+  ansible.builtin.copy:
+    content: --ozone-platform-hint=auto
+    dest: ~/.config/{{ item }}
+  loop:
+    - chrome-flags.conf
+    - chromium-flags.conf
+    - microsoft-edge-stable-flags.conf # https://aur.archlinux.org/cgit/aur.git/tree/microsoft-edge-stable.sh?h=microsoft-edge-stable-bin
 
 # To enable native wayland support for Electron apps, add `--ozone-platform-hint=auto` to the command running the app.
 # To persist, you can add it to related `.desktop` file.

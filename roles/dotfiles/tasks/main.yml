@@ -1,8 +1,8 @@
+---
 - name: git submodule update --init --recursive
-  ansible.builtin.shell: git submodule update --init --recursive
-
+  ansible.builtin.command: git submodule update --init --recursive
 - name: set timezone
-  become: yes
+  become: true
   community.general.timezone:
     name: "{{ lookup('env', 'MY_TIMEZONE') }}"
   tags:
@@ -13,7 +13,7 @@
 # https://groups.google.com/g/bbr-dev/c/4jL4ropdOV8?pli=1
 # https://github.com/systemd/systemd/issues/9725
 - name: set TCP congestion control algorithm to "bbr"
-  become: yes
+  become: true
   ansible.posix.sysctl:
     name: "{{ item.name }}"
     value: "{{ item.value }}"
@@ -26,13 +26,13 @@
   tags:
     - bbr
 
-- { import_tasks: terminal/main.yml, tags: [terminal] }
-- { import_tasks: vim.yml, tags: [vim] }
-- { import_tasks: python.yml, tags: [python] }
-- { import_tasks: proxy.yml, tags: [proxy] }
-- { import_tasks: ssh.yml, tags: [ssh] }
-- { import_tasks: git.yml, tags: [git] }
-- { import_tasks: graphics.yml, tags: [graphics] }
-- { import_tasks: audio.yml, tags: [audio] }
-- { import_tasks: suspend.yml, tags: [suspend] }
-- { import_tasks: wayland.yml, tags: [wayland] }
+- { ansible.builtin.import_tasks: terminal/main.yml, tags: [terminal] }
+- { ansible.builtin.import_tasks: vim.yml, tags: [vim] }
+- { ansible.builtin.import_tasks: python.yml, tags: [python] }
+- { ansible.builtin.import_tasks: proxy.yml, tags: [proxy] }
+- { ansible.builtin.import_tasks: ssh.yml, tags: [ssh] }
+- { ansible.builtin.import_tasks: git.yml, tags: [git] }
+- { ansible.builtin.import_tasks: graphics.yml, tags: [graphics] }
+- { ansible.builtin.import_tasks: audio.yml, tags: [audio] }
+- { ansible.builtin.import_tasks: suspend.yml, tags: [suspend] }
+- { ansible.builtin.import_tasks: wayland.yml, tags: [wayland] }

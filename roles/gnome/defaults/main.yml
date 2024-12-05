@@ -1,5 +1,5 @@
+---
 gnome_extensions: []
-
 gnome_settings:
   - schema: org.gnome.shell.app-switcher
     key: current-workspace-only
@@ -18,17 +18,16 @@ gnome_settings:
     value: "[('xkb', 'us'), ('xkb', 'ir')]"
   - schema: org.gnome.desktop.wm.preferences
     key: button-layout
-    value: "appmenu:minimize,maximize,close"
+    value: appmenu:minimize,maximize,close
   # when inactive (on battery power): suspend
   - schema: org.gnome.settings-daemon.plugins.power
     key: sleep-inactive-battery-type
-    value: "suspend"
+    value: suspend
   # when inactive (plugged in): nothing
   - schema: org.gnome.settings-daemon.plugins.power
     key: sleep-inactive-ac-type
-    value: "nothing"
+    value: nothing
 gnome_settings_extra: []
-
 gnome_eog_settings:
   # scroll up/down instead of zoom in/out in gnome image viewer (eog)
   # https://gitlab.gnome.org/GNOME/eog/-/issues/84
@@ -39,13 +38,13 @@ gnome_eog_settings:
 gnome_nautilus_settings:
   - schema: org.gnome.nautilus.icon-view
     key: default-zoom-level
-    value: "small-plus"
+    value: small-plus
   - schema: org.gnome.nautilus.list-view
     key: default-zoom-level
-    value: "small"
+    value: small
   - schema: org.gnome.nautilus.preferences
     key: default-folder-viewer
-    value: "list-view"
+    value: list-view
   - schema: org.gtk.gtk4.Settings.FileChooser
     key: sort-directories-first
     value: "true"
@@ -53,13 +52,13 @@ gnome_nautilus_settings:
 gnome_text_editor_settings:
   - schema: org.gnome.TextEditor
     key: indent-style
-    value: "space"
+    value: space
   - schema: org.gnome.TextEditor
     key: tab-width
     value: 4
   - schema: org.gnome.TextEditor
     key: style-variant
-    value: "dark"
+    value: dark
   - schema: org.gnome.TextEditor
     key: show-line-numbers
     value: "true"

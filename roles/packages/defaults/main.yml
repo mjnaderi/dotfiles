@@ -1,3 +1,4 @@
+---
 pacman_config:
   - regexp: ^#\s*Color$
     line: Color
@@ -33,6 +34,5 @@ packages_pacman:
   #################################################### GUI ####################################################
   - vlc # vlc from flatpak has some problems
 packages_pacman_extra: []
-
 packages_aur: []
 packages_flatpak: []

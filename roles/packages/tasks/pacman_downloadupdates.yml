@@ -1,13 +1,14 @@
+---
 # downloadupdates timer run "checkupdates -d" periodically, so updating packages becomes instant.
 
 - name: install pacman-contrib (for checkupdates script)
-  become: yes
+  become: true
   community.general.pacman:
     name: pacman-contrib
     state: latest
 
 - name: install downloadupdates systemd service and timer
-  become: yes
+  become: true
   ansible.builtin.template:
     src: downloadupdates/{{ item }}
     dest: /etc/systemd/system/{{ item }}
@@ -16,10 +17,9 @@
     - downloadupdates.timer
 
 - name: enable and start downloadupdates timer
-  become: yes
+  become: true
   ansible.builtin.systemd:
     name: downloadupdates.timer
-    enabled: yes
+    enabled: true
     state: started
-    daemon_reload: yes
-
+    daemon_reload: true

@@ -1,25 +1,26 @@
+---
 - name: install yay dependency
-  become: yes
+  become: true
   ansible.builtin.package:
     name: base-devel
     state: latest
   when: "'yay' in packages_aur"
 
 - name: create the `aur_builder` user
-  become: yes
+  become: true
   ansible.builtin.user:
     name: aur_builder
-    create_home: yes
+    create_home: true
 
 - name: allow the `aur_builder` user to run `sudo pacman` without a password
-  become: yes
+  become: true
   ansible.builtin.copy:
     content: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
     dest: /etc/sudoers.d/11-install-aur_builder
-    validate: "visudo -cf %s"
+    validate: visudo -cf %s
 
 - name: install aur packages
-  become: yes
+  become: true
   become_user: aur_builder
   kewlfft.aur.aur:
     name: "{{ packages_aur }}"

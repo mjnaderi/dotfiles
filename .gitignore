@@ -1,3 +1,5 @@
 .idea
+.vscode
 .env
 inventory.ini
+__pycache__

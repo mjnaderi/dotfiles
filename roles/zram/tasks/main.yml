@@ -1,2 +1,3 @@
-- import_tasks: zram.yml
+---
+- ansible.builtin.import_tasks: zram.yml
   tags: [zram]

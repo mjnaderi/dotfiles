@@ -1,3 +1,4 @@
+---
 # Change sleep state from Suspend-to-Idle to Suspend-to-RAM
 # (change mem_sleep from "s2idle" to "deep")
 #
@@ -29,7 +30,7 @@
 # https://docs.kernel.org/admin-guide/pm/sleep-states.html
 
 - name: change sleep state from Suspend-to-Idle to Suspend-to-RAM
-  become: yes
+  become: true
   ansible.builtin.lineinfile:
     path: /etc/default/grub
     regexp: ^GRUB_CMDLINE_LINUX_DEFAULT="((?:(?!mem_sleep_default=deep).)*?)"$

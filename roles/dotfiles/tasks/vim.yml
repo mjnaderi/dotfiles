@@ -1,3 +1,4 @@
+---
 - name: install vimrc
   ansible.builtin.file:
     src: "{{ playbook_dir }}/files/vimrc"
@@ -8,7 +9,7 @@
   ansible.builtin.file:
     path: ~/.vim/pack/plugins/start
     state: directory
-    recurse: yes
+    recurse: true
 
 - name: install vim plugin - lightline
   ansible.builtin.git:

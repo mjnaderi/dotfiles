@@ -1,6 +1,7 @@
+---
 - name: configure ssh client
-  become: yes
-  blockinfile:
+  become: true
+  ansible.builtin.blockinfile:
     path: /etc/ssh/ssh_config
     marker: "# {mark} ANSIBLE MANAGED BLOCK - Host *"
     block: |

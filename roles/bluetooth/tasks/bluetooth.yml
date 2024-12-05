@@ -1,13 +1,14 @@
+---
 # https://wiki.archlinux.org/title/Bluetooth
 - name: install bluez
-  become: yes
+  become: true
   ansible.builtin.package:
     name: bluez
     state: latest
 
 - name: enable and start bluetooth service
-  become: yes
+  become: true
   ansible.builtin.systemd:
     name: bluetooth
-    enabled: yes
+    enabled: true
     state: started

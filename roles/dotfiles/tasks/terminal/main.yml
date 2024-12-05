@@ -1,2 +1,3 @@
-- { import_tasks: ddterm.yml, tags: [terminal/ddterm] }
-- { import_tasks: shell.yml, tags: [terminal/shell] }
+---
+- { ansible.builtin.import_tasks: ddterm.yml, tags: [terminal/ddterm] }
+- { ansible.builtin.import_tasks: shell.yml, tags: [terminal/shell] }

@@ -1,7 +1,8 @@
+---
 - name: install docker
-  become: yes
+  become: true
   community.general.pacman:
-    update_cache: yes
+    update_cache: true
     name:
       - docker
       - docker-compose
@@ -9,21 +10,21 @@
     state: latest
 
 - name: add user "{{ ansible_user_id }}" to "docker" group
-  become: yes
+  become: true
   ansible.builtin.user:
     name: "{{ ansible_user_id }}"
     groups: docker
-    append: yes
+    append: true
 
 - name: configure registry mirror for docker - create /etc/docker
-  become: yes
+  become: true
   ansible.builtin.file:
     path: /etc/docker
     state: directory
     mode: "0755"
 
 - name: configure registry mirror for docker - create /etc/docker/daemon.json
-  become: yes
+  become: true
   ansible.builtin.template:
     src: docker-daemon.json
     dest: /etc/docker/daemon.json
@@ -31,15 +32,15 @@
     - restart docker service
 
 - name: enable and start docker service
-  become: yes
+  become: true
   ansible.builtin.systemd:
-    daemon_reload: yes
+    daemon_reload: true
     name: docker
-    enabled: yes
+    enabled: true
     state: started
 
 - name: install dive (for exploring docker image layers)
-  become: yes
+  become: true
   community.general.pacman:
     name: dive
     state: latest

@@ -1,3 +1,4 @@
+---
 gnome_extensions:
   # - id: Hide_Activities@shay.shayel.org # https://extensions.gnome.org/extension/744/hide-activities-button/
   # - id: sound-output-device-chooser@kgshank.net # https://extensions.gnome.org/extension/906/sound-output-device-chooser/
@@ -45,21 +46,21 @@ packages_pacman_extra:
   ################################################## AppImage ##################################################
   - fuse2 # dependency for AppImage files (https://github.com/AppImage/AppImageKit/wiki/FUSE)
   #################################################### gvfs ####################################################
-  - gvfs-mtp  # Access Android over MTP (https://www.linuxfordevices.com/tutorials/linux/connect-android-to-arch-via-usb)
-  - gvfs-smb  # Access Windows shared folders (https://wiki.archlinux.org/title/Samba#File_manager_configuration)
+  - gvfs-mtp # Access Android over MTP (https://www.linuxfordevices.com/tutorials/linux/connect-android-to-arch-via-usb)
+  - gvfs-smb # Access Windows shared folders (https://wiki.archlinux.org/title/Samba#File_manager_configuration)
 
 packages_aur:
   - yay
   - nekoray-bin
   - pycharm-professional
-  - microsoft-edge-stable-bin  # Edge from Flatpak has some issues (e.g. system proxy does not work).
+  - microsoft-edge-stable-bin # Edge from Flatpak has some issues (e.g. system proxy does not work).
   # - freedownloadmanager # In FDM from Flatpak, browser integration does not work.
-  - fstl  # A fast STL file viewer
-  - galaxybudsclient-bin  # Unofficial Galaxy Buds Manager for Windows and Linux
-  - try  # Inspect a command's effects before modifying your live system (https://github.com/binpash/try)
+  - fstl # A fast STL file viewer
+  - galaxybudsclient-bin # Unofficial Galaxy Buds Manager for Windows and Linux
+  - try # Inspect a command's effects before modifying your live system (https://github.com/binpash/try)
   # - google-chrome # Chromium doesn't support Google sync, so I use Google Chrome.
   - visual-studio-code-bin
-  - vale-bin  # A markup-aware linter for prose
+  - vale-bin # A markup-aware linter for prose
 
 packages_flatpak:
   # - com.mattermost.Desktop  # Open Source Communication Platform
@@ -67,13 +68,13 @@ packages_flatpak:
   - com.transmissionbt.Transmission
   # - fr.handbrake.ghb
   # - org.keepassxc.KeePassXC
-  - com.mattjakeman.ExtensionManager  # Browse, install, and manage GNOME Shell Extensions
-  - org.localsend.localsend_app  # Share files to nearby devices.
-  - com.bitwarden.desktop  # A secure and free password manager for all of your devices
-  - org.telegram.desktop  # Instant Messaging
-  - io.dbeaver.DBeaverCommunity  # Universal Database Manager
-  - org.libreoffice.LibreOffice  # The LibreOffice productivity suite
-  - com.ultimaker.cura  # 3D Printing
+  - com.mattjakeman.ExtensionManager # Browse, install, and manage GNOME Shell Extensions
+  - org.localsend.localsend_app # Share files to nearby devices.
+  - com.bitwarden.desktop # A secure and free password manager for all of your devices
+  - org.telegram.desktop # Instant Messaging
+  - io.dbeaver.DBeaverCommunity # Universal Database Manager
+  - org.libreoffice.LibreOffice # The LibreOffice productivity suite
+  - com.ultimaker.cura # 3D Printing
   - com.github.marktext.marktext
   - org.gimp.GIMP
   - org.inkscape.Inkscape

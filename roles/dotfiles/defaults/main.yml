@@ -1,3 +1,4 @@
+---
 repos_dir: "{{ playbook_dir }}/repos"
 
 # list of available color schemes: https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/vscode
@@ -8,19 +9,19 @@ iterm2_color_scheme_name: 3024 Night
 # dconf-editor com.github.amezin.ddterm:~/.local/share/gnome-shell/extensions/ddterm@amezin.github.com/schemas/
 ddterm_config:
   - key: shortcut-move-tab-next
-    value: ["<Primary><Shift>j"]
+    value: [<Primary><Shift>j]
   - key: shortcut-move-tab-prev
-    value: ["<Primary><Shift>k"]
+    value: [<Primary><Shift>k]
   - key: shortcut-next-tab
-    value: ["<Primary>j"]
+    value: [<Primary>j]
   - key: shortcut-prev-tab
-    value: ["<Primary>k"]
+    value: [<Primary>k]
   - key: shortcut-page-close
-    value: ["<Primary>w"]
+    value: [<Primary>w]
   - key: shortcut-win-new-tab
-    value: []  # Disabled (Because I need Ctrl+t in Zellij)
+    value: [] # Disabled (Because I need Ctrl+t in Zellij)
   - key: shortcut-win-new-tab-after-current
-    value: ["<Primary><Shift>t"]
+    value: [<Primary><Shift>t]
   - key: theme-variant
     value: dark
   - key: new-tab-button

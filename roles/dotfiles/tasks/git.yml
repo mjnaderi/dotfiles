@@ -1,9 +1,10 @@
+---
 - name: generate .gitconfig_user
   ansible.builtin.template:
     src: gitconfig_user
     dest: ~/.gitconfig_user
-    mode: 0644
-    backup: yes
+    mode: "0644"
+    backup: true
 
 - name: link .gitconfig
   ansible.builtin.file:

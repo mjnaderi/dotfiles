@@ -1,12 +1,13 @@
+---
 - name: install font packages
-  become: yes
+  become: true
   community.general.pacman:
     name:
       - adobe-source-code-pro-fonts
       - cantarell-fonts
       - noto-fonts # provider for ttf-font (https://wiki.archlinux.org/title/Fonts#Families)
-      - ttf-jetbrains-mono-nerd  # https://www.nerdfonts.com/
-      - ttf-sourcecodepro-nerd  # https://www.nerdfonts.com/
+      - ttf-jetbrains-mono-nerd # https://www.nerdfonts.com/
+      - ttf-sourcecodepro-nerd # https://www.nerdfonts.com/
     state: latest
 
 #- name: install ttf-twemoji (emoji font)
@@ -18,7 +19,7 @@
 
 - name: create user fonts directory
   ansible.builtin.file:
-    path: ~/.local/share/fonts  # ~/.fonts is deprecated
+    path: ~/.local/share/fonts # ~/.fonts is deprecated
     state: directory
 
 - name: install Vazirmatn font

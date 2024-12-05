@@ -1,0 +1,5 @@
+---
+profile: production # min, basic, moderate, safety, shared, production
+skip_list:
+  - name[casing]
+  - name[missing]

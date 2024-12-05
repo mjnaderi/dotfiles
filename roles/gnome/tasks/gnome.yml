@@ -1,18 +1,19 @@
+---
 - name: install gnome-tweaks
-  become: yes
+  become: true
   community.general.pacman:
     name: gnome-tweaks
     state: latest
 
 - name: install extension dependencies
-  become: yes
+  become: true
   community.general.pacman:
     name: "{{ item.dependencies }}"
     state: latest
   when: "'dependencies' in item"
   loop: "{{ gnome_extensions }}"
   loop_control:
-    label: "{{ item.id }} {{ item.dependencies|default([]) }}"
+    label: "{{ item.id }} {{ item.dependencies | default([]) }}"
 
 - name: install gnome extensions
   ansible.builtin.command:
@@ -52,7 +53,7 @@
 #    value: Graphite-Light-nord
 
 - name: install qogir icon theme
-  become: yes
+  become: true
   become_user: aur_builder
   kewlfft.aur.aur:
     name: qogir-icon-theme
@@ -71,7 +72,7 @@
   loop: "{{ gnome_settings + gnome_settings_extra }}"
 
 - name: install eog (Eye of Gnome) image viewer
-  become: yes
+  become: true
   community.general.pacman:
     name: eog
     state: latest
@@ -83,7 +84,7 @@
   loop: "{{ gnome_eog_settings }}"
 
 - name: install nautilus file manager
-  become: yes
+  become: true
   community.general.pacman:
     name: nautilus
     state: latest
@@ -95,7 +96,7 @@
   loop: "{{ gnome_nautilus_settings }}"
 
 - name: install gnome-text-editor
-  become: yes
+  become: true
   community.general.pacman:
     name: gnome-text-editor
     state: latest
@@ -113,7 +114,7 @@
   block:
     # install gcr-4 package
     - name: install gnome gcr (https://gitlab.gnome.org/GNOME/gcr)
-      become: yes
+      become: true
       community.general.pacman:
         name: gcr-4
         state: latest
@@ -123,7 +124,7 @@
       ansible.builtin.systemd:
         scope: user
         name: gcr-ssh-agent.socket
-        enabled: yes
+        enabled: true
 
     - name: create ~/.config/environment.d directory
       ansible.builtin.file:
