@@ -5,9 +5,6 @@
 - ansible.builtin.import_tasks: pacman_reflector.yml
   tags: [packages, packages/pacman_reflector]
 
-- ansible.builtin.import_tasks: pacman_downloadupdates.yml
-  tags: [packages, packages/pacman_downloadupdates]
-
 - ansible.builtin.import_tasks: aur.yml
   tags: [packages, packages/aur]
 
