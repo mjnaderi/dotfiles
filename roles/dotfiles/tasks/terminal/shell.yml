@@ -1,9 +1,9 @@
 ---
 - name: install ZSH shell
   become: true
-  ansible.builtin.package:
+  community.general.pacman:
     name: zsh
-    state: latest
+    state: present
 
 - name: get ZSH binary path
   ansible.builtin.command: which zsh
@@ -49,9 +49,9 @@
 
 - name: install starship
   become: true
-  ansible.builtin.package:
+  community.general.pacman:
     name: starship
-    state: latest
+    state: present
 
 - name: configure starship
   ansible.builtin.file:
@@ -70,9 +70,9 @@
 
 - name: install lsd
   become: true
-  ansible.builtin.package:
+  community.general.pacman:
     name: lsd
-    state: latest
+    state: present
 
 - name: create lsd config directory
   ansible.builtin.file:
@@ -87,15 +87,15 @@
 
 - name: install bat
   become: true
-  ansible.builtin.package:
+  community.general.pacman:
     name: bat
-    state: latest
+    state: present
 
 - name: install atuin
   become: true
-  ansible.builtin.package:
+  community.general.pacman:
     name: atuin
-    state: latest
+    state: present
 
 - name: create atuin config directory
   ansible.builtin.file:
@@ -111,9 +111,9 @@
 
 - name: install zellij
   become: true
-  ansible.builtin.package:
+  community.general.pacman:
     name: zellij
-    state: latest
+    state: present
 
 - name: create zellij config directory
   ansible.builtin.file:

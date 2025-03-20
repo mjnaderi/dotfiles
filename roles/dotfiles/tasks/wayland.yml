@@ -4,7 +4,7 @@
   become: true
   community.general.pacman:
     name: xorg-xeyes
-    state: latest
+    state: present
 
 # https://wiki.archlinux.org/title/PipeWire#WebRTC_screen_sharing
 # Test Page: https://mozilla.github.io/webrtc-landing/gum_test.html
@@ -16,7 +16,7 @@
       - wireplumber
       - xdg-desktop-portal
       - xdg-desktop-portal-gnome
-    state: latest
+    state: present
 
 - name: create wireplumber configuration directory
   ansible.builtin.file:

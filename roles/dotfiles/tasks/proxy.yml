@@ -4,11 +4,11 @@
 
 - name: install autossh, proxychains
   become: true
-  ansible.builtin.package:
+  community.general.pacman:
     name:
       - autossh
       - proxychains
-    state: latest
+    state: present
 
 - name: configure proxychains
   become: true

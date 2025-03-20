@@ -7,7 +7,7 @@
       - docker
       - docker-compose
       - docker-buildx
-    state: latest
+    state: present
 
 - name: add user "{{ ansible_user_id }}" to "docker" group
   become: true
@@ -43,4 +43,4 @@
   become: true
   community.general.pacman:
     name: dive
-    state: latest
+    state: present

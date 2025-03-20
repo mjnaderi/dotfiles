@@ -4,7 +4,7 @@
   become: true
   community.general.pacman:
     name: sof-firmware
-    state: latest
+    state: present
 
 # https://unix.stackexchange.com/questions/114602/pulseaudio-sink-always-suspended
 # https://wiki.archlinux.org/title/PulseAudio/Troubleshooting#Failed_to_create_sink_input:_sink_is_suspended

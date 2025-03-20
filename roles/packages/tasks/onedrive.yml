@@ -1,11 +1,11 @@
 #- name: install onedrive-abraunegg dependencies
 #  become: yes
-#  ansible.builtin.package:
+#  community.general.pacman:
 #    name:
 #      - liblphobos
 #      - ldc
 #    update_cache: yes
-#    state: latest
+#    state: present
 #
 #- name: install onedrive-abraunegg from AUR
 #  become: yes

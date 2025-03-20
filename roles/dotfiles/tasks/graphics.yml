@@ -17,9 +17,9 @@
 
 - name: install mesa
   become: true
-  ansible.builtin.package:
+  community.general.pacman:
     name: mesa
-    state: latest
+    state: present
 
 # https://wiki.archlinux.org/title/Hardware_video_acceleration
 # To ensure it is working, install `intel-gpu-tools` and run `intel_gpu_top`
@@ -27,6 +27,6 @@
 # The video bar being above 0% indicates GPU video decoder/encoder usage.
 - name: enable hardware video acceleration using Intel graphics
   become: true
-  ansible.builtin.package:
+  community.general.pacman:
     name: intel-media-driver
-    state: latest
+    state: present

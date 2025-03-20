@@ -1,9 +1,9 @@
 ---
 - name: install yay dependency
   become: true
-  ansible.builtin.package:
+  community.general.pacman:
     name: base-devel
-    state: latest
+    state: present
   when: "'yay' in packages_aur"
 
 - name: create the `aur_builder` user

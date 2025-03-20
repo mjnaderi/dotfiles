@@ -9,9 +9,9 @@
 - name: install virtualenv
   community.general.pipx:
     name: virtualenv
-    state: latest
+    state: present
 
 - name: install poetry
   community.general.pipx:
     name: poetry
-    state: latest
+    state: present

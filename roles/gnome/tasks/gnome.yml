@@ -3,13 +3,13 @@
   become: true
   community.general.pacman:
     name: gnome-tweaks
-    state: latest
+    state: present
 
 - name: install extension dependencies
   become: true
   community.general.pacman:
     name: "{{ item.dependencies }}"
-    state: latest
+    state: present
   when: "'dependencies' in item"
   loop: "{{ gnome_extensions }}"
   loop_control:
@@ -75,7 +75,7 @@
   become: true
   community.general.pacman:
     name: eog
-    state: latest
+    state: present
 - name: apply eog settings
   gsettings:
     schema: "{{ item.schema }}"
@@ -87,7 +87,7 @@
   become: true
   community.general.pacman:
     name: nautilus
-    state: latest
+    state: present
 - name: apply file manager (nautilus) settings
   gsettings:
     schema: "{{ item.schema }}"
@@ -99,7 +99,7 @@
   become: true
   community.general.pacman:
     name: gnome-text-editor
-    state: latest
+    state: present
 - name: apply gnome text editor settings
   gsettings:
     schema: "{{ item.schema }}"
@@ -117,7 +117,7 @@
       become: true
       community.general.pacman:
         name: gcr-4
-        state: latest
+        state: present
 
     # Enable the `gcr-ssh-agent.socket` systemd user unit.
     - name: enable gcr-ssh-agent.socket

@@ -8,7 +8,7 @@
       - noto-fonts # provider for ttf-font (https://wiki.archlinux.org/title/Fonts#Families)
       - ttf-jetbrains-mono-nerd # https://www.nerdfonts.com/
       - ttf-sourcecodepro-nerd # https://www.nerdfonts.com/
-    state: latest
+    state: present
 
 #- name: install ttf-twemoji (emoji font)
 #  become: yes

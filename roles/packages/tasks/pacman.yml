@@ -4,7 +4,7 @@
   community.general.pacman:
     update_cache: true
     name: "{{ packages_pacman + packages_pacman_extra }}"
-    state: latest
+    state: present
 
 - name: configure pacman
   become: true
