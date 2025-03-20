@@ -10,7 +10,7 @@ source "$(dirname "$0")/.env"
 set +o allexport
 
 # if the first argument ends with ".yml", use it as the playbook
-if [[ $1 == *.yml ]]; then
+if [[ $# -gt 0 && $1 == *.yml ]]; then
   PLAYBOOK=$1
   shift
 else
